@@ -1,0 +1,223 @@
+Title:			Use anaconda-navigator and Spyder
+Project:	
+Record:		
+Author:		
+Origin Date:		21 Apr 2016
+
+
+################
+websites
+#############
+https://www.digitalocean.com/community/tutorials/how-to-install-the-anaconda-python-distribution-on-ubuntu-16-04
+
+
+##########
+updates
+###########
+
+Updating Anaconda
+You should regularly ensure that Anaconda is up-to-date so that you are working with all the latest package releases. 
+
+conda update conda
+conda update anaconda
+
+###############
+Install check on .sh file
+##############
+https://docs.anaconda.com/anaconda/install/hashes/Anaconda3-5.0.1-Linux-x86_64.sh-hash
+
+sha256sum Anaconda3-5.0.1-Linux-x86_64.sh
+55e4db1919f49c92d5abbf27a4be5986ae157f074bf9f8238963cd4582a4068a  Anaconda3-5.0.1-Linux-x86_64.sh
+
+
+
+exact time file was last modified, as Unix time stamp 	1508799175.9727552
+time file was last modified, in human readable format 	2017-10-23 17:52:55
+exact file size, in bytes 				550796553
+file size, in human friendly format 			525.3 MiB
+
+md5 	c989ecc8b648ab8a64731aaee9ed2e7e
+sha256 	55e4db1919f49c92d5abbf27a4be5986ae157f074bf9f8238963cd4582a4068a
+
+
+
+#############
+general info
+##############
+NOTE: If you install multiple versions of Anaconda, the system defaults to the most current version, 
+as long as you haven’t altered the default install path.
+
+conda search "^python$"
+Loading channels: done
+Name                       Version                   Build  Channel        
+python                     1.0.1                         0  defaults       
+python                     2.6.8                         1  defaults       
+python                     2.6.8                         2  defaults       
+python                     2.6.8                         3  defaults       
+python                     2.6.8                         4  defaults       
+python                     2.6.8                         5  defaults       
+python                     2.6.8                         6  defaults       
+python                     2.6.8                         7  defaults       
+python                     2.6.9                         0  defaults       
+python                     2.6.9                         1  defaults       
+python                     2.7.3                         2  defaults       
+python                     2.7.3                         3  defaults       
+python                     2.7.3                         4  defaults       
+python                     2.7.3                         5  defaults       
+python                     2.7.3                         6  defaults       
+python                     2.7.3                         7  defaults       
+python                     2.7.4                         0  defaults       
+python                     2.7.5                         0  defaults       
+python                     2.7.5                         1  defaults       
+python                     2.7.5                         2  defaults       
+python                     2.7.5                         3  defaults       
+python                     2.7.6                         0  defaults       
+python                     2.7.6                         1  defaults       
+python                     2.7.6                         2  defaults       
+python                     2.7.7                         0  defaults       
+python                     2.7.7                         2  defaults       
+python                     2.7.8                         0  defaults       
+python                     2.7.8                         1  defaults       
+python                     2.7.9                         0  defaults       
+python                     2.7.9                         1  defaults       
+python                     2.7.9                         2  defaults       
+python                     2.7.9                         3  defaults       
+python                     2.7.9                        d1  defaults       
+python                     2.7.9                        d2  defaults       
+python                     2.7.10                        0  defaults       
+python                     2.7.10                        1  defaults       
+python                     2.7.10                        2  defaults       
+python                     2.7.10                       d0  defaults       
+python                     2.7.11                        0  defaults       
+python                     2.7.11                        5  defaults       
+python                     2.7.11                       d0  defaults       
+python                     2.7.12                        0  defaults       
+python                     2.7.12                        1  defaults       
+python                     2.7.13                        0  defaults       
+python                     2.7.13              hac47a24_15  defaults       
+python                     2.7.13              heccc3f1_16  defaults       
+python                     2.7.13              hfff3488_13  defaults       
+python                     2.7.14              h1571d57_29  defaults       
+python                     2.7.14              h1aa7481_19  defaults       
+python                     2.7.14              h435b27a_18  defaults       
+python                     2.7.14              h89e7a4a_22  defaults       
+python                     2.7.14              h91f54f5_26  defaults       
+python                     2.7.14              h931c8b0_15  defaults       
+python                     2.7.14              h9b67528_20  defaults       
+python                     2.7.14              ha6fc286_23  defaults       
+python                     2.7.14              hc2b0042_21  defaults       
+python                     2.7.14              hdd48546_24  defaults       
+python                     2.7.14              hf918d8d_16  defaults       
+python                     3.3.0                         2  defaults       
+python                     3.3.0                         3  defaults       
+python                     3.3.0                         4  defaults       
+python                     3.3.0                      pro0  defaults       
+python                     3.3.0                      pro1  defaults       
+python                     3.3.1                         0  defaults       
+python                     3.3.2                         0  defaults       
+python                     3.3.2                         1  defaults       
+python                     3.3.3                         0  defaults       
+python                     3.3.4                         0  defaults       
+python                     3.3.5                         0  defaults       
+python                     3.3.5                         1  defaults       
+python                     3.3.5                         2  defaults       
+python                     3.3.5                         3  defaults       
+python                     3.3.5                         4  defaults       
+python                     3.4.0                         0  defaults       
+python                     3.4.1                         0  defaults       
+python                     3.4.1                         1  defaults       
+python                     3.4.1                         2  defaults       
+python                     3.4.1                         3  defaults       
+python                     3.4.1                         4  defaults       
+python                     3.4.2                         0  defaults       
+python                     3.4.3                         0  defaults       
+python                     3.4.3                         1  defaults       
+python                     3.4.3                         2  defaults       
+python                     3.4.4                         0  defaults       
+python                     3.4.4                         5  defaults       
+python                     3.4.5                         0  defaults       
+python                     3.5.0rc4                      0  defaults       
+python                     3.5.0                         0  defaults       
+python                     3.5.0                         1  defaults       
+python                     3.5.1                         0  defaults       
+python                     3.5.1                         5  defaults       
+python                     3.5.2                         0  defaults       
+python                     3.5.3                         0  defaults       
+python                     3.5.3                         1  defaults       
+python                     3.5.4                         0  defaults       
+python                     3.5.4               h00c01ad_19  defaults       
+python                     3.5.4               h0b4c808_22  defaults       
+python                     3.5.4               h2170f06_12  defaults       
+python                     3.5.4               h3075507_18  defaults       
+python                     3.5.4               h417fded_24  defaults       
+python                     3.5.4               h56e0582_23  defaults       
+python                     3.5.4               h72f0b78_15  defaults       
+python                     3.5.4               hb43c6bb_21  defaults       
+python                     3.5.4               hc053d89_14  defaults       
+python                     3.5.4               he2c66cf_20  defaults       
+python                     3.6.0                         0  defaults       
+python                     3.6.1                         0  defaults       
+python                     3.6.1                         2  defaults       
+python                     3.6.2                         0  defaults       
+python                     3.6.2               h02fb82a_12  defaults       
+python                     3.6.2               h0b30769_14  defaults       
+python                     3.6.2               h33255ae_18  defaults       
+python                     3.6.2               hca45abc_19  defaults       
+python                     3.6.2               hdfe5801_15  defaults       
+python                     3.6.3                h0ef2715_3  defaults       
+python                     3.6.3                h1284df2_4  defaults       
+python                     3.6.3                h6c0c0dc_5  defaults       
+python                     3.6.3                hc9025b9_1  defaults       
+python                     3.6.3                hcad60d5_0  defaults       
+python                     3.6.3                hefd0734_2  defaults       
+python                     3.6.4                hc3d631a_0  defaults    
+
+
+
+
+##################
+user environments
+####################
+
+asterisk indicates the current active environment.
+
+conda info --envs
+
+# conda environments:
+#
+base                  *  /home/bruce/anaconda2
+
+
+conda create --name my_env354 python=3.5.4 setuptools pyqt5 pip
+conda remove --name my_env354 --all
+
+
+
+	* Anaconda 2.7 installed
+	* Anaconda Navigator installed (19 Aug 2016)
+	* Use Spyder IDE
+	* see Machine learning scripts for helpful scripts
+
+$ anaconda-navigator
+Launch Spyder
+Launch Jupyter
+etc
+
+
+$ spyder
+Python 2.7.11 |Anaconda 2.5.0 (32-bit)| (default, Dec  6 2015, 18:08:45) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 4.0.3 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+%guiref   -> A brief reference about the graphical user interface.
+
+In [1]: 
+
+
+
+
+
