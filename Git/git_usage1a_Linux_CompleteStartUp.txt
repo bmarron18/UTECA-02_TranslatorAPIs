@@ -150,16 +150,6 @@ Repositories Set up
 					Token_20241226 (never expires)		<== NEVER put token in a doc to be 'pushed' to the 
 															offsite repo (the doc will contain a secret)
 					
-
-My personal (public) Repositories (as of 25 Dec 2024):
-
-	UTECA1_TranslatorAPIs
- 				
-	Repo_1								<== Development of Dynamical Models for AgroEV
-			
-	Repro_2								<== Bayesian Stats, LANDIS
-				
-	ProjectFiles_LANDIS-II_Updates
 	
 
 
@@ -239,9 +229,12 @@ $ cat .gitignore
 $ git add Git/\*.txt			
 $ git add Python/\*.txt
 
-		#track all files!
+		#track all files by folder!
 $ git add Git/\*.* &&
 git add Python/\*.*
+
+		#track all files!
+$ git add --all
 
 		# files and their status 
 $ git ls-files
@@ -265,6 +258,8 @@ $ git status
 		# -m flag ==> adds message to the commit
 			Please enter the commit message for your changes. Lines starting with '#' will be ignored, 
 			and an empty message aborts the commit.
+			
+		# $ git commit --amend --all			<== if needed
 
 $ git commit -a -m "onsite repo initial files"
 [master ca8e3cf] onsite repo initial files
@@ -272,16 +267,16 @@ $ git commit -a -m "onsite repo initial files"
  create mode 100644 Git/GHB_RepoSetUp.txt
  ,,,,,
  
+ 
+ 
  	# push to offsite repo (aka 'origin')
-	# success!!!!!!
-	
+
 $ git remote -v
 origin	https://github.com/bmarron18/UTECA1_TranslatorAPIs (fetch)
 origin	https://github.com/bmarron18/UTECA1_TranslatorAPIs (push)
 
 
-
-$ git push --all
+$ git push origin --all
 Username: bmarron18
 Password: <full token>
 Username for 'https://github.com': bmarron18
@@ -297,43 +292,7 @@ To https://github.com/bmarron18/UTECA1_TranslatorAPIs
    b47764e..a39f141  master -> master
 
 $ git config --global credential.helper cache
-
-
-
-
---- NB Error in push-----------------------------------------------------------------		
-	# cannot have token in any file!!!! (the token is the secret)
-	remote:       —— GitHub Personal Access Token ——————————————————————
-remote:        locations:
-remote:          - commit: ca8e3cf31a7a75444ac0bc75a312c6c5c6ffd9ff
-remote:            path: Git/git_usage1a.txt:144
-remote:          - commit: ca8e3cf31a7a75444ac0bc75a312c6c5c6ffd9ff
-remote:            path: Git/git_usage1a.txt:808
-remote:          - commit: ca8e3cf31a7a75444ac0bc75a312c6c5c6ffd9ff
-remote:            path: Git/git_usage1a.txt:815
-remote:          - commit: ca8e3cf31a7a75444ac0bc75a312c6c5c6ffd9ff
-remote:            path: Git/git_usage1a.txt:819
-remote:          - commit: ca8e3cf31a7a75444ac0bc75a312c6c5c6ffd9ff
-remote:            path: Git/git_usage1a.txt:820
-
-To https://github.com/bmarron18/UTECA1_TranslatorAPIs
- ! [remote rejected] master -> master (push declined due to repository rule violations)
-error: failed to push some refs to 'https://github.com/bmarron18/UTECA1_TranslatorAPIs'
-
-	# Remove the secret from your code.
-    # To commit the changes, run git commit --amend --all. This updates the original commit that introduced the secret instead 
-	of creating a new commit.
-    # Push your changes with git push
-		https://docs.github.com/en/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#removing-a-secret-introduced-by-the-latest-commit-on-your-branch
-	#only works immediately after failed push (no other pushes!!!!)
-	# delete file git_usage1a.txt
-	
-$ git commit --amend --all
-master 0c5e18d] onsite repo initial files w/o secret again
- Date: Fri Dec 27 10:30:40 2024 -0600
- 1 file changed, 1049 deletions(-)
- delete mode 100644 Git/git_usage1a.txt
--------------------------------------------------------------------------------------------------------------------------
+$ git status
 
 
 
@@ -385,11 +344,7 @@ $ git commit -a -m "25Dec2024_2"
 		#(HEAD ==> A handy way to push the current branch to the same name in the offsite)
 		#use 'git push <offsite name> <onsite branch>'
 
-$ git push --all
-
-
-
-
+$ git push origin --all
 
 
 
@@ -470,7 +425,7 @@ $ gitk
 history
 #####################
 
-==== STEP 1. use GUI, 'gitk' ===========================
+==== Option 1. use GUI, 'gitk' ===========================
 
 		#shows history AND lists files extant and deleted in offsite repository!!!
 		#enter 'gitk' in onsite repository 
@@ -478,11 +433,9 @@ history
 ~/Desktop/Projects$ gitk
 
 
-==== STEP 2. can check log (see git_usage2.txt or ProGit.pdf for custom log checking) ================================
+==== Option 2. can check log (see git_usage2.txt or ProGit.pdf for custom log checking) ================================
 
-~/Desktop/Projects$ git log
-
-
+~/Desktop/Projects$ git log >> ~/Desktop/Git_Log.txt
 
 
 
@@ -492,7 +445,45 @@ history
 
 
 
-========== Misc Code	=============================
+
+
+========== Misc Code and Error Fixes	=============================
+
+
+--- NB Error in push-----------------------------------------------------------------		
+	# cannot have token in any file!!!! (the token is the secret)
+	remote:       —— GitHub Personal Access Token ——————————————————————
+remote:        locations:
+remote:          - commit: ca8e3cf31a7a75444ac0bc75a312c6c5c6ffd9ff
+remote:            path: Git/git_usage1a.txt:144
+remote:          - commit: ca8e3cf31a7a75444ac0bc75a312c6c5c6ffd9ff
+remote:            path: Git/git_usage1a.txt:808
+remote:          - commit: ca8e3cf31a7a75444ac0bc75a312c6c5c6ffd9ff
+remote:            path: Git/git_usage1a.txt:815
+remote:          - commit: ca8e3cf31a7a75444ac0bc75a312c6c5c6ffd9ff
+remote:            path: Git/git_usage1a.txt:819
+remote:          - commit: ca8e3cf31a7a75444ac0bc75a312c6c5c6ffd9ff
+remote:            path: Git/git_usage1a.txt:820
+
+To https://github.com/bmarron18/UTECA1_TranslatorAPIs
+ ! [remote rejected] master -> master (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/bmarron18/UTECA1_TranslatorAPIs'
+
+	# Remove the secret from your code.
+    # To commit the changes, run git commit --amend --all. This updates the original commit that introduced the secret instead 
+	of creating a new commit.
+    # Push your changes with git push
+		https://docs.github.com/en/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#removing-a-secret-introduced-by-the-latest-commit-on-your-branch
+	#only works immediately after failed push (no other pushes!!!!)
+	# delete file git_usage1a.txt
+	
+$ git commit --amend --all
+master 0c5e18d] onsite repo initial files w/o secret again
+ Date: Fri Dec 27 10:30:40 2024 -0600
+ 1 file changed, 1049 deletions(-)
+ delete mode 100644 Git/git_usage1a.txt
+-------------------------------------------------------------------------------------------------------------------------
+
 
 
 #############################

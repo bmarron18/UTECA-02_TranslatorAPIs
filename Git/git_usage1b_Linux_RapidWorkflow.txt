@@ -38,12 +38,15 @@ $ git remote show origin
 		#Git-track all files per folder
 		 ---------
 
-#track all files!
+	#track all files by folder
 $ git add UTECA_5CStudents_1/\*.* &&
 git add UTECA_6AStudents_1/\*.* &&
 git add UTECA_7AStudents_1/\*.* &&
 git add UTECA_9AStudents_1/\*.* &&
 git add UTECA_AllStudents_1/\*.*
+
+	# track all files!!!
+$ git add --all
 
 		# files and their status 
 $ git ls-files
