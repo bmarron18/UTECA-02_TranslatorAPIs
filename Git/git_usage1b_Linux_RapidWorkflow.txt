@@ -1,0 +1,79 @@
+
+Title:				Rapid Git and Github workflow in Linux
+Project Descriptor:	UTECA Translator APIs
+Project ID:		
+Author:			bmarron
+Origin Date:		25 Dec 2024
+Revision Date:		
+
+
+
+###################
+Offsite (Github)
+Repositories Set up
+####################
+
+			#on-line go to: https://github.com/
+			#login
+			-- username: bmarron18  (soil.foodwebs@gmail.com)
+			-- password: 18AV1dd*67R [old ==> 756vop7C (as of 16 Sept 2016)]
+			# new repo
+				'This will set master as the default branch'
+
+
+#########################################
+Onsite repository set up AND synch to offsite repo
+(must manually copy in additional subdirectories and files)
+##########################################
+
+$ git clone <Github URL>
+
+	# cd to new onsite repo folder and check (p.69 ProGit2)
+
+$ git remote -v
+$ git remote show origin
+
+
+	# dump in files/folders to new onsite repo and then track || stage || commit
+		#Git-track all files per folder
+		 ---------
+
+#track all files!
+$ git add UTECA_5CStudents_1/\*.* &&
+git add UTECA_6AStudents_1/\*.* &&
+git add UTECA_7AStudents_1/\*.* &&
+git add UTECA_9AStudents_1/\*.* &&
+git add UTECA_AllStudents_1/\*.*
+
+		# files and their status 
+$ git ls-files
+$ git status
+
+
+		#use 'git add --all' to add all files for staging
+												  --------
+$ git add --all
+$ git status
+
+		#use 'git commit -a -m "message"' to commit all staged files
+											 ------
+$ git commit -a -m "onsite repo initial files"
+ 
+ 	# push to offsite repo (aka 'origin')
+	  -----
+
+$ git remote -v
+$ git push origin --all
+
+$git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+
+
+
+
+
+

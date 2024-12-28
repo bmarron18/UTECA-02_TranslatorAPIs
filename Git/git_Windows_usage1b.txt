@@ -1,7 +1,7 @@
-Title:			git usage on Windows (command line)
+Title:				git usage on Windows (command line)
 Project Descriptor:	LANDISII Upgrades Corrections Project 
-Project ID:		2016SoE021_LANDIS_Upgrades	
-Author:			bmarron
+Project ID:			2016SoE021_LANDIS_Upgrades	
+Author:				bmarron
 Origin Date:		07 Nov 2016
 Revision Date:
 
