@@ -56,6 +56,7 @@ $ git status
 		#use 'git add --all' to add all files for staging
 												  --------
 $ git add --all
+$ git diff --staged
 $ git status
 
 		#use 'git commit -a -m "message"' to commit all staged files
