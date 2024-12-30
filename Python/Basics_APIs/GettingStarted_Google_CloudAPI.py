@@ -4,87 +4,15 @@
 """
 Spyder Editor
 
-This is a temporary script file.
 """
-import sys
-print(sys.version)
+
 
 '''
-In [1]: %runcell -i 1 /home/bmarron/.config/spyder-py3/temp.py
-3.11.10 | packaged by conda-forge | (main, Oct 16 2024, 01:27:36) [GCC 13.3.0]
-# %%
+https://transcy.crisp.help/en/article/how-to-translate-target-language-by-deepl-service-1ftwdt4/?bust=1712201846082
+
+Google service, DeepL
+ 
 '''
-
-# %%
-
-# new cells  (Ctrl+2)
-
-# %%
-
-''' 
-https://www.w3schools.com/python
-
-https://www.devopsschool.com/blog/python-tutorials-difference-between-list-array-tuple-set-dict/
-
-'''
-
-# %%
-
-'''
-Note: The first item has index 0.
-
-This answer will sum up almost all the queries about when to use List and Array:
-
-    The main difference between these two data types is the operations you 
-    can perform on them. For example, you can divide an array by 3 and it 
-    will divide each element of array by 3. Same can not be done with the list.
-
-    The list is the part of python's syntax so it doesn't need to be declared 
-    whereas you have to declare the array before using it.
-
-    You can store values of different data-types in a list (heterogeneous), 
-    whereas in Array you can only store values of only the same data-type 
-    (homogeneous).
-
-    Arrays being rich in functionalities and fast, it is widely used for 
-    arithmetic operations and for storing a large amount of data - compared 
-    to list.
-
-    Arrays take less memory compared to lists.
-
-'''
-
-# %%
-
-'''
-Most things in Python are objects. But what is an object?
-
-Every constant, variable, or function in Python is actually a object with a 
-type and associated attributes and methods. An attribute a property of the 
-object that you get or set by giving the <object_name> + dot + <attribute_name>, 
-for example img.shape. A method is a function that the object provides, 
-for example img.argmax(axis=0) or img.min().
-
-Use tab completion in IPython to inspect objects and start to understand 
-attributes and methods.ie  LIST_NAME.<TAB>
-'''
-
-a = [3, 1, 2, 1]
-print(a)
-a.reverse()
-print(a)
-
-# %%
-
-fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
-newlist = []
-
-for x in fruits:
-  if "a" in x:
-    newlist.append(x)
-
-print(newlist) 
-# %%
 
 '''
 USE THIS!!
