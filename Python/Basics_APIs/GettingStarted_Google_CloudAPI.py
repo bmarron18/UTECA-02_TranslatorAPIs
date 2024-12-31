@@ -1,70 +1,107 @@
-# %%
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 """
-Spyder Editor
+Created on Mon Dec 30 21:54:30 2024
 
+@author: bmarron
 """
+
+# %%
 
 
 '''
+Google offers
+    DeepL
+    Cloud Translation API
+'''
+
+'''
+Google DeepL
 https://transcy.crisp.help/en/article/how-to-translate-target-language-by-deepl-service-1ftwdt4/?bust=1712201846082
 
-Google service, DeepL
- 
 '''
+# %%
 
 '''
-USE THIS!!
-https://codelabs.developers.google.com/codelabs/cloud-translation-python3#0
-
-
-https://cloud.google.com/translate/docs/reference/rest#service:-translate.googleapis.com
-Service: translate.googleapis.com
-To call this service, we recommend that you use the Google-provided client libraries. If your application needs to use your own libraries to call this service, use the following information when you make the API requests.
-
-
+Google Cloud Translation API
 https://cloud.google.com/translate/?hl=en
-Cloud Translation API (Google)
+
 Cloud Translation API uses Google's neural machine translation technology to let 
-you dynamically translate text through the API using a Google pre-trained, custom model, or a translation specialized large language model (LLMs). 
+you dynamically translate text through the API using a Google pre-trained, custom model, or a 
+translation specialized large language model (LLMs). 
 
 It comes in Basic and Advanced editions. Both provide fast and dynamic translation, but Advanced 
 offers customization features, such as domain-specific translation, formatted document translation, 
-and batch translation.
-
-The first 500,000 characters sent to the API to process (Basic and Advanced combined) per month are 
-free (not applicable to LLMs).
+and batch translation. The first 500,000 characters sent to the API to process (Basic and Advanced 
+combined) per month are free (not applicable to LLMs).
 
 
 Model selection
 For advanced translations, you're not limited to a one-size-fits-all solution, ensuring the highest 
 quality and accuracy for your specific content. You can choose from the following models, based on 
-your needs:
-
-Neural Machine Translation (NMT) for general text in everyday use cases like website content or news 
-articles.
-
-Translation Large Language Model (LLM) for conversational text like messages or social media posts. 
+your needs: a) Neural Machine Translation (NMT) for general text in everyday use cases like website content or news 
+articles; b) Translation Large Language Model (LLM) for conversational text like messages or social media posts. 
 You can use "Adaptive" mode to fine-tune translations based on your own examples for an even closer 
 match to your unique style.
 
+'''
 
-https://cloud.google.com/apis/docs/cloud-client-libraries
-Working with Cloud Client Libraries
-Cloud Client Libraries by language
-The following table provides links to get you started with Cloud Client Libraries in supported languages. The GitHub Repo page for each language lists the Cloud Platform services/APIs that are supported by that language's Cloud Client Library. The page also has installation instructions for a single client library that provides an interface to the APIs.
 
-Python 	
-    GitHub Repo
-    Library Reference 
-        Cloud Translation 	google-cloud-translate
+'''
+Google Cloud Translation API
+    Start up
+        https://cloud.google.com/python/docs/getting-started
+        
+   Other references
+    https://cloud.google.com/python/docs/setup
+    
+    https://cloud.google.com/apis/docs/cloud-client-libraries
+    https://cloud.google.com/python/docs/reference Python Cloud Client Libraries
+    https://cloud.google.com/apis/docs/client-libraries-explained Cloud Client Libraries
+    https://developers.google.com/api-client-library/
+
+    https://developers.google.com/apis-explorer/
+    https://cloud.google.com/translate/docs/setup
+    https://cloud.google.com/translate/docs/reference/rest
+
+
+
+    # https://cloud.google.com/translate/docs/advanced/translating-text-v3#translate_v3_translate_text-python
+ 
+    Learn more
+
+    # Cloud Translation documentation: https://cloud.google.com/translate/docs
+    # Python on Google Cloud: https://cloud.google.com/python
+    # Cloud Client Libraries for Python: https://github.com/googleapis/google-cloud-python
+
+ 
+    # https://docs.spyder-ide.org/5/faq.html#using-packages-installer
+
+
+'''
+
+
 
 
 # %%
 
 
-https://console.cloud.google.com/
+'''
+
+Getting Started with Google Cloud Translation API
+    USE THIS TUTORIAL!!
+        https://codelabs.developers.google.com/codelabs/cloud-translation-python3#0
+
+'''
+# %%
+
+'''
+TUTORIAL 1
+    Create a Google Cloud account and log in
+'''
+
+'''
+Log in to https://console.cloud.google.com/
 Welcome, Bruce Marron
 Try Google Cloud with $300 in free credits
 
@@ -87,96 +124,140 @@ Project number
 Project ID
     my-project-uteca1 
 
+'''
+# %%
 
+'''
+TUTORIAL 2
+     Activate Cloud Shell
+'''
+
+'''
  From the Cloud Console, click Activate Cloud Shell 
 
---- a command line interface
+Google Cloud Shell is an IDE with a command line interface. This virtual machine is loaded with all the 
+development tools needed. It offers a persistent 5 GB home directory and runs in Google Cloud.
+    
 Welcome to Cloud Shell! Type "help" to get started.
 Your Cloud Platform project in this session is set to my-project-uteca1.
 Use “gcloud config set project [PROJECT_ID]” to change to a different project.
 marron_bruce_mx@cloudshell:~ (my-project-uteca1)$ 
 
-
-
 '''
+
+
+
 # %%
 
-# in Google Cloud
+'''
+TUTORIAL 3
+     Account and Project Configuration
 
-gcloud auth list
-    #Cloud Shell needs permission to use your credentials for the gcloud CLI command.
-    #Click Authorize to grant permission to this and future calls. 
-    #--- need to activate Free Trial to authenticate account
-
-gcloud auth list
-    #ACTIVE: *
-    #ACCOUNT: marron.bruce.mx@gmail.com
-
-
-gcloud config set account 'ACCOUNT' <== retype single quotes ''
+'''
+$ gcloud config set account 'ACCOUNT'     # <== retype w/ single quotes ''
     #Updated property [core/account].
 
-gcloud config list project
+$ gcloud config list project
     #[core]
     #project = my-project-uteca1
     #Your active configuration is: [cloudshell-9018]
-
-gcloud services enable translate.googleapis.com
-    #ERROR: (gcloud.services.enable) Your current active account [ACCOUNT] does not have any valid credentials
-    Please run:
-        $ gcloud auth login
-        to obtain new credentials.
-
---- credential
-$ 4/0AanRRruInSQf9hOK5NOIHwwjSeZ9OuF97N2wGAlFfTFZHLoMLCvFvfnehOq5K4_OpGxrSw
-    #You are now logged in as [marron.bruce.mx@gmail.com].
-   # Your current project is [my-project-uteca1].
-
-
-gcloud services enable translate.googleapis.com
-    #Operation "operations/acat.p2-735387290281-9ce6663f-72ab-40a2-84f7-5c5802490b1a" finished successfully.
-    # Now, you can use the Translation API!
     
+    
+# %%
+
+'''
+TUTORIAL 4
+     Authentication
+
+'''
+# in Google Cloud Shell command line
+
+ $ gcloud auth login
+     # to obtain new credentials.
+     # follow prompts to obtain new credentials (needed every time)
+
+$ gcloud auth list
+    #Cloud Shell needs permission to use your credentials for the gcloud CLI command.
+    #Click Authorize to grant permission to this and future calls. 
+    # NB --- need to activate Free Trial to authenticate account
+    
+    #ACTIVE: *
+    #ACCOUNT: marron.bruce.mx@gmail.com
+
+# %%
+
+'''
+TUTORIAL 5
+    Call Google Cloud Translation API
+'''
+
+gcloud services enable translate.googleapis.com
+    # Operation "operations/acat.p2-735387290281-9ce6663f-72ab-40a2-84f7-5c5802490b1a" 
+    # finished successfully.
+   
+
+# %%
+
+'''
+TUTORIAL 6
+    Set the PROJECT_ID environment variable (to be used in your application)
+'''
 export PROJECT_ID=$(gcloud config get-value core/project)
     #Your active configuration is: [cloudshell-22175]
 echo "PROJECT_ID: $PROJECT_ID"
     #PROJECT_ID: my-project-uteca1
     
---- NO GO ==> dont use a virtual env; create new folder (GoogleAPI) in Anaconda3 directory
-bmarron@bmarron-HP-Laptop-15t-dy100:~/anaconda3/GoogleAPI$ pip install google-cloud-translate
-    #Successfully installed cachetools-5.5.0 google-api-core-2.24.0 google-auth-2.37.0 google-cloud-core-2.4.1 google-cloud-translate-3.19.0 googleapis-common-protos-1.66.0 grpc-google-iam-v1-0.13.1 grpcio-1.68.1 grpcio-status-1.68.1 proto-plus-1.25.0 protobuf-5.29.2 pyasn1-0.6.1 pyasn1-modules-0.4.1 rsa-4.9
-    # The following NEW packages will be installed:
-  libexpat1-dev{a} libjs-sphinxdoc{a} libjs-underscore{a} libpython3-dev{a} 
-  libpython3.10-dev{a} python3-dev{a} python3-distutils{a} 
-  python3-lib2to3{a} python3-pip python3-setuptools{a} python3-wheel{a} 
-  python3.10-dev{a} zlib1g-dev{a} 
+    
+    
 
-https://cloud.google.com/python/docs/getting-started
-https://cloud.google.com/python/docs/setup
-https://cloud.google.com/python/docs/reference Python Cloud Client Libraries
-https://cloud.google.com/apis/docs/client-libraries-explained Cloud Client Libraries
-https://developers.google.com/api-client-library/
 
-https://developers.google.com/apis-explorer/
-https://cloud.google.com/translate/docs/setup
-https://cloud.google.com/translate/docs/reference/rest
 
 
 # %%
+
+'''
+TUTORIAL 7 (home computer terminal)
+    Create a virtual Python environment on your home computer
+    Install IPython and the Translation API client library (an SDK)
+'''
+
+$ cd ~
+$ virtualenv venv-translate &&
+source venv-translate/bin/activate
+    # To stop using the virtual environment and go back to your system Python version, 
+    # use the "deactivate" command.
+
+$ pip install ipython google-cloud-translate
+    #  # Now, you can use the Translation API!
+
+
+
+# %%
+'''
+TUTORIAL 8
+    Call IPython in Cloud Shell
+    Import pkgs 'environ' and 'translate'
+'''
+
+$ ipython
     # actually running code to interface with Google API
 
-from os import environ
+$ from os import environ
+$ from google.cloud import translate
 
-from google.cloud import translate
 
-
-PROJECT_ID = environ.get("PROJECT_ID", "")
-assert PROJECT_ID
-PARENT = f"projects/{PROJECT_ID}"
+$ PROJECT_ID = environ.get("PROJECT_ID", "")
+$ assert PROJECT_ID
+$ PARENT = f"projects/{PROJECT_ID}"
 
 # %%
 
-def print_supported_languages(display_language_code: str):
+'''
+TUTORIAL 9
+    
+'''
+
+$ def print_supported_languages(display_language_code: str):
     client = translate.TranslationServiceClient()
 
     response = client.get_supported_languages(
@@ -192,7 +273,7 @@ def print_supported_languages(display_language_code: str):
         print(f"{language_code:10}{display_name}")
 
 
-print_supported_languages("en")
+$ print_supported_languages("en")
 ---------------------- Languages: 194 ----------------------
 ab        Abkhaz
 ace       Acehnese
@@ -204,192 +285,16 @@ am        Amharic
 ar        Arabic
 hy        Armenian
 as        Assamese
-awa       Awadhi
-ay        Aymara
-az        Azerbaijani
-ban       Balinese
-bm        Bambara
-ba        Bashkir
-eu        Basque
-btx       Batak Karo
-bts       Batak Simalungun
-bbc       Batak Toba
-be        Belarusian
-bem       Bemba
-bn        Bengali
-bew       Betawi
-bho       Bhojpuri
-bik       Bikol
-bs        Bosnian
-br        Breton
-bg        Bulgarian
-bua       Buryat
-yue       Cantonese
-ca        Catalan
-ceb       Cebuano
-ny        Chichewa
-zh        Chinese (Simplified)
-zh-CN     Chinese (Simplified)
-zh-TW     Chinese (Traditional)
-cv        Chuvash
-co        Corsican
-crh       Crimean Tatar
-hr        Croatian
-cs        Czech
-da        Danish
-dv        Dhivehi
-din       Dinka
-doi       Dogri
-dov       Dombe
-nl        Dutch
-dz        Dzongkha
-en        English
-eo        Esperanto
-et        Estonian
-ee        Ewe
-fj        Fijian
-tl        Filipino
-fil       Filipino
-fi        Finnish
-fr        French
-fy        Frisian
-ff        Fulani
-gaa       Ga
-gl        Galician
-ka        Georgian
-de        German
-el        Greek
-gn        Guarani
-gu        Gujarati
-ht        Haitian Creole
-cnh       Hakha Chin
-ha        Hausa
-haw       Hawaiian
-iw        Hebrew
-he        Hebrew
-hil       Hiligaynon
-hi        Hindi
-hmn       Hmong
-hu        Hungarian
-hrx       Hunsrik
-is        Icelandic
-ig        Igbo
-ilo       Ilocano
-id        Indonesian
-ga        Irish
-it        Italian
-ja        Japanese
-jw        Javanese
-jv        Javanese
-kn        Kannada
-pam       Kapampangan
-kk        Kazakh
-km        Khmer
-cgg       Kiga
-rw        Kinyarwanda
-ktu       Kituba
-gom       Konkani
-ko        Korean
-kri       Krio
-ku        Kurdish (Kurmanji)
-ckb       Kurdish (Sorani)
-ky        Kyrgyz
-lo        Lao
-ltg       Latgalian
-la        Latin
-lv        Latvian
-lij       Ligurian
-li        Limburgish
-ln        Lingala
-lt        Lithuanian
-lmo       Lombard
-lg        Luganda
-luo       Luo
-lb        Luxembourgish
-mk        Macedonian
-mai       Maithili
-mak       Makassar
-mg        Malagasy
-ms        Malay
-ms-Arab   Malay (Jawi)
-ml        Malayalam
-mt        Maltese
-mi        Maori
-mr        Marathi
-chm       Meadow Mari
-mni-Mtei  Meiteilon (Manipuri)
-min       Minang
-lus       Mizo
-mn        Mongolian
-my        Myanmar (Burmese)
-nr        Ndebele (South)
-new       Nepalbhasa (Newari)
-ne        Nepali
-no        Norwegian
-nus       Nuer
-oc        Occitan
-or        Odia (Oriya)
-om        Oromo
-pag       Pangasinan
-pap       Papiamento
-ps        Pashto
-fa        Persian
-pl        Polish
-pt        Portuguese (Brazil)
-pa        Punjabi (Gurmukhi)
-pa-Arab   Punjabi (Shahmukhi)
-qu        Quechua
-rom       Romani
-ro        Romanian
-rn        Rundi
-ru        Russian
-sm        Samoan
-sg        Sango
-sa        Sanskrit
-gd        Scots Gaelic
-nso       Sepedi
-sr        Serbian
-st        Sesotho
-crs       Seychellois Creole
-shn       Shan
-sn        Shona
-scn       Sicilian
-szl       Silesian
-sd        Sindhi
-si        Sinhala
-sk        Slovak
-sl        Slovenian
-so        Somali
-es        Spanish
-su        Sundanese
-sw        Swahili
-ss        Swati
-sv        Swedish
-tg        Tajik
-ta        Tamil
-tt        Tatar
-te        Telugu
-tet       Tetum
-th        Thai
-ti        Tigrinya
-ts        Tsonga
-tn        Tswana
-tr        Turkish
-tk        Turkmen
-ak        Twi
-uk        Ukrainian
-ur        Urdu
-ug        Uyghur
-uz        Uzbek
-vi        Vietnamese
-cy        Welsh
-xh        Xhosa
-yi        Yiddish
-yo        Yoruba
+...
 yua       Yucatec Maya
 zu        Zulu
 
 # %%
+
+'''
+TUTORIAL 10
+    
+'''
 
 def translate_text(text: str, target_language_code: str) -> translate.Translation:
     client = translate.TranslationServiceClient()
@@ -403,6 +308,11 @@ def translate_text(text: str, target_language_code: str) -> translate.Translatio
     return response.translations[0]
 
 # %%
+
+'''
+TUTORIAL 11
+    
+'''
 
 text = "Hello World!"
 target_languages = ["tr", "de", "es", "it", "el", "zh", "ja", "ko"]
@@ -424,32 +334,47 @@ en → zh : 你好世界！
 en → ja : 「こんにちは世界」
 en → ko : 안녕하세요!
 
-# %%
 
-    # https://cloud.google.com/translate/docs/advanced/translating-text-v3#translate_v3_translate_text-python
- 
-    Learn more
+text = "What the fuck!"
 
-    # Cloud Translation documentation: https://cloud.google.com/translate/docs
-    # Python on Google Cloud: https://cloud.google.com/python
-    # Cloud Client Libraries for Python: https://github.com/googleapis/google-cloud-python
-
- 
-    # https://docs.spyder-ide.org/5/faq.html#using-packages-installer
+print(f" {text} ".center(50, "-"))
+for target_language in target_languages:
+    translation = translate_text(text, target_language)
+    source_language = translation.detected_language_code
+    translated_text = translation.translated_text
+    print(f"{source_language} → {target_language} : {translated_text}")
     
+----------------- what the fuck! -----------------
+en → tr : ne oluyor lan!
+en → de : was zur Hölle!
+en → es : ¡Qué carajo!
+en → it : che cazzo!
+en → el : τι στο διάολο!
+en → zh : 什么鬼！
+en → ja : 何だこれ！
+en → ko : 이게 뭐야!
+
 
 # %%
 
-    Clean up
+'''
+TUTORIAL 12
+     Clean up
+    
+'''
 
-To clean up your development environment, from Cloud Shell:
+In [12]: exit
+    # exit Cloud Shell IPython session to go back to the Cloud Shell
 
-    If you're still in your IPython session, go back to the shell: exit
-    Stop using the Python virtual environment: deactivate
-    Delete your virtual environment folder: cd ~ ; rm -rf ./venv-translate
+
+$ deactivate
+    # Stop using the Python virtual environment on home computer
+   
+$ cd ~
+$ rm -rf ./venv-translate
+    #  Delete your virtual environment folder:on home computer
 
 To delete your Google Cloud project, from Cloud Shell:
-
     Retrieve your current project ID: PROJECT_ID=$(gcloud config get-value core/project)
     Make sure this is the project you want to delete: echo $PROJECT_ID
     Delete the project: gcloud projects delete $PROJECT_ID
