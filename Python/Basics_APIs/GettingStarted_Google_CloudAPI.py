@@ -228,21 +228,24 @@ source venv-translate/bin/activate
     # use the "deactivate" command.
 
 $ pip install ipython google-cloud-translate
-    #  # Now, you can use the Translation API!
-
+    # the SDK libraries enable the interface between Google Cloud and home compu
 
 
 # %%
 '''
 TUTORIAL 8
     Call IPython in Cloud Shell
-    Import pkgs 'environ' and 'translate'
+    Import objects 'os.environ' and 'google.cloud.translate'
 '''
 
 $ ipython
     # actually running code to interface with Google API
 
 $ from os import environ
+    # OS is Environment variables (sometimes called "env vars") are variables you store outside your program that can affect how it runs. For example, you can set environment variables that contain the key and secret for an API. Your program might then use those variables when it connects to the API. 
+    # os.environ is a mapping object that maps the user's environmental variables. It returns a dictionary or table having the user's environmental variable as key and their values as value. os. environ behaves like a common dictionary, so operations like get and set can be performed
+
+
 $ from google.cloud import translate
 
 
