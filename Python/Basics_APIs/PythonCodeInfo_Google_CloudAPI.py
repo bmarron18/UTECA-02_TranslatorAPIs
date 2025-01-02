@@ -8,79 +8,36 @@ Created on Mon Dec 30 21:54:30 2024
 # %%
 
 '''
-Python code explainations for the tutorial
-    Getting Started with Google Cloud Translation API
-        https://codelabs.developers.google.com/codelabs/cloud-translation-python3#0
+References
 '''
-
-   
-
-# %%
-
-'''
-TUTORIAL 6
-    Set the PROJECT_ID environment variable (to be used in your application)
-'''
-export PROJECT_ID=$(gcloud config get-value core/project)
-    #Your active configuration is: [cloudshell-22175]
-echo "PROJECT_ID: $PROJECT_ID"
-    #PROJECT_ID: my-project-uteca1
-    
-    
-    
+    # Getting Started with Google Cloud Translation API
+https://codelabs.developers.google.com/codelabs/cloud-translation-python3#0
 
 
+    # change TABs Spyder
+https://stackoverflow.com/questions/36187784/changing-indentation-settings-in-the-spyder-editor-for-python
 
-
-# %%
-
-'''
-TUTORIAL 7 (home computer terminal)
-    Create a virtual Python environment on your home computer
-    Install IPython and the Translation API client library (an SDK)
-'''
-
-$ cd ~
-$ virtualenv venv-translate &&
-source venv-translate/bin/activate
-    # To stop using the virtual environment and go back to your system Python version, 
-    # use the "deactivate" command.
-
-$ pip install ipython google-cloud-translate
-    # the SDK libraries enable the interface between Google Cloud and home compu
-
-
-# %%
-'''
-TUTORIAL 8
- 
-'''
-https://www.geeksforgeeks.org/python-os-environ-object/
 
     # os            <== a module
     # os.environ    <== an object
     # os,chdir()    <== a method
-    
+https://www.geeksforgeeks.org/python-os-environ-object/
+   
+    # the print() vs pprint() fxns
 https://docs.python.org/3/library/pprint.html
-
 https://www.geeksforgeeks.org/pprint-data-pretty-printer-python/
 
-# %%
 
-# A python code with pprint 
-import requests 
-from pprint import pprint 
+    # fxns
+https://stackoverflow.com/questions/5336320/how-to-know-function-return-type-and-argument-types
 
-def geocode(address): 
-	url = "https://maps.googleapis.com/maps/api/geocode/json"   # <== need an API key to access 
-	resp = requests.get(url, params = {'address': address}) 
-	return resp.json() 
 
-# calling the geocode function 
-data = geocode('India gate') 
-
-# pretty-printing json response 
-pprint(data) 
+    # symbols
+https://docs.python.org/3/genindex-Symbols.html
+    
+    # text referencesd
+Python PocketReference,5th edition
+by Mark Lutz
 
 # %%
 
@@ -95,66 +52,144 @@ print(current_working_directory)
 
 # %%
 
-
-
     #cd() is easy to write using a generator and a decorator.
     # change working directory
 
     # Option 1  <== USE THIS !!
 from contextlib import chdir
 with chdir(path):
-    
-   # Option 2   <== a generator (?)
-from contextlib import contextmanager
-import os
-
-@contextmanager
-def cd(newdir):
-    prevdir = os.getcwd()
-    os.chdir(os.path.expanduser(newdir))
-    try:
-        yield
-    finally:
-        os.chdir(prevdir)
-
+  # do stuff; the code you will be processing
+  
+  
 # %%
-    # print to file
-    # Work within a new directory then go back to the original current working directory
+   
+    # USE THIS ==> Work within a new directory then go back to the original current working directory
+    # print to file two different ways
 
 from contextlib import chdir
 with chdir('/home/bmarron/Desktop'):
-    import pprint
-    data = {'a': [1, 2, 3], 'b': {'c': 4, 'd': 5}}
+  
+  import os
+  import pprint
+  
+  data = {'a': [1, 2, 3], 'b': {'c': 4, 'd': 5}}
 
-    with open('output.txt', 'w') as f:
-        pprint.pprint(data, stream=f)
+  with open('output.txt', 'w') as f:
+    pprint.pprint(data, stream=f)
     
-    with open('out.txt', 'w') as f:
-        print('Data', data, file=f)
+  with open('out.txt', 'w') as f:
+    print('Data', data, file=f)
         
 
 print(os.getcwd())
+  
+
+
+# %%
+  # Sample fxn
+def get_even(numbers):
+  """Adds two numbers and returns the result."""
+  even_nums = [num for num in numbers if not num % 2]
+  return even_nums
+
+
+get_even([1, 2, 3, 4, 5, 6])
+
+# %%
+
+  # Sample fxn
+def greeting(name: str) -> str:
+  return 'Hello, {}'.format(name)
+
+greeting('Bruce')
+
+# %%
+
+  # Sample fxn
+def get_even(numbers) -> "a list":
+    
+  even_nums = [num for num in numbers if not num % 2]
+  return even_nums
+
+get_even([1, 2, 3, 4, 5, 6])
+
+# %%
+
+  # sample fxn
+  # need an API key to access 
+  
+import requests 
+from pprint import pprint 
+
+def geocode(address): 
+	url = "https://maps.googleapis.com/maps/api/geocode/json"   
+	resp = requests.get(url, params = {'address': address}) 
+	return resp.json() 
+
+  # calling the geocode function 
+data = geocode('India gate') 
+
+  # pretty-printing json response 
+pprint(data) 
+
+# %%
+
+'''
+TUTORIAL 7 (home computer terminal)
+    Create a virtual Python environment on your home computer
+    Install IPython and the Translation API client library (an SDK)
+'''
+ 
+   # virtualenv is a tool to create isolated Python environments. Since Python 3.3, a subset 
+   # of it has been integrated into the standard library under the venv module.  
+
+   # invokes the  'virtualenv' tool in the 'venv' module 
+   # 'venv-translate' the name of your virtual environment.. 
+    
+    
+$ cd ~
+$  virtualenv venv-translate &&
+source venv-translate/bin/activate
+
+    # the SDK libraries enable the interface between Google Cloud and home compu
+$ pip install ipython google-cloud-translate
+
+
+
+  # Stop using the Python virtual environment on home computer
+$ deactivate
+    
+  #  Delete your virtual environment folder:on home computer
+$ cd ~
+$ rm -rf ./venv-translate
+ 
     
 # %%
 
-# importing os module  
+  # importing os module  
 import os 
 import pprint 
   
-# Get the list of user's 
+  # Get the list of user's 
 env_var = os.environ 
   
-# Print the list of user's 
+  # Print the list of user's 
 print("User's Environment Variables:") 
 pprint.pprint(dict(env_var), width = 1)
     
     
     
 # %%
+  # in Google Cloud Console (w/o IPython)
+export PROJECT_ID=$(gcloud config get-value core/project)
+    #Your active configuration is: [cloudshell-22175]
+echo "PROJECT_ID: $PROJECT_ID"
+    #PROJECT_ID: my-project-uteca1
     
+    
+    # in in Google Cloud Console (w/IPython)
 from os import environ
 from google.cloud import translate
-
 
 PROJECT_ID = environ.get("PROJECT_ID", "")
 assert PROJECT_ID
@@ -199,38 +234,12 @@ as        Assamese
 yua       Yucatec Maya
 zu        Zulu
 
-# %%
-
-#def function_name(parameter1: type1, parameter2: type2) -> return_type:
-    # function body
-    return value
-
-    #Example
-
-#def add_numbers(x: int, y: int):
-#     return (x + y)
-
-def get_even(numbers):
-    
-    even_nums = [num for num in numbers if not num % 2]
-    return even_nums
-
-get_even([1, 2, 3, 4, 5, 6])
-
-
-'''
-In this example:
-
-    x: int and y: int indicate that the parameters x and y are expected to be integers.
-    -> int indicates that the function will return an integer value.
-   . 
-'''
 
 # %%
 
 '''
 TUTORIAL 10
-    https://www.google.com/search?q=Function+annotation+%28indicates+the+return+type+of+a+function%29&sca_esv=283076fa18b0ec9a&sxsrf=ADLYWIIH4Q1BZXaazXgd-5JLWpl3mjQ1gw%3A1735700114610&source=hp&ei=kq50Z7yxI7Kw0PEPo6P68A8&iflsig=AL9hbdgAAAAAZ3S8ovfvhI9kydzEOhyV_gKZNB5_x3Gx&ved=0ahUKEwi8wpDmwtOKAxUyGDQIHaORHv4Q4dUDCBs&uact=5&oq=Function+annotation+%28indicates+the+return+type+of+a+function%29&gs_lp=Egdnd3Mtd2l6Ij1GdW5jdGlvbiBhbm5vdGF0aW9uIChpbmRpY2F0ZXMgdGhlIHJldHVybiB0eXBlIG9mIGEgZnVuY3Rpb24pSABQAFgAcAB4AJABAJgBAKABAKoBALgBA8gBAPgBAvgBAZgCAKACAJgDAOIDBRIBMSBAkgcAoAcA&sclient=gws-wiz
+
 '''
 
 def translate_text(text: str, target_language_code: str) -> translate.Translation:
@@ -304,12 +313,7 @@ In [12]: exit
     # exit Cloud Shell IPython session to go back to the Cloud Shell
 
 
-$ deactivate
-    # Stop using the Python virtual environment on home computer
-   
-$ cd ~
-$ rm -rf ./venv-translate
-    #  Delete your virtual environment folder:on home computer
+
 
 To delete your Google Cloud project, from Cloud Shell:
     Retrieve your current project ID: PROJECT_ID=$(gcloud config get-value core/project)
