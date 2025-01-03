@@ -36,8 +36,8 @@ https://stackoverflow.com/questions/5336320/how-to-know-function-return-type-and
 https://docs.python.org/3/genindex-Symbols.html
     
     # text referencesd
-Python PocketReference,5th edition
-by Mark Lutz
+'''Python PocketReference,5th edition
+by Mark Lutz '''
 
 # %%
 
@@ -52,8 +52,8 @@ print(current_working_directory)
 
 # %%
 
-    #cd() is easy to write using a generator and a decorator.
-    # change working directory
+    # change working directory for safety
+    # USE THIS ==> Work within a new directory then go back to the original current working directory
 
     # Option 1  <== USE THIS !!
 from contextlib import chdir
@@ -63,8 +63,10 @@ with chdir(path):
   
 # %%
    
-    # USE THIS ==> Work within a new directory then go back to the original current working directory
-    # print to file two different ways
+   # change directory for safety
+   # run a ;print to file code'
+   # print to file two different ways
+   # Changed TABS to 2 spaces
 
 from contextlib import chdir
 with chdir('/home/bmarron/Desktop'):
@@ -88,7 +90,7 @@ print(os.getcwd())
 # %%
   # Sample fxn
 def get_even(numbers):
-  """Adds two numbers and returns the result."""
+  """Adds two numbers and returns the result as a list."""
   even_nums = [num for num in numbers if not num % 2]
   return even_nums
 

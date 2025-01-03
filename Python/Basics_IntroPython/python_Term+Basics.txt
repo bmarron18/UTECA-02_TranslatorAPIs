@@ -23,6 +23,14 @@ bmarron@bmarron-HP-Laptop-15t-dy100:~/anaconda3$
 
 
 
+###########
+Terms and Symbols
+###########
+
+
+
+
+
 ##############
 basic objects
 ################

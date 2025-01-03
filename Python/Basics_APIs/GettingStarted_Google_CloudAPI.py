@@ -32,27 +32,36 @@ translation specialized large language model (LLMs).
 
 It comes in Basic and Advanced editions. Both provide fast and dynamic translation, but Advanced 
 offers customization features, such as domain-specific translation, formatted document translation, 
-and batch translation. The first 500,000 characters sent to the API to process (Basic and Advanced 
+and batch translation. 
+
+The first 500,000 characters sent to the API to process (Basic and Advanced 
 combined) per month are free (not applicable to LLMs).
 
 
 Model selection
 For advanced translations, you're not limited to a one-size-fits-all solution, ensuring the highest 
 quality and accuracy for your specific content. You can choose from the following models, based on 
-your needs: a) Neural Machine Translation (NMT) for general text in everyday use cases like website content or news 
-articles; b) Translation Large Language Model (LLM) for conversational text like messages or social media posts. 
+your needs: 
+  a) Neural Machine Translation (NMT) for general text in everyday use cases like website content or news 
+articles; 
+
+b) Translation Large Language Model (LLM) for conversational text like messages or social media posts. 
 You can use "Adaptive" mode to fine-tune translations based on your own examples for an even closer 
 match to your unique style.
 
+
 '''
 
 
-'''
-Google Cloud Translation API
-    Start up
+# %%
+
+
+
+# Google Cloud Translation API
+#    Start up
         https://cloud.google.com/python/docs/getting-started
         
-   Other references
+#   Other references
     https://cloud.google.com/python/docs/setup
     
     https://cloud.google.com/apis/docs/cloud-client-libraries
@@ -68,17 +77,21 @@ Google Cloud Translation API
 
     # https://cloud.google.com/translate/docs/advanced/translating-text-v3#translate_v3_translate_text-python
  
-    Learn more
+   #  Learn more
 
-    # Cloud Translation documentation: https://cloud.google.com/translate/docs
-    # Python on Google Cloud: https://cloud.google.com/python
-    # Cloud Client Libraries for Python: https://github.com/googleapis/google-cloud-python
+    # Cloud Translation documentation: 
+      https://cloud.google.com/translate/docs
+    # Python on Google Cloud: 
+      https://cloud.google.com/python
+    # Cloud Client Libraries for Python: 
+      https://github.com/googleapis/google-cloud-python
 
  
-    # https://docs.spyder-ide.org/5/faq.html#using-packages-installer
+     https://docs.spyder-ide.org/5/faq.html#using-packages-installer
 
+# %%
 
-'''
+# new cells  (Ctrl+2)
 
 
 
