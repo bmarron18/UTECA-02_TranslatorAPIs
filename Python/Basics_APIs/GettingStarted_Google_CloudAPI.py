@@ -103,18 +103,22 @@ match to your unique style.
 
 Getting Started with Google Cloud Translation API
     USE THIS TUTORIAL!!
-        https://codelabs.developers.google.com/codelabs/cloud-translation-python3#0
+    '''
+    
+ https://codelabs.developers.google.com/codelabs/cloud-translation-python3#0
 
-'''
+
 # %%
 
 '''
 TUTORIAL 1
     Create a Google Cloud account and log in
 '''
+https://console.cloud.google.com/
 
 '''
 Log in to https://console.cloud.google.com/
+
 Welcome, Bruce Marron
 Try Google Cloud with $300 in free credits
 
@@ -128,7 +132,7 @@ Cloud resources/APIs. Running through this codelab won't cost much, if
 anything at all. To shut down resources to avoid incurring billing beyond 
 this tutorial, you can delete the resources you created or delete the project. 
 New Google Cloud users are eligible for the $300 USD Free Trial program.
-
+'''
 
 Project name
     My Project-UTECA1
@@ -137,26 +141,26 @@ Project number
 Project ID
     my-project-uteca1 
 
-'''
+
 # %%
 
 '''
 TUTORIAL 2
-     Activate Cloud Shell
+     From the Cloud Console, click Activate Cloud Shell 
 '''
 
 '''
- From the Cloud Console, click Activate Cloud Shell 
-
 Google Cloud Shell is an IDE with a command line interface. This virtual machine is loaded with all the 
 development tools needed. It offers a persistent 5 GB home directory and runs in Google Cloud.
-    
+
+Cloud Shell is a Debian-based virtual machine 
+'''
+
 Welcome to Cloud Shell! Type "help" to get started.
 Your Cloud Platform project in this session is set to my-project-uteca1.
 Use “gcloud config set project [PROJECT_ID]” to change to a different project.
 marron_bruce_mx@cloudshell:~ (my-project-uteca1)$ 
 
-'''
 
 
 
@@ -165,15 +169,13 @@ marron_bruce_mx@cloudshell:~ (my-project-uteca1)$
 '''
 TUTORIAL 3
      Account and Project Configuration
-
 '''
+    #  in Google Cloud Console (w/o IPython)
+
 $ gcloud config set account 'ACCOUNT'     # <== retype w/ single quotes ''
-    #Updated property [core/account].
 
 $ gcloud config list project
-    #[core]
-    #project = my-project-uteca1
-    #Your active configuration is: [cloudshell-9018]
+ 
     
     
 # %%
@@ -181,9 +183,8 @@ $ gcloud config list project
 '''
 TUTORIAL 4
      Authentication
-
 '''
-# in Google Cloud Shell command line
+    #  in Google Cloud Console (w/o IPython)
 
  $ gcloud auth login
      # to obtain new credentials.
@@ -204,7 +205,9 @@ TUTORIAL 5
     Call Google Cloud Translation API
 '''
 
-gcloud services enable translate.googleapis.com
+#  in Google Cloud Console (w/o IPython)
+
+$ gcloud services enable translate.googleapis.com
     # Operation "operations/acat.p2-735387290281-9ce6663f-72ab-40a2-84f7-5c5802490b1a" 
     # finished successfully.
    
@@ -215,24 +218,26 @@ gcloud services enable translate.googleapis.com
 TUTORIAL 6
     Set the PROJECT_ID environment variable (to be used in your application)
 '''
-export PROJECT_ID=$(gcloud config get-value core/project)
+
+#  in Google Cloud Console (w/o IPython)
+
+
+$ export PROJECT_ID=$(gcloud config get-value core/project)
     #Your active configuration is: [cloudshell-22175]
-echo "PROJECT_ID: $PROJECT_ID"
+$ echo "PROJECT_ID: $PROJECT_ID"
     #PROJECT_ID: my-project-uteca1
     
-    
-    
-
-
 
 
 # %%
 
 '''
-TUTORIAL 7 (home computer terminal)
+TUTORIAL 7 
     Create a virtual Python environment on your home computer
     Install IPython and the Translation API client library (an SDK)
 '''
+
+     # in home computer terminal (Linux) 
 
 $ cd ~
 $ virtualenv venv-translate &&
@@ -251,29 +256,38 @@ TUTORIAL 8
     Import objects 'os.environ' and 'google.cloud.translate'
 '''
 
+#  in Google Cloud Console (w/ IPython)
 $ ipython
-    # actually running code to interface with Google API
 
-$ from os import environ
-    # OS is Environment variables (sometimes called "env vars") are variables you store outside your program that can affect how it runs. For example, you can set environment variables that contain the key and secret for an API. Your program might then use those variables when it connects to the API. 
-    # os.environ is a mapping object that maps the user's environmental variables. It returns a dictionary or table having the user's environmental variable as key and their values as value. os. environ behaves like a common dictionary, so operations like get and set can be performed
+   # OS Environment variables (sometimes called "env vars") are variables you store outside your
+   # program that can affect how it runs. For example, you can set environment variables that
+   # contain the key and secret for an API. Your program might then use those variables when it 
+   # connects to the API. 
+   
+   # os.environ is a mapping object that maps the user's environmental variables. It returns a 
+   # dictionary or table having the user's environmental variable as key and their values as value.
+   # os. environ behaves like a common dictionary, so operations like get and set can be performed
 
 
-$ from google.cloud import translate
+#  in Google Cloud Console (w/ IPython)
 
+>>> from os import environ
+>>> from google.cloud import translate
 
-$ PROJECT_ID = environ.get("PROJECT_ID", "")
-$ assert PROJECT_ID
-$ PARENT = f"projects/{PROJECT_ID}"
+>>> PROJECT_ID = environ.get("PROJECT_ID", "")
+>>> assert PROJECT_ID
+>>> PARENT = f"projects/{PROJECT_ID}"
 
 # %%
 
 '''
 TUTORIAL 9
-    
 '''
 
-$ def print_supported_languages(display_language_code: str):
+#  in Google Cloud Console (w/ IPython)
+
+
+>>> def print_supported_languages(display_language_code: str):
     client = translate.TranslationServiceClient()
 
     response = client.get_supported_languages(
@@ -289,7 +303,7 @@ $ def print_supported_languages(display_language_code: str):
         print(f"{language_code:10}{display_name}")
 
 
-$ print_supported_languages("en")
+>>> print_supported_languages("en")
 ---------------------- Languages: 194 ----------------------
 ab        Abkhaz
 ace       Acehnese
@@ -309,10 +323,11 @@ zu        Zulu
 
 '''
 TUTORIAL 10
-    
 '''
 
-def translate_text(text: str, target_language_code: str) -> translate.Translation:
+#  in Google Cloud Console (w/ IPython)
+
+>>> def translate_text(text: str, target_language_code: str) -> translate.Translation:
     client = translate.TranslationServiceClient()
 
     response = client.translate_text(
@@ -323,22 +338,19 @@ def translate_text(text: str, target_language_code: str) -> translate.Translatio
 
     return response.translations[0]
 
-# %%
 
-'''
-TUTORIAL 11
-    
-'''
 
-text = "Hello World!"
-target_languages = ["tr", "de", "es", "it", "el", "zh", "ja", "ko"]
+>>> text = "Hello World!"
+>>> target_languages = ["tr", "de", "es", "it", "el", "zh", "ja", "ko"]
+>>> print(f" {text} ".center(50, "-"))
 
-print(f" {text} ".center(50, "-"))
-for target_language in target_languages:
-    translation = translate_text(text, target_language)
-    source_language = translation.detected_language_code
-    translated_text = translation.translated_text
-    print(f"{source_language} → {target_language} : {translated_text}")
+
+>>> for target_language in target_languages:
+      translation = translate_text(text, target_language)
+      source_language = translation.detected_language_code
+      translated_text = translation.translated_text
+      print(f"{source_language} → {target_language} : {translated_text}")
+
 
 ------------------ Hello World! ------------------
 en → tr : Selam Dünya!

@@ -89,6 +89,9 @@ print(os.getcwd())
 
 # %%
   # Sample fxn
+  
+  
+  
 def get_even(numbers):
   """Adds two numbers and returns the result as a list."""
   even_nums = [num for num in numbers if not num % 2]
@@ -98,16 +101,18 @@ def get_even(numbers):
 get_even([1, 2, 3, 4, 5, 6])
 
 # %%
-
   # Sample fxn
+  
+  
 def greeting(name: str) -> str:
   return 'Hello, {}'.format(name)
 
 greeting('Bruce')
 
 # %%
-
   # Sample fxn
+  
+  
 def get_even(numbers) -> "a list":
     
   even_nums = [num for num in numbers if not num % 2]
@@ -116,7 +121,6 @@ def get_even(numbers) -> "a list":
 get_even([1, 2, 3, 4, 5, 6])
 
 # %%
-
   # sample fxn
   # need an API key to access 
   
@@ -146,14 +150,20 @@ TUTORIAL 7 (home computer terminal)
    # of it has been integrated into the standard library under the venv module.  
 
    # invokes the  'virtualenv' tool in the 'venv' module 
-   # 'venv-translate' the name of your virtual environment.. 
+   # 'venv-translate' the name of the virtual environment..
+   
+    # 'google-cloud-translate' == the SDK libraries enable the interface between Google Cloud 
+    # and home compu
+    https://cloud.google.com/translate/docs/reference/libraries/v2/python
     
-    
+
+  
 $ cd ~
 $  virtualenv venv-translate &&
 source venv-translate/bin/activate
 
-    # the SDK libraries enable the interface between Google Cloud and home compu
+
+    
 $ pip install ipython google-cloud-translate
 
 
@@ -183,13 +193,15 @@ pprint.pprint(dict(env_var), width = 1)
     
 # %%
   # in Google Cloud Console (w/o IPython)
+    # f-string
+    https://realpython.com/python-f-strings/
+
+
+
 export PROJECT_ID=$(gcloud config get-value core/project)
-    #Your active configuration is: [cloudshell-22175]
 echo "PROJECT_ID: $PROJECT_ID"
-    #PROJECT_ID: my-project-uteca1
     
     
-    # in in Google Cloud Console (w/IPython)
 from os import environ
 from google.cloud import translate
 
@@ -214,6 +226,7 @@ $ def print_supported_languages(display_language_code: str):
 
     languages = response.languages
     print(f" Languages: {len(languages)} ".center(60, "-"))
+    
     for language in languages:
         language_code = language.language_code
         display_name = language.display_name
@@ -244,6 +257,7 @@ TUTORIAL 10
 
 '''
 
+
 def translate_text(text: str, target_language_code: str) -> translate.Translation:
     client = translate.TranslationServiceClient()
 
@@ -255,17 +269,14 @@ def translate_text(text: str, target_language_code: str) -> translate.Translatio
 
     return response.translations[0]
 
-# %%
 
-'''
-TUTORIAL 11
-    
-'''
 
 text = "Hello World!"
 target_languages = ["tr", "de", "es", "it", "el", "zh", "ja", "ko"]
-
 print(f" {text} ".center(50, "-"))
+
+
+
 for target_language in target_languages:
     translation = translate_text(text, target_language)
     source_language = translation.detected_language_code
@@ -301,6 +312,52 @@ en → el : τι στο διάολο!
 en → zh : 什么鬼！
 en → ja : 何だこれ！
 en → ko : 이게 뭐야!
+
+
+
+  
+# %%
+
+ # translaring text
+https://cloud.google.com/translate/docs/basic/translating-text#translating_text
+https://cloud.google.com/translate/docs/basic/translating-text#translate_translate_text-python
+
+
+
+
+def translate_text(target: str, text: str) -> dict:
+    """Translates text into the target language.
+
+    Target must be an ISO 639-1 language code.
+    See https://g.co/cloud/translate/v2/translate-reference#supported_languages
+    """
+    from google.cloud import translate_v2 as translate
+
+    translate_client = translate.Client()
+
+    if isinstance(text, bytes):
+        text = text.decode("utf-8")
+
+    # Text can also be a sequence of strings, in which case this method
+    # will return a sequence of results for each text.
+    result = translate_client.translate(text, target_language=target)
+
+    print("Text: {}".format(result["input"]))
+    print("Translation: {}".format(result["translatedText"]))
+    print("Detected source language: {}".format(result["detectedSourceLanguage"]))
+
+    return result
+
+
+
+# %%
+
+'''
+TUTORIAL 11
+    
+'''
+
+
 
 
 # %%
