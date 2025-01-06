@@ -30,7 +30,7 @@ Cloud Translation API uses Google's neural machine translation technology to let
 you dynamically translate text through the API using a Google pre-trained, custom model, or a 
 translation specialized large language model (LLMs). 
 
-It comes in Basic and Advanced editions. Both provide fast and dynamic translation, but Advanced 
+It comes in Basic (v2) and Advanced (v3) editions. Both provide fast and dynamic translation, but Advanced 
 offers customization features, such as domain-specific translation, formatted document translation, 
 and batch translation. 
 
@@ -55,36 +55,38 @@ match to your unique style.
 
 # %%
 
+'''
+ Google Cloud Translation API with Python
+'''
 
-
-# Google Cloud Translation API
-#    Start up
-        https://cloud.google.com/python/docs/getting-started
-        
-#   Other references
-    https://cloud.google.com/python/docs/setup
-    
-    https://cloud.google.com/apis/docs/cloud-client-libraries
-    https://cloud.google.com/python/docs/reference Python Cloud Client Libraries
-    https://cloud.google.com/apis/docs/client-libraries-explained Cloud Client Libraries
-    https://developers.google.com/api-client-library/
-
-    https://developers.google.com/apis-explorer/
-    https://cloud.google.com/translate/docs/setup
-    https://cloud.google.com/translate/docs/reference/rest
-
-
-
-    # https://cloud.google.com/translate/docs/advanced/translating-text-v3#translate_v3_translate_text-python
+      
+  # Cloud Client Libraries
+https://cloud.google.com/apis/docs/cloud-client-libraries
+https://cloud.google.com/apis/docs/client-libraries-explained
+https://developers.google.com/api-client-library/
+https://developers.google.com/apis-explorer/
  
-   #  Learn more
 
-    # Cloud Translation documentation: 
-      https://cloud.google.com/translate/docs
-    # Python on Google Cloud: 
-      https://cloud.google.com/python
-    # Cloud Client Libraries for Python: 
-      https://github.com/googleapis/google-cloud-python
+  # Cloud Client Libraries -- Python
+https://cloud.google.com/python
+ https://github.com/googleapis/google-cloud-python
+https://cloud.google.com/python/docs/getting-started
+https://cloud.google.com/python/docs/setup
+https://cloud.google.com/python/docs/reference
+
+
+  # Cloud Client Libraries -- Translation
+https://cloud.google.com/translate/docs
+https://cloud.google.com/translate/docs/setup
+https://cloud.google.com/translate/docs/reference/rest
+https://cloud.google.com/translate/docs/supported-formats
+
+
+  # Cloud Client Librariesn  -- Translation w/ Python
+https://cloud.google.com/python/docs/reference/translate/latest
+https://cloud.google.com/translate/docs/advanced/translating-text-v3#translate_v3_translate_text-python
+https://github.com/GoogleCloudPlatform/python-docs-samples/tree/main/translate/samples/snippets
+      
 
  
      https://docs.spyder-ide.org/5/faq.html#using-packages-installer

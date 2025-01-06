@@ -120,6 +120,44 @@ def get_even(numbers) -> "a list":
 
 get_even([1, 2, 3, 4, 5, 6])
 
+# %% 
+
+https://realpython.com/python-kwargs-and-args/
+
+  '''
+  *args ==>  allows you to pass a varying number of positional arguments.
+  Extended sequence assignments use * (p. 74, 82 in Pocket Reference)
+  
+  The unpacking operator (*) creates a tuple not a list: A tuple is similar to a list in 
+  that they both support slicing and iteration. However, tuples are very different in at least 
+  one aspect: lists are mutable, while tuples are not. 
+  '''
+  # Sample fxn
+  # the following two fxns are equal
+
+def my_sum(*args):
+    result = 0
+    # Iterating over the Python args tuple
+    for x in args:
+        result += x
+    return result
+
+print(my_sum(1, 2, 3))
+
+'''
+  To call this function you’ll also need to create a list of arguments to pass to it.
+  (ie,  a list of arguments named 'list_of_integers' to pass to 'my_integers')
+  '''
+
+def my_sum(my_integers):
+    result = 0
+    for x in my_integers:
+        result += x
+    return result
+
+list_of_integers = [1, 2, 3] 
+print(my_sum(list_of_integers))
+
 # %%
   # sample fxn
   # need an API key to access 
@@ -141,82 +179,100 @@ pprint(data)
 # %%
 
 '''
-TUTORIAL 7 (home computer terminal)
-    Create a virtual Python environment on your home computer
-    Install IPython and the Translation API client library (an SDK)
-'''
+TUTORIAL 7 
+ '''
+   # On home computer terminal (Linux)
  
-   # virtualenv is a tool to create isolated Python environments. Since Python 3.3, a subset 
-   # of it has been integrated into the standard library under the venv module.  
+  '''
+   "virtualenv" is a tool to create isolated Python environments. Integrated into the standard library
+   under the "venv" module.  
 
-   # invokes the  'virtualenv' tool in the 'venv' module 
-   # 'venv-translate' the name of the virtual environment..
+   # The call "$ virtualenv venv-translate" invokes the  'virtualenv' tool in the 'venv' module 
+   # 'venv-translate' is the name of the virtual environment..
    
-    # 'google-cloud-translate' == the SDK libraries enable the interface between Google Cloud 
-    # and home compu
-    https://cloud.google.com/translate/docs/reference/libraries/v2/python
+    # Installing 'google-cloud-translate' ==> the Google SDK libraries enable the interface between 
+    Google Cloud and home compu in Python
+    '''
+   
+ https://cloud.google.com/translate/docs/reference/libraries/v2/python
     
 
   
 $ cd ~
-$  virtualenv venv-translate &&
+$ virtualenv venv-translate &&
 source venv-translate/bin/activate
 
-
-    
 $ pip install ipython google-cloud-translate
 
 
 
-  # Stop using the Python virtual environment on home computer
+  # To Stop using the Python virtual environment on home computer
 $ deactivate
     
-  #  Delete your virtual environment folder:on home computer
+  #  To Delete your virtual environment folder:on home computer
 $ cd ~
 $ rm -rf ./venv-translate
  
     
 # %%
 
+  # On home computer terminal (Python)
+'''
+Find the list ofenvironmental variables used by Python
+'''
+
+
   # importing os module  
-import os 
-import pprint 
+>>> import os 
+>>> import pprint 
   
   # Get the list of user's 
-env_var = os.environ 
+>>> env_var = os.environ 
   
   # Print the list of user's 
-print("User's Environment Variables:") 
-pprint.pprint(dict(env_var), width = 1)
+>>> print("User's Environment Variables:") 
+>>> pprint.pprint(dict(env_var), width = 1)
     
     
     
 # %%
   # in Google Cloud Console (w/o IPython)
-    # f-string
-    https://realpython.com/python-f-strings/
+  # f-string
+ https://realpython.com/python-f-strings/
 
 
 
-export PROJECT_ID=$(gcloud config get-value core/project)
-echo "PROJECT_ID: $PROJECT_ID"
+$ export PROJECT_ID=$(gcloud config get-value core/project)
+$ echo "PROJECT_ID: $PROJECT_ID"
     
-    
-from os import environ
-from google.cloud import translate
+   # in Google Cloud Console (w/ IPython)   
+   
+>>> from os import environ
+>>> from google.cloud import translate
 
-PROJECT_ID = environ.get("PROJECT_ID", "")
-assert PROJECT_ID
-PARENT = f"projects/{PROJECT_ID}"
+>>> PROJECT_ID = environ.get("PROJECT_ID", "")
+>>> assert PROJECT_ID
+>>> PARENT = f"projects/{PROJECT_ID}"
 
 # %%
 
 '''
 TUTORIAL 9
-    
 '''
 
-$ def print_supported_languages(display_language_code: str):
+  # in Google Cloud Console (w/ IPython)
+  
+  '''
+  Argument formats in calls (eg display_language_code=display_language_code)
+  ==> a Keyword (match by name) argument (p. 83, Pocket Reference)
+  
+  The fxn "print_supported_languages" requires the argument "display_language_code: str"
+  which must be a string (ie : str)
+  '''
+https://stackoverflow.com/questions/54962869/function-parameter-with-colon
+
+>>>
+def print_supported_languages(display_language_code: str):
     client = translate.TranslationServiceClient()
 
     response = client.get_supported_languages(
@@ -249,6 +305,31 @@ as        Assamese
 yua       Yucatec Maya
 zu        Zulu
 
+
+# %%
+
+'''
+from Google snippet files
+/home/bmarron/Desktop/UTECA/UTECA_AI_TranslatorSetup/Github_PythonSnippets_GoogleCloud/python-docs-samples/translate/samples/snippets
+
+translate_v3beta1_batch_translate_document.py
+'''
+
+input_uri = "https://cloud.google.com/translate/docs/supported-formats"
+
+gcs_source = {"input_uri": input_uri}
+
+batch_document_input_configs = {
+    "gcs_source": gcs_source,
+}
+
+tester = [batch_document_input_configs]
+print(tester)
+
+'''
+  # a nested dictionary
+Out[5]: [{'gcs_source': {'input_uri': 'https://cloud.google.com/translate/docs/supported-formats'}}]
+'''
 
 # %%
 

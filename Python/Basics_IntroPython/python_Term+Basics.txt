@@ -31,6 +31,8 @@ Terms and Symbols
 
 
 
+
+
 ##############
 basic objects
 ################
@@ -41,7 +43,7 @@ class
 	a bounded space (object)
 
 
-attributes ==> constants, definied objects, actions, methods, 
+attributes ==> constants, definied objects, actions, methods (fxns), 
 	class attributes 
 		may be shared across every object of a class
 	
@@ -56,8 +58,8 @@ object
 instance of an object
 
 namespace
-	a mapping from names to objects, with the property that there is zero relation between names in different 
-	namespaces. 
+	a mapping from names to objects, with the property that there is zero relation between names in 
+	different namespaces. 
 
 
 
@@ -70,13 +72,15 @@ namespace
 		function called a constructor, or initializer
 		
 	# 'self'
-		variable that represents the instance of the object itself (most object-oriented languages pass this 
-		as a hidden parameter to the methods defined on an object; Python does not ==> declared explicitly
+		variable that represents the instance of the object itself (most object-oriented languages pass 
+		this as a hidden parameter to the methods defined on an object; Python does not ==> declared 
+		explicitly
 		
 	#difference between a class and an object  
 		 __init__ doesn't initialize a class, it initializes an instance of a class (ie, an object)
 	# 'self.legs' is an attribute called legs of the object in the variable self. 
-	# Attributes are kind of like variables, but they describe the state of an object, or particular actions/methods (functions) available to the object
+	# Attributes are kind of like variables, but they describe the state of an object, or particular 
+	actions/methods (functions) available to the object
 	# 
 
 >>> class Dog(object):
