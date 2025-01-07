@@ -80,6 +80,7 @@ https://cloud.google.com/translate/docs
 https://cloud.google.com/translate/docs/setup
 https://cloud.google.com/translate/docs/reference/rest
 https://cloud.google.com/translate/docs/supported-formats
+https://pypi.org/project/google-cloud-translate/
 
 
   # Cloud Client Librariesn  -- Translation w/ Python
@@ -87,9 +88,11 @@ https://cloud.google.com/python/docs/reference/translate/latest
 https://cloud.google.com/translate/docs/advanced/translating-text-v3#translate_v3_translate_text-python
 https://github.com/GoogleCloudPlatform/python-docs-samples/tree/main/translate/samples/snippets
       
+  # Google Zones and Location of Servers for Cloud Computing
+https://cloud.google.com/compute/docs/regions-zones
 
- 
-     https://docs.spyder-ide.org/5/faq.html#using-packages-installer
+  #Spyder IDE
+https://docs.spyder-ide.org/5/faq.html#using-packages-installer
 
 # %%
 
@@ -162,28 +165,12 @@ Welcome to Cloud Shell! Type "help" to get started.
 Your Cloud Platform project in this session is set to my-project-uteca1.
 Use “gcloud config set project [PROJECT_ID]” to change to a different project.
 marron_bruce_mx@cloudshell:~ (my-project-uteca1)$ 
-
-
-
-
+    
+    
 # %%
 
 '''
 TUTORIAL 3
-     Account and Project Configuration
-'''
-    #  in Google Cloud Console (w/o IPython)
-
-$ gcloud config set account 'ACCOUNT'     # <== retype w/ single quotes ''
-
-$ gcloud config list project
- 
-    
-    
-# %%
-
-'''
-TUTORIAL 4
      Authentication
 '''
     #  in Google Cloud Console (w/o IPython)
@@ -199,6 +186,19 @@ $ gcloud auth list
     
     #ACTIVE: *
     #ACCOUNT: marron.bruce.mx@gmail.com
+
+# %%
+
+'''
+TUTORIAL 4
+     Account and Project Configuration
+'''
+    #  in Google Cloud Console (w/o IPython)
+
+$ gcloud config set account 'ACCOUNT'     # <== retype w/ single quotes ''
+
+$ gcloud config list project
+ 
 
 # %%
 
@@ -220,6 +220,7 @@ $ gcloud services enable translate.googleapis.com
 TUTORIAL 6
     Set the PROJECT_ID environment variable (to be used in your application)
 '''
+https://stackoverflow.com/questions/35599414/get-the-default-gcp-project-id-with-a-cloud-sdk-cli-one-liner
 
 #  in Google Cloud Console (w/o IPython)
 
