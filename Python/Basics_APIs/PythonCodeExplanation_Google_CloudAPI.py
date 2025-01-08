@@ -34,6 +34,9 @@ https://stackoverflow.com/questions/5336320/how-to-know-function-return-type-and
 
     # symbols
 https://docs.python.org/3/genindex-Symbols.html
+
+  # file paths
+https://stackoverflow.com/questions/7165749/open-file-in-a-relative-location-in-python
     
     # text referencesd
 '''Python PocketReference,5th edition

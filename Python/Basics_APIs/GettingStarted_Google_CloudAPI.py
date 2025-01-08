@@ -58,8 +58,19 @@ match to your unique style.
 '''
  Google Cloud Translation API with Python
 '''
+  # Google Account
+https://cloud.google.com/docs/authentication/provide-credentials-adc
+https://cloud.google.com/docs/authentication/provide-credentials-adc#how-to
+https://cloud.google.com/docs/authentication/application-default-credentials
+https://stackoverflow.com/questions/51554341/google-auth-exceptions-defaultcredentialserror
+https://stackoverflow.com/questions/40032678/where-are-google-application-default-credentials-stored
+https://medium.com/datamindedbe/application-default-credentials-477879e31cb5
+https://www.googlecloudcommunity.com/gc/Serverless/Why-i-have-the-error-raise-exceptions-DefaultCredentialsError-in/m-p/726413
+https://stackoverflow.com/questions/73451173/google-auth-exceptions-defaultcredentialserror-could-not-automatically-determin
+https://stackoverflow.com/questions/74502095/setting-application-default-credentials-adc-on-google-cloud
 
-      
+Credentials saved to file: [/tmp/tmp.mIXxB4oSdC/application_default_credentials.json]
+
   # Cloud Client Libraries
 https://cloud.google.com/apis/docs/cloud-client-libraries
 https://cloud.google.com/apis/docs/client-libraries-explained
@@ -79,6 +90,7 @@ https://cloud.google.com/python/docs/reference
 https://cloud.google.com/translate/docs
 https://cloud.google.com/translate/docs/setup
 https://cloud.google.com/translate/docs/reference/rest
+https://cloud.google.com/translate/docs/advanced/translate-documents
 https://cloud.google.com/translate/docs/supported-formats
 https://pypi.org/project/google-cloud-translate/
 
