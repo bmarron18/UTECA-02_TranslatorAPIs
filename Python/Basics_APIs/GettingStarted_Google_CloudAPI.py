@@ -56,9 +56,25 @@ match to your unique style.
 # %%
 
 '''
+ References for
  Google Cloud Translation API with Python
 '''
   # Google Account
+https://cloud.google.com/iam/docs/service-accounts-create
+
+
+  # Install Google Cloud SDK (or CLI) 
+https://cloud.google.com/sdk/docs/initializing
+https://stackoverflow.com/questions/71086225/how-to-install-or-uninstall-gcloud
+
+  # Service Account (not used)
+https://cloud.google.com/iam/docs/service-account-overview
+
+  # Google Authentication and Application Default Credentials (ADC)
+https://cloud.google.com/docs/authentication
+https://cloud.google.com/docs/authentication/set-up-adc-local-dev-environment
+https://cloud.google.com/docs/authentication/application-default-credentials#personal
+https://cloud.google.com/docs/authentication/set-up-adc-local-dev-environment
 https://cloud.google.com/docs/authentication/provide-credentials-adc
 https://cloud.google.com/docs/authentication/provide-credentials-adc#how-to
 https://cloud.google.com/docs/authentication/application-default-credentials
@@ -69,9 +85,12 @@ https://www.googlecloudcommunity.com/gc/Serverless/Why-i-have-the-error-raise-ex
 https://stackoverflow.com/questions/73451173/google-auth-exceptions-defaultcredentialserror-could-not-automatically-determin
 https://stackoverflow.com/questions/74502095/setting-application-default-credentials-adc-on-google-cloud
 
-Credentials saved to file: [/tmp/tmp.mIXxB4oSdC/application_default_credentials.json]
+  # Google Cloud Storage
+https://cloud.google.com/storage/docs/gsutil/commands/config] 
+
 
   # Cloud Client Libraries
+https://cloud.google.com/sdk/docs/install
 https://cloud.google.com/apis/docs/cloud-client-libraries
 https://cloud.google.com/apis/docs/client-libraries-explained
 https://developers.google.com/api-client-library/
@@ -95,20 +114,20 @@ https://cloud.google.com/translate/docs/supported-formats
 https://pypi.org/project/google-cloud-translate/
 
 
-  # Cloud Client Librariesn  -- Translation w/ Python
+  # Cloud Client Libraries  -- Translation w/ Python
 https://cloud.google.com/python/docs/reference/translate/latest
 https://cloud.google.com/translate/docs/advanced/translating-text-v3#translate_v3_translate_text-python
 https://github.com/GoogleCloudPlatform/python-docs-samples/tree/main/translate/samples/snippets
       
+  # Advanced Translation
+https://cloud.google.com/translate/docs/intro-to-v3
+
   # Google Zones and Location of Servers for Cloud Computing
 https://cloud.google.com/compute/docs/regions-zones
+https://stackoverflow.com/questions/66841594/google-cloud-translate-400-invalid-resource-name-location-even-though-it-is-vali
 
   #Spyder IDE
 https://docs.spyder-ide.org/5/faq.html#using-packages-installer
-
-# %%
-
-# new cells  (Ctrl+2)
 
 
 
@@ -119,10 +138,10 @@ https://docs.spyder-ide.org/5/faq.html#using-packages-installer
 '''
 
 Getting Started with Google Cloud Translation API
-    USE THIS TUTORIAL!!
+OJO!! This tutorial confuses local and cloud machines
     '''
     
- https://codelabs.developers.google.com/codelabs/cloud-translation-python3#0
+https://codelabs.developers.google.com/codelabs/cloud-translation-python3#0
 
 
 # %%
@@ -185,7 +204,7 @@ marron_bruce_mx@cloudshell:~ (my-project-uteca1)$
 TUTORIAL 3
      Authentication
 '''
-    #  in Google Cloud Console (w/o IPython)
+    #  in Google Cloud Console (w/o IPython)Neural Machine Translation (NMT)
 
  $ gcloud auth login
      # to obtain new credentials.

@@ -41,7 +41,7 @@ marron_bruce_mx@cloudshell:~ (my-project-uteca1)$
 '''
 $ gcloud services enable translate.googleapis.com
 
-  # ADC credentials
+  # ADC credentials ONLY if working in Cloud Shell!!
   # Credentials saved to file: [/tmp/tmp.mIXxB4oSdC/application_default_credentials.json]
 $ gcloud auth application-default login
 
@@ -67,6 +67,12 @@ $ export PROJECT_ID=$(gcloud config get-value core/project)
 $ echo "PROJECT_ID: $PROJECT_ID"
     
 
+# %%
+
+'''
+Install gcloud CLI or SDK
+'''
+google-cloud-cli-linux-x86_64.tar.gz
 
 # %%
 
@@ -79,21 +85,38 @@ $ echo "PROJECT_ID: $PROJECT_ID"
      # Now from home computer terminal (Linux)
      # cd to same directory as Spyder current working directory (CWD) (/home/bmarron)
 
-$ cd ~
+$ cd ~ &&
+./google-cloud-sdk/bin/gcloud auth application-default login
+
+
+$ ./google-cloud-sdk/bin/gcloud auth application-default login
+Your browser has been opened to visit:
+
+    https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=764086051850-6qr4p6gpi6hn506pt8ejuq83di341hur.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8085%2F&scope=openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fsqlservice.login&state=RsXzAq0LHb8C1eSOuI4UxZRLI8TReo&access_type=offline&code_challenge=08jR7ncGpVzDXiyMs90opsGlu75RhOGZQF3ZBw-wLnU&code_challenge_method=S256
+
+
+Credentials saved to file: [/home/bmarron/.config/gcloud/application_default_credentials.json]
+
+These credentials will be used by any library that requests Application Default Credentials (ADC).
+WARNING: 
+Cannot find a quota project to add to ADC. You might receive a "quota exceeded" or "API not enabled" error. Run $ gcloud auth application-default set-quota-project to add a quota project.
+
+
+
+ 
+$ cd ~ 
 $ virtualenv venv-translate &&
 source venv-translate/bin/activate &&
 pip install ipython google-cloud-translate
 
 
+
 # %%
 '''
-    Call IPython in Cloud Shell
+    Call IPython in venv 
     Import modules and objects
 '''
 
-#  NO!! in Google Cloud Conso
-$ export PROJECT_ID=$le (w/o IPython)
-# 
 $ ipython
 
 import os
