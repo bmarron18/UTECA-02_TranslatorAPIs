@@ -1,7 +1,7 @@
-Title:			git Basg Commands
+Title:				git Bash Commands
 Project Descriptor:	LANDISII Upgrades Corrections Project 
-Project ID:		2016SoE021_LANDIS_Upgrades	
-Author:			bmarron
+Project ID:			2016SoE021_LANDIS_Upgrades	
+Author:				bmarron
 Origin Date:		19 Sept 2017
 Revision Date:		
 

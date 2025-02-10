@@ -68,9 +68,11 @@ NOTES
 
 
 
-########################################
-know the git workflow for file changes 
-########################################
+#########################################
+The git workflow
+track || stage || commit || push
+##########################################
+
 
 	a. the git file processing sequence:
 
@@ -140,7 +142,7 @@ $ git branch --all
 
 #######################################################################
 the basic workflow:
-make changes to a tracked file (or create a new file) then stage it, commit it, and push it
+track || stage || commit || push
 ########################################################################
 
 ==== STEP 1. check status of git-tracked files and list currently tracked files  ==============
@@ -148,98 +150,50 @@ make changes to a tracked file (or create a new file) then stage it, commit it, 
 	a. check status of git-tracked files
 $ git status
 
-On branch master
-Your branch is up-to-date with 'origin/master'.
-nothing to commit, working directory clean
-
-	b. list the currently tracked files
+	b. list the currently git-tracked files
 $ git ls-files
 
 
 
-==== STEP 2. make changes and check status ====================================================
+==== STEP 2. make changes to files in the (local) and check status ====================
 
-	a. Example: paste a new file (lyrics.txt) into the (local) onsite repo
-	a1. copy and paste a new file into the (.git tracked) LANDVIZ-Development directory 
+	a. Paste a new file (your dictionary) into the (local) onsite repo
+	a1. check new status of git-tracked files 
+	a2. NB new/modified/untracked/unstaged files are in red; tracked/staged files are in green 
 
-lyrics.txt ==> pasted into local repo, LANDVIZ-Development
-
-
-	b1. check new status of git-tracked files 
-	b2. NB new/modified/untracked/unstaged files are in red; tracked/staged files are in green 
 $ git status
 
-On branch master
-Your branch is up-to-date with 'origin/master'.
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
 
-	lyrics.txt		<== in red
+==== STEP 3. track and STAGE new/modified files and check  ===================
 
-nothing added to commit but untracked files present (use "git add" to track)
-
-
-==== STEP 3. stage new/modified files and check  ===========================================
-
-	a. stage newly added files
+	a. track and STAGE newly added files
 	a1. "git add <file>" OR "git add --all"
+
 $ git add --all
 $ git status
 
-On branch master
-Your branch is up-to-date with 'origin/master'.
-Changes to be committed:
-  (use "git reset HEAD <file>..." to unstage)
 
-	new file:   lyrics.txt		<== in green
+==== STEP 4. COMMIT the staged file ==========================================
 
-	b. see (tracked) changes made (use your favorite GUI here)
-	b1. NB. this produces a long output; use "q" to quit
-$ git diff --staged
+	a. COMMIT changes
+	a1. NB. w/o -m a text editor will open to add message; no message, no commit
+	b2. NB. ahead by one commit
 
-
-==== STEP 4. commit the staged file ==========================================
-
-	a. set core editor for commits messages
-$ git config --global core.editor "notepad"
-
-	b. commit changes
-	b1. NB. a text editor opens to add message; no message, no commit
-	b2. check status post-commit
-$ git commit
-
-[master fc934c0] This a test of an https protocol, command line "push" to a LANDISII repository (Marron)
- 1 file changed, 29 insertions(+)
- create mode 100755 lyrics.txt
-
+$ git commit -a -m "date" 
 $ git status
-
-On branch master
-Your branch is ahead of 'origin/master' by 1 commit.
-  (use "git push" to publish your local commits)
-nothing to commit, working directory clean
 
 
 ===== STEP 5. push changes from onsite repo back up to the offsite GitHub repo  =====================
 
-	a. push the changes made in the (local) onsite "LANDVIZ-Development" repo 
-	   to the (global) offsite "LANDVIZ-Development" repo
-	a1. will automatically ask for your GitHub user name and GitHub password
+	a. push the changes made in the (local) onsite repo 
+	   to the (global) offsite repo
+	a1. will automatically ask for
+		GitHub user name
+		GitHub password (token!!)
 	a2. can only use the following command IF you have been given access to the 
-	    global repo; o/w you will need to use a Pull Request to upload changes 
+	    global repo [o/w you will need to use a Pull Request to upload changes]
 
-$ git push origin master
-
-Username for 'https://github.com': bmarron18
-Password for 'https://bmarron18@github.com': 
-Counting objects: 3, done.
-Delta compression using up to 2 threads.
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 720 bytes | 0 bytes/s, done.
-Total 3 (delta 1), reused 0 (delta 0)
-remote: Resolving deltas: 100% (1/1), completed with 1 local objects.
-To https://github.com/LANDIS-II-Foundation/LANDVIZ-Development
-   f9911ef..fc934c0  master -> master
+$ git push origin --all
 
 
 
