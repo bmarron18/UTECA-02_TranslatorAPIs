@@ -17,7 +17,7 @@ Repositories Set up
 			#login
 			-- username: bmarron18  (soil.foodwebs@gmail.com)
 			-- password: 18AV1dd*67R [old ==> 756vop7C (as of 16 Sept 2016)]
-			# new repo
+			# create new repo
 				'This will set master as the default branch'
 
 
