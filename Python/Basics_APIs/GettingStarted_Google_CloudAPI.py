@@ -147,13 +147,12 @@ https://codelabs.developers.google.com/codelabs/cloud-translation-python3#0
 # %%
 
 '''
-TUTORIAL 1
     Create a Google Cloud account and log in
 '''
 https://console.cloud.google.com/
 
 '''
-Log in to https://console.cloud.google.com/
+My login 
 
 Welcome, Bruce Marron
 Try Google Cloud with $300 in free credits
@@ -163,10 +162,6 @@ Access to Google Cloud products and services
 No billing during trial
 
 You have 12 projects remaining in your quota.
-Next, you'll need to enable billing in the Cloud Console to use 
-Cloud resources/APIs. Running through this codelab won't cost much, if 
-anything at all. To shut down resources to avoid incurring billing beyond 
-this tutorial, you can delete the resources you created or delete the project. 
 New Google Cloud users are eligible for the $300 USD Free Trial program.
 '''
 
@@ -181,13 +176,12 @@ Project ID
 # %%
 
 '''
-TUTORIAL 2
      From the Cloud Console, click Activate Cloud Shell 
 '''
 
 '''
-Google Cloud Shell is an IDE with a command line interface. This virtual machine is loaded with all the 
-development tools needed. It offers a persistent 5 GB home directory and runs in Google Cloud.
+Google Cloud Shell is an IDE with a command line interface. This virtual machine is loaded with all 
+the development tools needed. It offers a persistent 5 GB home directory and runs in Google Cloud.
 
 Cloud Shell is a Debian-based virtual machine 
 '''
@@ -201,10 +195,9 @@ marron_bruce_mx@cloudshell:~ (my-project-uteca1)$
 # %%
 
 '''
-TUTORIAL 3
      Authentication
 '''
-    #  in Google Cloud Console (w/o IPython)Neural Machine Translation (NMT)
+    #  in Google Cloud Console (w/o IPython) Neural Machine Translation (NMT)
 
  $ gcloud auth login
      # to obtain new credentials.

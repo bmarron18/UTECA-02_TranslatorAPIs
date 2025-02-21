@@ -9,7 +9,7 @@ source: translate_v3beta1_translate_document.py
 
 
 # %%
-# [BEGIN Workflow_GoogleTranslate_v3_docs]
+# [BEGIN Workflow_gcloudTranslate_v3_CloudConsole_excerpts]
 
 '''
 Login to Google Cloud account (marron,bruce,mx@gmail,com)
@@ -24,16 +24,19 @@ Project number
 Project ID
     my-project-uteca1
 
+'''
+#  Google Cloud Console (w/o IPython)
+marron_bruce_mx@cloudshell:~ (my-project-uteca1)$ 
 
 Welcome to Cloud Shell! Type "help" to get started.
 Your Cloud Platform project in this session is set to my-project-uteca1.
 Use “gcloud config set project [PROJECT_ID]” to change to a different project.
 
-#  Google Cloud Console (w/o IPython)
-marron_bruce_mx@cloudshell:~ (my-project-uteca1)$ 
 
+'''
 # %%
 '''
+Doing simple translations in Google Cloud Console
   Call Google Cloud Translation API
   Authentication
   Follow prompts to obtain new credentials (needed every time)
@@ -59,6 +62,7 @@ $
 # %%
 
 '''
+Doing simple translations in Google Cloud Console
     Get the PROJECT_ID environment variable
 '''
 
@@ -70,13 +74,15 @@ $ echo "PROJECT_ID: $PROJECT_ID"
 # %%
 
 '''
-Install gcloud CLI or SDK
+Doing full doc translations via local machine
+  Install gcloud CLI or SDK on local machine
 '''
 google-cloud-cli-linux-x86_64.tar.gz
 
 # %%
 
 '''
+Doing full doc translations via local machine
     Create a virtual Python environment on your home computer
     Install IPython and the Translation API client library, google-cloud-translate
     (an SDK)
@@ -113,6 +119,7 @@ pip install ipython google-cloud-translate
 
 # %%
 '''
+Doing full doc translations via local machine
     Call IPython in venv 
     Import modules and objects
 '''
@@ -128,6 +135,7 @@ from google.cloud import translate
 
 # %%
 '''
+Doing full doc translations via local machine
   Set variables 
   Define fxn, "translate_document"
 '''
