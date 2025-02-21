@@ -49,6 +49,9 @@ b) Translation Large Language Model (LLM) for conversational text like messages 
 You can use "Adaptive" mode to fine-tune translations based on your own examples for an even closer 
 match to your unique style.
 
+If you don't want to access an API programmatically, you can access some of the same 
+functionality using the tools in Google Cloud CLI or using the Google Cloud console. 
+
 
 '''
 
@@ -89,7 +92,7 @@ https://stackoverflow.com/questions/74502095/setting-application-default-credent
 https://cloud.google.com/storage/docs/gsutil/commands/config] 
 
 
-  # Cloud Client Libraries
+  # Cloud Client Libraries --General
 https://cloud.google.com/sdk/docs/install
 https://cloud.google.com/apis/docs/cloud-client-libraries
 https://cloud.google.com/apis/docs/client-libraries-explained

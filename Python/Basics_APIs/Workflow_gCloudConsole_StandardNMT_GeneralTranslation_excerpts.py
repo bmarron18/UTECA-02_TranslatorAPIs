@@ -9,7 +9,7 @@ source: translate_v3beta1_translate_document.py
 
 
 # %%
-# [BEGIN Workflow_gcloudTranslate_v3_CloudConsole_excerpts]
+# [BEGIN Workflow_gCloudConsole_StandardNMT_GeneralTranslation_excerpts]
 
 '''
 Login to Google Cloud account (marron,bruce,mx@gmail,com)
@@ -25,7 +25,11 @@ Project ID
     my-project-uteca1
 
 '''
-#  Google Cloud Console (w/o IPython)
+#  Google Cloud Console 
+(a Debian-based virtual machine w/o IPython installed; offers only SOME of 
+ the functionality of accessing Google API programmatically)
+
+
 marron_bruce_mx@cloudshell:~ (my-project-uteca1)$ 
 
 Welcome to Cloud Shell! Type "help" to get started.
@@ -36,7 +40,7 @@ Use “gcloud config set project [PROJECT_ID]” to change to a different projec
 '''
 # %%
 '''
-Doing simple translations in Google Cloud Console
+Doing simple excerpt translations in Google Cloud Console
   Call Google Cloud Translation API
   Authentication
   Follow prompts to obtain new credentials (needed every time)

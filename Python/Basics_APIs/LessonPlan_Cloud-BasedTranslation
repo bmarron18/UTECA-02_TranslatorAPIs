@@ -1,0 +1,70 @@
+
+###############
+Terminology
+###############
+
+Terms
+	API		Application Programmer Interface
+	SDK		Software Development Kit
+			[Google Cloud CLI, 
+		
+		
+	
+	LLM		Large Language Model
+	NMT		Neural Machine Translation
+	
+	IDE		Integrated Development Environment
+	
+
+
+API
+A set of rules and protocols that allows different software applications to communicate with each other, enabling them to exchange data and functionality by defining a standardized way to request and receive information.
+
+
+SDK
+A collection of tools, libraries, and documentation provided to developers that allows them to create applications for a specific platform, operating system, or programming language, essentially offering everything needed to build and run software within that environment.
+
+
+
+LLM
+An artificial intelligence (AI) system that can understand, process, and generate human language. LLMs are trained on large amounts of data, such as books and articles, using machine learning techniques.
+
+NMT
+A method of automated translation that uses artificial neural networks to translate text from one language to another, essentially mimicking the human translation process by learning patterns from large datasets to predict the most likely sequence of words in the target language; a data-driven approach to machine translation considering the entire sentence context rather than just individual words.
+
+IDE
+A software application that helps developers write, build, test, and package software.
+
+
+##########
+Overview:
+Google Cloud Translation API
+##########
+Go thru--
+https://cloud.google.com/translate/?hl=en
+
+
+Cloud Translation API 
+	As is 	==> use a Neural Machine Translation (NMT) model; general; the standard Google pre-trained model
+	Options ==> Adaptive Translation [w/ slightly customized LLMs]
+			==> AutoML Translation [w/ highly customized LLMs]
+
+Adaptive Translation
+	Creates custom translation models; trains a LLM on small amounts of specialized data; higher degree of accuracy than 
+	the standard Google pre-trained model
+
+AutoML Translation 
+	Creates custom translation models; trains a LLM on large amounts of specialized data; the most accurate translations possible for highly specialized or technical content; much higher degree of accuracy than the standard Google pre-trained model;  
+
+
+NB
+If you don't want to access an API programmatically, you can access some of the same 
+functionality using the tools in Google Cloud CLI or using the Google Cloud console. 
+
+
+
+Google offers
+    DeepL
+    Cloud Translation API
+
+f you don't want to access an API programmatically, you can access some of the same functionality using the tools in Google Cloud CLI or using the Google Cloud console. 
