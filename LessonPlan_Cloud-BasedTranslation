@@ -73,7 +73,7 @@ A collection of tools that are used to interact with Cloud Client Libraries and 
 Cloud Client Libraries
 The recommended way to access Google Cloud APIs programmatically. The libraries provide high-level API abstractions so they're easier to understand. They embrace idioms of the programming language (Python, Java, PHP, C++, C#, Ruby. Go)
 
-Python Cloud Client Libraries
+Sample Python Cloud Client Libraries
 			AI Platform 						google-cloud-aiplatform
 			AI Platform Data Labeling Service 	google-cloud-datalabeling
 			API Gateway 						google-cloud-api-gateway
@@ -81,7 +81,7 @@ Python Cloud Client Libraries
 			Access Approval 					google-cloud-access-approval
 			Analytics Data API 					google-analytics-data
 			...									...
-			Cloud Translation 					google-cloud-translate 	<== we'll use this one!!
+			**Cloud Translation 				google-cloud-translate 	<== we'll use this one!!
 
 
 	
@@ -127,13 +127,43 @@ functionality using the tools in the Google Cloud console.
 
 
 
+===============		Python	===============================
 
-===============		Workflow_gCloudShell_StandardNMT_GeneralTranslation_excerpts	===============================
+###########
+Install 
+(Mini)Anaconda
+==> Miniconda
+##########
+https://docs.anaconda.com/getting-started/
+
+Anaconda has ----
+Natural Language Processing
+    NLTK
+    Gensim
+    Transformers
+    spaCy
+
+AI and Machine Learning
+    scikit-learn
+    TensorFlow
+    Keras
+    PyTorch
+    XGBoost
+
+
+############
+Install
+Spyder
+##########
+
+https://www.spyder-ide.org/
+https://www.spyder-ide.org/download/
+
+===============		Google Cloud Access	===============================
 
 #######################
-General Translation:
-	Create Google Cloud Account
-	Create New Project
+Create Google Cloud Account
+Create New Project
 #########################
 https://codelabs.developers.google.com/codelabs/cloud-translation-python3#0		<== tutorial
 
@@ -161,11 +191,9 @@ New Project Configuration
     	-- number assigned by Google
 
 
-#######################
-General Translation:
-	Activate Google Cloud Shell
-	
-#########################
+
+==============	Workflow_gCloudShell_StandardNMT_GeneralTranslation_excerpts	===============
+
 
 
 
