@@ -10,8 +10,7 @@ Created on Mon Dec 30 21:54:30 2024
 '''
 References
 '''
-    # Getting Started with Google Cloud Translation API
-https://codelabs.developers.google.com/codelabs/cloud-translation-python3#0
+   
 
 
     # change TABs Spyder

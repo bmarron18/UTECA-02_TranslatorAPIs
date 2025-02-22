@@ -15,63 +15,43 @@ Google offers
     Cloud Translation API
 '''
 
-'''
-Google DeepL
+  # Google DeepL
 https://transcy.crisp.help/en/article/how-to-translate-target-language-by-deepl-service-1ftwdt4/?bust=1712201846082
 
-'''
-# %%
 
-'''
-Google Cloud Translation API
+  #Google Cloud Translation API
 https://cloud.google.com/translate/?hl=en
 
-Cloud Translation API uses Google's neural machine translation technology to let 
-you dynamically translate text through the API using a Google pre-trained, custom model, or a 
-translation specialized large language model (LLMs). 
 
-It comes in Basic (v2) and Advanced (v3) editions. Both provide fast and dynamic translation, but Advanced 
-offers customization features, such as domain-specific translation, formatted document translation, 
-and batch translation. 
-
-The first 500,000 characters sent to the API to process (Basic and Advanced 
-combined) per month are free (not applicable to LLMs).
-
-
-Model selection
-For advanced translations, you're not limited to a one-size-fits-all solution, ensuring the highest 
-quality and accuracy for your specific content. You can choose from the following models, based on 
-your needs: 
-  a) Neural Machine Translation (NMT) for general text in everyday use cases like website content or news 
-articles; 
-
-b) Translation Large Language Model (LLM) for conversational text like messages or social media posts. 
-You can use "Adaptive" mode to fine-tune translations based on your own examples for an even closer 
-match to your unique style.
-
-If you don't want to access an API programmatically, you can access some of the same 
-functionality using the tools in Google Cloud CLI or using the Google Cloud console. 
-
-
-'''
+  # Tutorial--Getting Started with Google Cloud Translation API
+  # [This tutorial confuses local and cloud shell machines]
+https://codelabs.developers.google.com/codelabs/cloud-translation-python3#0
 
 
 # %%
 
 '''
- References for
- Google Cloud Translation API with Python
+ References
 '''
-  # Google Account
+  # Google Cloud Services Account
+https://cloud.google.com/
+https://console.cloud.google.com/
 https://cloud.google.com/iam/docs/service-accounts-create
+https://cloud.google.com/iam/docs/service-account-overview
+https://cloud.google.com/resource-manager/docs/creating-managing-projects#before_you_begin
 
 
-  # Install Google Cloud SDK (or CLI) 
+  # Installing Google Cloud SDK (includes CLI)
+https://cloud.google.com/sdk
 https://cloud.google.com/sdk/docs/initializing
 https://stackoverflow.com/questions/71086225/how-to-install-or-uninstall-gcloud
 
-  # Service Account (not used)
-https://cloud.google.com/iam/docs/service-account-overview
+
+  # Google Cloud Shell (available from Google Cloud Console)
+  ''' IDE with a command line interface. This virtual machine is loaded with all the 
+  development tools needed. It offers a persistent 5 GB home directory and runs in Google Cloud.
+  Cloud Shell is a Debian-based virtual machine '''
+
 
   # Google Authentication and Application Default Credentials (ADC)
 https://cloud.google.com/docs/authentication
@@ -88,11 +68,12 @@ https://www.googlecloudcommunity.com/gc/Serverless/Why-i-have-the-error-raise-ex
 https://stackoverflow.com/questions/73451173/google-auth-exceptions-defaultcredentialserror-could-not-automatically-determin
 https://stackoverflow.com/questions/74502095/setting-application-default-credentials-adc-on-google-cloud
 
+
   # Google Cloud Storage
 https://cloud.google.com/storage/docs/gsutil/commands/config] 
 
 
-  # Cloud Client Libraries --General
+  # Google Cloud Client Libraries -- General
 https://cloud.google.com/sdk/docs/install
 https://cloud.google.com/apis/docs/cloud-client-libraries
 https://cloud.google.com/apis/docs/client-libraries-explained
@@ -100,7 +81,7 @@ https://developers.google.com/api-client-library/
 https://developers.google.com/apis-explorer/
  
 
-  # Cloud Client Libraries -- Python
+  # Google Cloud Client Libraries -- Python
 https://cloud.google.com/python
  https://github.com/googleapis/google-cloud-python
 https://cloud.google.com/python/docs/getting-started
@@ -108,7 +89,7 @@ https://cloud.google.com/python/docs/setup
 https://cloud.google.com/python/docs/reference
 
 
-  # Cloud Client Libraries -- Translation
+  # Google Cloud Client Libraries -- Translation / General
 https://cloud.google.com/translate/docs
 https://cloud.google.com/translate/docs/setup
 https://cloud.google.com/translate/docs/reference/rest
@@ -117,17 +98,20 @@ https://cloud.google.com/translate/docs/supported-formats
 https://pypi.org/project/google-cloud-translate/
 
 
-  # Cloud Client Libraries  -- Translation w/ Python
+  # Google Cloud Client Libraries  -- Translation / Python
 https://cloud.google.com/python/docs/reference/translate/latest
 https://cloud.google.com/translate/docs/advanced/translating-text-v3#translate_v3_translate_text-python
 https://github.com/GoogleCloudPlatform/python-docs-samples/tree/main/translate/samples/snippets
-      
-  # Advanced Translation
+
+
+  # Google Advanced Translation
 https://cloud.google.com/translate/docs/intro-to-v3
+
 
   # Google Zones and Location of Servers for Cloud Computing
 https://cloud.google.com/compute/docs/regions-zones
 https://stackoverflow.com/questions/66841594/google-cloud-translate-400-invalid-resource-name-location-even-though-it-is-vali
+
 
   #Spyder IDE
 https://docs.spyder-ide.org/5/faq.html#using-packages-installer
@@ -135,65 +119,10 @@ https://docs.spyder-ide.org/5/faq.html#using-packages-installer
 
 
 
-# %%
 
 
-'''
-
-Getting Started with Google Cloud Translation API
-OJO!! This tutorial confuses local and cloud machines
-    '''
-    
-https://codelabs.developers.google.com/codelabs/cloud-translation-python3#0
 
 
-# %%
-
-'''
-    Create a Google Cloud account and log in
-'''
-https://console.cloud.google.com/
-
-'''
-My login 
-
-Welcome, Bruce Marron
-Try Google Cloud with $300 in free credits
-
-Access to Google Cloud products and services
-90 days to spend your credits
-No billing during trial
-
-You have 12 projects remaining in your quota.
-New Google Cloud users are eligible for the $300 USD Free Trial program.
-'''
-
-Project name
-    My Project-UTECA1
-Project number
-    735387290281
-Project ID
-    my-project-uteca1 
-
-
-# %%
-
-'''
-     From the Cloud Console, click Activate Cloud Shell 
-'''
-
-'''
-Google Cloud Shell is an IDE with a command line interface. This virtual machine is loaded with all 
-the development tools needed. It offers a persistent 5 GB home directory and runs in Google Cloud.
-
-Cloud Shell is a Debian-based virtual machine 
-'''
-
-Welcome to Cloud Shell! Type "help" to get started.
-Your Cloud Platform project in this session is set to my-project-uteca1.
-Use “gcloud config set project [PROJECT_ID]” to change to a different project.
-marron_bruce_mx@cloudshell:~ (my-project-uteca1)$ 
-    
     
 # %%
 
