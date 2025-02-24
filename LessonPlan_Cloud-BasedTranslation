@@ -1,4 +1,14 @@
 
+==========	Intro	====================================================
+
+############
+Your Future
+#############
+https://www.smartling.com/
+
+"AI Powered Translations with a Human Touch"
+
+
 ###############
 Terminology
 ###############
@@ -9,6 +19,7 @@ General Terms
 	LLM		Large Language Model
 	NMT		Neural Machine Translation
 	GPT		Generative Pre-Trained Transformer
+	MIME	Multipurpose Internet Mail Extension; type of file format for translating
 	
 	API		Application Programmer Interface
 	SDK		Software Development Kit
@@ -31,6 +42,20 @@ GPT
 A type of artificial intelligence (AI) model that can create human-like text. GPT is a family of neural network models that use a transformer architecture. 
 
 
+MIME
+Many file types can be translated by Google Translate API (NMT model). Translation will keep the original format.
+
+Extension			MIME code Google API
+---------			---------------------
+.doc				application/msword
+.docx				application/vnd.openxmlformats-officedocument.wordprocessingml.document
+.pdf				application/pdf
+.ppt				application/vnd.ms-powerpoint
+.pptx				application/vnd.openxmlformats-officedocument.presentationml.presentation
+.xls				application/vnd.ms-excel
+.xlsx				application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+
+
 API
 A set of rules and protocols that allows different software applications to communicate with each other, enabling them to exchange data and functionality by defining a standardized way to request and receive information.
 
@@ -46,10 +71,26 @@ Python
 a high-level, interpreted, object-oriented programming language known for its simple, readable syntax that closely resembles natural language, making it a popular choice for beginners and a versatile tool for various applications including web development, data analysis, automation, and machine learning
 
 
+##############
+AI Translation
+###############
 
-Google-Specific Terms
-model: "projects/735387290281/locations/us-central1/models/general/nmt"
-model: "projects/735387290281/locations/us-central1/models/general/nmt"
+OpenAI offers:
+	GPT 4.o
+
+Google offers:
+    DeepL
+    Google Cloud Translation API	<== We will start here
+
+
+
+==========	Google Cloud Translation API	==============================
+Go thru--
+https://cloud.google.com/translate/?hl=en
+https://codelabs.developers.google.com/codelabs/cloud-translation-python3#0		<== tutorial
+
+
+---- Google-Specific Terms	---------------------------------------------------
 	ADC									Application Default Credentials
 	
 	Google Cloud SDK					Libraries and tools for interacting with Google Cloud products and services.
@@ -58,8 +99,6 @@ model: "projects/735387290281/locations/us-central1/models/general/nmt"
 	[Google API Client Libraries		Previous versions of the Cloud Client Libraries]
 	Python Cloud Client Libraries		Python-code specific libraries for APIs
 	
-
-
 
 ADC (Google)
 A strategy used by the authentication libraries to automatically find credentials based on the application environment. The authentication libraries make those credentials available to Cloud Client Libraries and Google API Client Libraries. When you use ADC, your code can run in either a development or production environment without changing how your application authenticates to Google Cloud services and APIs. 
@@ -85,36 +124,11 @@ Sample Python Cloud Client Libraries
 			**Cloud Translation 				google-cloud-translate 	<== we'll use this one!!
 
 
-	
-	
-
-##############
-AI Translation
-###############
-
-OpenAI offers:
-	GPT 4.o
-
-Google offers:
-    DeepL
-    Cloud Translation API
-
-
-
-##########
-Overview:
-Google Cloud Translation API
-##########
-Go thru--
-https://cloud.google.com/translate/?hl=en
-
-
 Cloud Translation API 
 	As is 	==> use a Neural Machine Translation (NMT) model; general; the standard Google pre-trained model
 	Options ==> Adaptive Translation [w/ slightly customized LLMs]
 			==> AutoML Translation [w/ highly customized LLMs]
-model: "projects/735387290281/locations/us-central1/models/general/nmt"
-model: "projects/735387290281/locations/us-central1/models/general/nmt"
+
 Adaptive Translation
 	Creates custom translation models; trains a LLM on small amounts of specialized data; higher degree of accuracy than 
 	the standard Google pre-trained model
@@ -124,18 +138,49 @@ AutoML Translation
 
 
 NB
-If you don't want to access an API programmatically (ie, using scripts from home compu), you can access some of the same 
-functionality using the tools in the Google Cloud console. 
+* If you don't want to access an API programmatically (ie, using scripts from home compu), you can access some of the same 
+functionality using the tools in the Google Cloud console	<== we'll do this first
+
+* Google Cloud Translation API NMT translates 194 language pairs (see below)
+
+
+-----	Creating a Google Cloud Account	-------------------------------
+https://console.cloud.google.com/
+https://cloud.google.com/resource-manager/docs/creating-managing-projects#before_you_begin
+
+
+Account Configuration: 
+	Sign in with your regular Google Account then
+		https://cloud.google.com/
+			==> go to console
+	
+NB
+	New Google Cloud users are eligible for the 90-day, $300 USD ($6000 MXN) Free Trial program
+	Access to all Google Cloud products and services
+	90 days to spend your credits
+	No billing during trial
+	12 projects in quota.
+
+Set up new project ----
+
+New Project Configuration
+	Project name
+    	<your project name>
+	Project ID
+		--assigned by Google
+	Project number
+    	-- number assigned by Google
+
 
 
 
 ===============		Python	===============================
 
-###########
-Install 
-(Mini)Anaconda
-==> Miniconda
-##########
+#########################
+Bundled Python distros:
+Anaconda
+Miniconda
+###########################
 https://docs.anaconda.com/getting-started/
 
 Anaconda has ----
@@ -151,56 +196,44 @@ AI and Machine Learning
     Keras
     PyTorch
     XGBoost
+	
+NB
+	* We won't need Anaconda but it's fabulous for learning Python
 
 
 ############
-Install
+An ideal IDE:
 Spyder
 ##########
 
 https://www.spyder-ide.org/
 https://www.spyder-ide.org/download/
 
-===============		Google Cloud Access	===============================
-
-#######################
-Create Google Cloud Account
-Create New Project
-#########################
-https://codelabs.developers.google.com/codelabs/cloud-translation-python3#0		<== tutorial
-
-https://cloud.google.com/		<== go to console
-https://console.cloud.google.com/
-https://cloud.google.com/resource-manager/docs/creating-managing-projects#before_you_begin
+NB
+	* Spyder comes with a python interpreter
+	* We will use Spyder
 
 
-Account Configuratiomodel: "projects/735387290281/locations/us-central1/models/general/nmt"
-model: "projects/735387290281/locations/us-central1/models/general/nmt"n
-	Sign in with your regular Google Account
+
 	
-	New Google Cloud users are eligible for the 90-day, $300 USD Free Trial program
-	Access to all Google Cloud products and services
-	90 days to spend your credits
-	No billing during trial
-	You have 12 projects remaining in your quota.
+
+==============	Marron Python scripts for Translation	=======================
+
+Workflow_gCloudShell_StandardNMT_GeneralTranslation_excerpts.py
+	* Runs in Google Cloud Shell
+	* Good for text excerpts only
 
 
-New Project Configuration
-	Project name
-    	<your project name>
-	Project ID
-		--assigned by Google
-	Project number
-    	-- number assigned by Google
-
-
-
-==============	Workflow_gCloudShell_StandardNMT_GeneralTranslation_excerpts	===============
+Workflow_gcloudAPI_StandardNMT_GeneralTranslation_docs.py
+	* Runs from your computer
+	* Good for big files (.pdf, .docx, etc)
+	* Keeps original doc formats
 
 
 
 
----------------------- Languages: 194 ----------------------
+
+==========	Google Cloud Translate API Language Codes (194 language pairs)	=========================
 ab        Abkhaz
 ace       Acehnese
 ach       Acholi

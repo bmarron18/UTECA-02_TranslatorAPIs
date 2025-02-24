@@ -347,40 +347,44 @@ from google.cloud import translate_v3 as translate
 
 # %%
 '''
-  Set variables 
-  Define the translation fxn, "translate_document"
+  Set Google API variables 
+  Set Google credentials for billing and quots
 '''
   # Google Cloud project used for translation work
 PROJECT_ID = "my-project-uteca1";
 assert PROJECT_ID ;
 project_id = PROJECT_ID
 
-  # path to document for translation
-doc_dir = "/home/bmarron/Desktop/UTECA/UTECA_AI_TranslatorSetup/UTECA1_TranslatorAPIs/Python/Basics_APIs" ;
-doc_to_translate = "Tester.pdf" ;
-file_path = os.path.join(doc_dir, doc_to_translate)
 
   # set ADC from Google as a Python env variable 
 credential_path = "/home/bmarron/.config/gcloud/application_default_credentials.json"
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
 # %%
 '''
-set target language variable for translation
+    Set doc to be translated
+    Set target language (code) for translation
 '''
 
+     # document to be translated
+     # path to the document
+doc_to_translate = "Tester.pdf" ;
+doc_dir = "/home/bmarron/Desktop/UTECA/UTECA_AI_TranslatorSetup/UTECA1_TranslatorAPIs/GoogleCloudAPI_PyScripts" ;
+file_path = os.path.join(doc_dir, doc_to_translate)
+
+
+    # target language for translation
 target = "hi"
 
 
 
 # %%
+'''
+    Define the Python translation fxn, "translate_document"
+'''
 
 
   # the translation fxn: single doc to single language
-def translate_document(
-    project_id: str,
-#    PROJECT_ID,
-    file_path: str,
-) -> translate.TranslationServiceClient:
+def translate_document(project_id: str,file_path: str,):
     
     client = translate.TranslationServiceClient()
     location = "us-central1"
