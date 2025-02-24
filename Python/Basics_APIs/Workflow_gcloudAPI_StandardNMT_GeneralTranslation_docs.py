@@ -70,30 +70,72 @@ To revert your CLI to the previously installed version:
 
 # %%
 '''
-Link google-cloud-sdk to Spyder python interpreter
+Initial attempts at using Spyder for Google Cloud APIs
+(tricky!)
 
-OR
-
-DONT USE !!!
-Link Spyder to google-cloud-sdk Python 
-[bc must install Spyder Kernels] 
+SKIP THIS....FYI ONLY
 '''
 
+---- Options
+    1, Link google-cloud-sdk to Spyder python interpreter
+    2. Link Spyder to google-cloud-sdk Python
+    3. Install spyder kernels in virtenv  <==This one!!
+
+Messed with all of these...uff! Until found option 3. above
+Had to go back and re-set....uff
+Here's a variety of websites and info 
+
+
+
+---- There are multiple Python distros on my compu
     # The default google-cloud-sdk bundled Python interpreter is here:
 /home/bmarron/google-cloud-sdk/platform/bundledpythonunix/bin/python3.12
 
     # The default Spyder python interpreter is here:
 /home/bmarron/.local/spyder-6/bin/python3.11
+OR
+/home/bmarron/.local/spyder-6/envs/spyder-runtime/lib/python3.11/site-packages/
 
-    #re-configure google-cloud-sdk Python interpreter
-$ cd ~
-$ ./google-cloud-sdk/bin/gcloud topic startup
-
-    #set the CLOUDSDK_PYTHON environment variable to Spyder default python interpreter
-$ export CLOUDSDK_PYTHON=/home/bmarron/.local/spyder-6/bin/python3.11
+    # LinuxMint's python interpreter is here
+/usr/lib/python2.7
+/usr/lib/python3
 
 
-DO NOT USE!!
+---- $PYTHONPATH
+https://askubuntu.com/questions/384996/what-does-my-pythonpath-contain
+
+Typically, the environment variable $PYTHONPATH is empty 
+$ echo $PYTHONPATH
+
+The actual list of folders python searches for libraries can be found
+ with
+
+import sys
+print(sys.path)
+
+['/home/bmarron/.local/spyder-6/envs/spyder-runtime/lib/python311.zip', 
+ '/home/bmarron/.local/spyder-6/envs/spyder-runtime/lib/python3.11', 
+ '/home/bmarron/.local/spyder-6/envs/spyder-runtime/lib/python3.11/lib-dynload', 
+ '', '/home/bmarron/.local/spyder-6/envs/spyder-runtime/lib/python3.11/site-packages']
+
+
+
+
+---- Google has installed LOTS of API site packages here
+/home/bmarron/.local/lib/python3.10/site-packages/google
+/home/bmarron/.local/lib/python3.10/site-packages/google_api_core-2.24.0.dist-info
+/home/bmarron/.local/lib/python3.10/site-packages/google_auth-2.37.0.dist-info
+/home/bmarron/.local/lib/python3.10/site-packages/google_cloud_core-2.4.1.dist-info
+/home/bmarron/.local/lib/python3.10/site-packages/google_cloud_translate-3.19.0.dist-info
+/home/bmarron/.local/lib/python3.10/site-packages/googleapis_common_protos-1.66.0.dist-info
+/home/bmarron/.local/lib/python3.10/site-packages/grpc
+/home/bmarron/.local/lib/python3.10/site-packages/grpc_google_iam_v1-0.13.1.dist-info
+/home/bmarron/.local/lib/python3.10/site-packages/grpc_status
+...
+
+
+
+---- DO NOT USE!!
 #To change Python interpreter in Spyder
 # select an option
 #     Internal 
@@ -108,14 +150,78 @@ DO NOT USE!!
 #activating your environment (if necessary) and then running in a system terminal:
 #    conda install spyder-kernels=3.0
 #or
-#   pip install spyder-kernels==3.0.*
 
+
+---- Option 3: pip install spyder-kernels==3.0.* in virtual environment
+https://stackoverflow.com/questions/30170468/how-to-run-spyder-in-virtual-environment
+
+The modular approach
+1- Activate the environment (e.g. myenv) in which you'd like to work
+ (e.g. source myenv/bin/activate or workon myenv for virtualenv/venv, etc)
+
+2- Install the spyder-kernels package there, with the command if using pip/virtualenv.
+    pip install spyder-kernels 
+
+3- After installing via either method, run the following command inside
+ the same environment:
+     python -c "import sys; print(sys.executable)"    
+
+and copy the path returned by that command 
+it should end in python, pythonw, python.exe or pythonw.exe, depending on your operating system).
+
+4- start Spyder as you normally would.
+
+5- After Spyder has started, navigate to Tools > Preferences > Python Interpreter > Use the following interpreter
+paste the path from Step 3 into the text box.
+
+6- Start a new IPython console. 
+
+
+
+
+---- trying to install google-cloud-translate in Spyder Python
+
+https://stackoverflow.com/questions/59200541/why-does-my-google-translate-api-work-in-the-terminal-but-not-an-executable
+https://stackoverflow.com/questions/2915471/install-a-python-package-into-a-different-directory-using-pip
+https://stackoverflow.com/questions/44389630/using-spyder-with-virtualenv
+
+
+---- how to re-configure google-cloud-sdk Python interpreter
+$ cd ~
+$ ./google-cloud-sdk/bin/gcloud topic startup
+
+
+---- tried this 
+   #set the CLOUDSDK_PYTHON environment variable to Spyder default python interpreter
+$ export CLOUDSDK_PYTHON=/home/bmarron/.local/spyder-6/envs/spyder-runtime/lib/python3.11
+$ pip install --target /home/bmarron/.local/spyder-6/envs/spyder-runtime/lib/python3.11/site-packages/ google-cloud-translate
+
+
+---- tried this
+Install google-cloud-translate; Spyder kernels in LinuxMint Python 3.10thon
+
+    # Set Spyder [Tools ==> Preferences ==> Python Interprepter]
+ /home/bmarron/.local/spyder-6/bin/python3.11
+
+$ export PYTHONPATH=${PYTHONPATH}:${HOME}/.local/spyder-6/bin/python3.11
+$ export CLOUDSDK_PYTHON=/home/bmarron/.local/spyder-6/bin/python3.11
+$ pip install --target /home/bmarron/.local/lib/python3.10/site-packages/ google-cloud-translate
+
+import sys
+sys.path.append('/home/bmarron/.local/lib/python3.10/site-packages/')
+
+ 
+
+---- Re-sets
+    # Use the python3 interpreter on your path
+$ export CLOUDSDK_PYTHON=python3
 
 
 
 # %%
 '''
    Obtain Application Default Credentials (ADC)
+   (Only once; stored as .json file)
 '''
 
   # Initial get of ADC credentials 
@@ -123,13 +229,14 @@ DO NOT USE!!
   # ADC authentication is thru google-cloud-sdk 
   # Browser sent to Google Auth Library; follow browser prompts
   # NOT setting up a Service Account; ADC stored locally
+  # once have credentials will be used by any library that requests ADCs
  
 $ cd ~
 $ ./google-cloud-sdk/bin/gcloud auth application-default login
 
 
-    # once have credentials will be used by any library that requests ADCs
-    # ADC credentials saved here:: 
+   
+    # ADC credentials are saved here:: 
 /home/bmarron/.config/gcloud/application_default_credentials.json
 
 
@@ -155,7 +262,8 @@ $ gcloud config set account `ACCOUNT`   #<== re-type 'ACCOUNT' w/ apostrophes!!
 
 # %%
 '''
-Set Google Cloud projects for billing and quotas 
+Set Google Cloud projects for billing and quotas
+(Only once per project)
 '''
 
     # quotas are per project
@@ -176,6 +284,7 @@ Google client libraries for billing and quota.
 '''
 Doing complete document translations thru API with the Standard NMT model
   Account and Project Configuration
+  (Re-set every session)
 '''
 
   # sign in and follow prompts for account and project config
@@ -185,7 +294,7 @@ $ ./google-cloud-sdk/bin/gcloud init
 
 Welcome! This command will take you through the configuration of gcloud.....
 
-The Google Cloud CLI is configured and ready to use
+The Google Cloud CLI is configured and ready to use!
 
 
   
@@ -196,49 +305,43 @@ The Google Cloud CLI is configured and ready to use
       ==> Install IPython
       ==> Install the SDK for Google language translation (google-cloud-translate)
       ( aka the Google Translation API client library)
+      ==> spyder kernels
 '''
  
 $ cd ~ 
 $ virtualenv venv-translate &&
 source venv-translate/bin/activate &&
-pip install ipython google-cloud-translate
+pip install spyder-kernels ipython google-cloud-translate
+
+    # terminal now here
+(venv-translate) bmarron@bmarron-HP-Laptop-15t-dy100:~$ 
+
 
 # %%
 '''
-Install google-cloud-translate in Spyder Python
+Getting Spyder into venv-translate
 '''
-https://stackoverflow.com/questions/59200541/why-does-my-google-translate-api-work-in-the-terminal-but-not-an-executable
 
 
-https://stackoverflow.com/questions/2915471/install-a-python-package-into-a-different-directory-using-pip
+$ python -c "import sys; print(sys.executable)"
+    /home/bmarron/venv-translate/bin/python  
 
+    # in spyder
+Tools > Preferences > Python Interpreter > Use the following interpreter
+paste the path and then the file above into text box
 
-
-$ pip install --target /home/bmarron/.local/spyder-6/lib/python3.11/site-packages google-cloud-translate
-/home/bmarron/.local/spyder-6/lib/python3.11/site-packages
-
-
-    # module found? no
-export PYTHONPATH=${PYTHONPATH}:${HOME}/.local/spyder-6/
-
-    # module found? no
-import sys
-sys.path.append('/home/bmarron/.local/spyder-6/lib/python3.11/site-packages')
-    # Now the import will work
-
-    #google-cloud-translate in python 3.10 distro
-google-cloud-translate in ./.local/lib/python3.10/site-packages (3.19.0)
+6- Start a new IPython console. 
 
 # %%
 '''
     Call IPython in venv 
     Import modules
       ==> os
-      ==> google.cloud.translate (SDK)
+      ==> google.cloud.translate (SDK) translation fxn
 '''
 
 import os
-from google.cloud import translate
+#from google.cloud import translate
 from google.cloud import translate_v3 as translate
 
 
@@ -260,9 +363,17 @@ file_path = os.path.join(doc_dir, doc_to_translate)
   # set ADC from Google as a Python env variable 
 credential_path = "/home/bmarron/.config/gcloud/application_default_credentials.json"
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
+# %%
+'''
+set target language variable for translation
+'''
 
-  # set target language for translation
-target = "ja"
+target = "hi"
+
+
+
+# %%
+
 
   # the translation fxn: single doc to single language
 def translate_document(
@@ -308,19 +419,26 @@ def translate_document(
 # %%
 
   # Do the translation
-$ translate_document(project_id, file_path)
+translate_document(project_id, file_path)
+
+
+# %%
 
   # Model used by Google to do the translation
   # Neural Machine Translation (NMT)
+  
 model: "projects/735387290281/locations/us-central1/models/general/nmt"
-model: "projects/735387290281/locations/us-central1/models/general/nmt"
+
 # %%
 
 '''
   Clean up
-    '''
-    # exit Cloud Shell IPython session
+'''
+    # exit Cloud Shell IPython session (if working in terminal)
 In [12]: exit
+
+    # re-set spyder to original python interpreter
+
    
 
    # Stop using the Python virtual environment 

@@ -48,7 +48,8 @@ a high-level, interpreted, object-oriented programming language known for its si
 
 
 Google-Specific Terms
-
+model: "projects/735387290281/locations/us-central1/models/general/nmt"
+model: "projects/735387290281/locations/us-central1/models/general/nmt"
 	ADC									Application Default Credentials
 	
 	Google Cloud SDK					Libraries and tools for interacting with Google Cloud products and services.
@@ -112,7 +113,8 @@ Cloud Translation API
 	As is 	==> use a Neural Machine Translation (NMT) model; general; the standard Google pre-trained model
 	Options ==> Adaptive Translation [w/ slightly customized LLMs]
 			==> AutoML Translation [w/ highly customized LLMs]
-
+model: "projects/735387290281/locations/us-central1/models/general/nmt"
+model: "projects/735387290281/locations/us-central1/models/general/nmt"
 Adaptive Translation
 	Creates custom translation models; trains a LLM on small amounts of specialized data; higher degree of accuracy than 
 	the standard Google pre-trained model
@@ -172,7 +174,8 @@ https://console.cloud.google.com/
 https://cloud.google.com/resource-manager/docs/creating-managing-projects#before_you_begin
 
 
-Account Configuration
+Account Configuratiomodel: "projects/735387290281/locations/us-central1/models/general/nmt"
+model: "projects/735387290281/locations/us-central1/models/general/nmt"n
 	Sign in with your regular Google Account
 	
 	New Google Cloud users are eligible for the 90-day, $300 USD Free Trial program
