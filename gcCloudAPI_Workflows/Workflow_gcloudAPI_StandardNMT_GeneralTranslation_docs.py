@@ -5,7 +5,11 @@ Created: 06 Jan 2025
 Modified: 25 Jan 2025
 @author: bmarron
 
-source: translate_v3beta1_translate_document.py
+sources: 
+*translate_v3beta1_translate_document.py
+*https://cloud.google.com/python/docs/reference/translate/latest/google.cloud.translate_v3.services.translation_service.TranslationServiceClient
+*https://cloud.google.com/python/docs/reference/translate/latest/google.cloud.translate_v3.services.translation_service.TranslationServiceClient#google_cloud_translate_v3_services_translation_service_TranslationServiceClient_batch_translate_document
+*https://cloud.google.com/python/docs/reference/translate/latest/google.cloud.translate_v3.services.translation_service.TranslationServiceClient#google_cloud_translate_v3_services_translation_service_TranslationServiceClient_translate_document
 """
 
 # %%
