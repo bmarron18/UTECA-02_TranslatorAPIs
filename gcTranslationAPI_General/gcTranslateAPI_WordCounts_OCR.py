@@ -16,21 +16,24 @@ print (os.getcwd())
 # %%
 
 '''
-    Step 1. Use Sed 'tr' to
+    Step 1. Use sed and 'tr' to
 	+ remove all non-printable ASCII characters (garbage characters== !(octal 11-15 || 40-176)).
-	+ NB. 'tr' uses backslash to denote an octal number.
+	+ remove all punctuation
+    + NB. 'tr' uses backslash to denote an octal number.
 '''
 
-$ tr -cd '\11-\15\40-\176' < test.txt > clean_test.txt
+    # open terminal that has file to be counted
+$ tr -cd '\11-\15\40-\176' < NAME_of_FILE.txt > clean_test.txt
+
+    # remove all punctuation
+$ sed 's/[[:punct:]]//g' < clean_test.txt > TMP_00
+
+    # overwrite original
+$ mv TMP_00 clean_test.txt
 
    
 
-     # option to overwrite original
-$ tr -cd '\11-\15\40-\176' < test.txt > clean_test.txt \
-&& mv clean_test.txt test.txt
-
-
-
+  
 
 # %%
 '''
