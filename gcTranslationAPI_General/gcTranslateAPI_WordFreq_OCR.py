@@ -23,13 +23,12 @@ print (os.getcwd())
 '''
 
     # open terminal that has file to be counted
-$ tr -cd '\11-\15\40-\176' < NAME_of_FILE.txt > clean_test.txt
-
     # remove all punctuation
-$ sed 's/[[:punct:]]//g' < clean_test.txt > TMP_00
-
     # overwrite original
-$ mv TMP_00 clean_test.txt
+    
+$ tr -cd '\11-\15\40-\176' < NAME_of_FILE.txt > clean_test.txt &&
+sed 's/[[:punct:]]//g' < clean_test.txt > TMP_00 &&
+mv TMP_00 clean_test.txt
 
    
 
@@ -55,6 +54,32 @@ with chdir('/home/bmarron/Desktop'):
         print(pd.Series(ordered).value_counts().sort_values(ascending=True), file=f)
 
 # %%
+
+
+# %%
+
+'''
+    USE THIS !!
+'''
+    
+import re
+from contextlib import chdir
+
+with chdir('/home/bmarron/Desktop'):
+    M = []
+    with open('EXCERPTS_P1_Que-hace-la-SCJN.txt') as f:
+        for line in f.readlines():
+            for word in line.split():
+                word = re.findall('[A-Za-z]+', word)
+                if word:
+                    M.append(word[0])
+
+    S = list(set(M))
+    S = sorted(S, key=str.lower)
+
+    with open("output.txt", "w") as f:
+        for i in S:
+            f.write(i + "\n")
 # %%
 
 '''
