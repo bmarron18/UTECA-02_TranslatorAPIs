@@ -24,6 +24,7 @@ Step 1
     
         delete all newlines
     $ tr --delete '\n' < yourfile.txt
+    
         replace newlines with space
     $ tr '\n' ' ' < input_filename
     
@@ -38,6 +39,16 @@ $ tr '\n' ' ' < Test.txt > Test2.txt
 Step 2
     USE THIS for generating a unique word list from texts
     Gives single words for student vocab lists
+
+https://stackoverflow.com/questions/43025188/regular-expression-re-findall-for-set-of-all-alphabetic-words
+
+This will accept words like "don't" and "re-invent" and "cul-de-sac" but will 
+reject numbers, underscores, whitespace, quote marks, and other punctuation.
+
+    re.findall(r"[A-Za-z\-\']+", s)
+    
+The \p{L} matches all Unicode letters regardless of modifiers passed to the regex compile.
+    re.findall(r"[p{L}\-\']+", s)
 '''
     
 import re
@@ -48,7 +59,7 @@ with chdir('/home/bmarron/Desktop'):
     with open('Test2.txt') as f:
         for line in f.readlines():
             for word in line.split():
-                word = re.findall('[A-Za-z]+', word)
+                word = re.findall('[A-Za-zñáéíóúü\,\-\.\)]+', word)    #words in español and w/ comma, dash, period
                 if word:
                     M.append(word[0])
 
@@ -80,7 +91,7 @@ with chdir('/home/bmarron/Desktop'):
     with open('Test2.txt','r') as f:
         data = f.read()
 
-    search_word = "Emergentes"
+    search_word = "tecnologías"
     list_of_words = data.split()
     next_word = list_of_words[list_of_words.index(search_word) + 1]
     prev_word = list_of_words[list_of_words.index(search_word) - 1]
