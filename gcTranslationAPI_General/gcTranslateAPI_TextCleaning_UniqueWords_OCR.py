@@ -16,9 +16,28 @@ print (os.getcwd())
 
 
 # %%
+'''
+Step 1
+    USE THIS to remove end of line returns from text file
+    End of line returns are coded as, /n
+    tr is truncate Linux command
+    
+        delete all newlines
+    $ tr --delete '\n' < yourfile.txt
+        replace newlines with space
+    $ tr '\n' ' ' < input_filename
+    
+'''
+
+$ tr '\n' ' ' < Test.txt > Test2.txt
+
+# %%
+
 
 '''
-    USE THIS for student word lists !!
+Step 2
+    USE THIS for generating a unique word list from texts
+    Gives single words for student vocab lists
 '''
     
 import re
@@ -26,7 +45,7 @@ from contextlib import chdir
 
 with chdir('/home/bmarron/Desktop'):
     M = []
-    with open('Terms.txt') as f:
+    with open('Test2.txt') as f:
         for line in f.readlines():
             for word in line.split():
                 word = re.findall('[A-Za-z]+', word)
@@ -45,8 +64,9 @@ with chdir('/home/bmarron/Desktop'):
 # %%
 
 """
-USE THIS!!
-Find next word
+Step 3
+    Use this to find two-word vocab
+    Find next word
 """
     # How to find the next word of a specific word in a txt-file
     # https://stackoverflow.com/questions/70730240/q-how-to-find-the-next-word-of-a-specific-word-in-a-txt-file
@@ -57,15 +77,16 @@ from contextlib import chdir
 
 with chdir('/home/bmarron/Desktop'):
 
-    with open('TEST.txt','r') as f:
+    with open('Test2.txt','r') as f:
         data = f.read()
 
-    search_word = "zapatas"
+    search_word = "Emergentes"
     list_of_words = data.split()
     next_word = list_of_words[list_of_words.index(search_word) + 1]
+    prev_word = list_of_words[list_of_words.index(search_word) - 1]
 
-    with open("output.txt", "a") as f:
-        print(search_word,"", next_word, file=f)
+    with open("two-word_terms.txt", "a") as f:
+        print(prev_word,"",search_word,"",next_word, file=f)
 # %%
 # %%
 
