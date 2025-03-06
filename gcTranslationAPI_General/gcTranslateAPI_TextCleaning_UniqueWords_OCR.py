@@ -13,7 +13,85 @@ os.getcwd()
 
 print (os.getcwd())
 
+
+
 # %%
+
+'''
+    USE THIS for student word lists !!
+'''
+    
+import re
+from contextlib import chdir
+
+with chdir('/home/bmarron/Desktop'):
+    M = []
+    with open('Terms.txt') as f:
+        for line in f.readlines():
+            for word in line.split():
+                word = re.findall('[A-Za-z]+', word)
+                if word:
+                    M.append(word[0])
+
+    S = list(set(M))
+    S = sorted(S, key=str.lower)
+
+    with open("output.txt", "w") as f:
+        for i in S:
+            f.write(i + "\n")
+
+
+
+# %%
+
+"""
+USE THIS!!
+Find next word
+"""
+    # How to find the next word of a specific word in a txt-file
+    # https://stackoverflow.com/questions/70730240/q-how-to-find-the-next-word-of-a-specific-word-in-a-txt-file
+
+
+from contextlib import chdir
+
+
+with chdir('/home/bmarron/Desktop'):
+
+    with open('TEST.txt','r') as f:
+        data = f.read()
+
+    search_word = "zapatas"
+    list_of_words = data.split()
+    next_word = list_of_words[list_of_words.index(search_word) + 1]
+
+    with open("output.txt", "a") as f:
+        print(search_word,"", next_word, file=f)
+# %%
+# %%
+
+'''
+    Get word frequencies
+'''
+
+import pandas as pd
+#pd.options.display.max_colwidth = None
+pd.options.display.max_rows = None
+    
+from contextlib import chdir
+
+
+with chdir('/home/bmarron/Desktop'):
+    
+    words = open("clean_test.txt", "r").read().split()
+    ordered = sorted(words)
+    with open("output.txt", "a") as f:
+        print(pd.Series(ordered).value_counts().sort_values(ascending=True), file=f)
+
+# %%
+
+
+
+
 
 '''
     TEXT CLEANING
@@ -55,52 +133,93 @@ with chdir('/home/bmarron/Desktop'):
   
 
 # %%
-'''
-    Get word frequencies
-'''
-
-import pandas as pd
-#pd.options.display.max_colwidth = None
-pd.options.display.max_rows = None
-    
-from contextlib import chdir
-
-
-with chdir('/home/bmarron/Desktop'):
-    
-    words = open("clean_test.txt", "r").read().split()
-    ordered = sorted(words)
-    with open("output.txt", "a") as f:
-        print(pd.Series(ordered).value_counts().sort_values(ascending=True), file=f)
-
-# %%
 
 
 # %%
 
-'''
-    USE THIS for student word lists !!
-'''
-    
-import re
-from contextlib import chdir
+def count_words(line):
+    words = line.split()
+    return len(words)
 
-with chdir('/home/bmarron/Desktop'):
-    M = []
-    with open('EXCERPTS_P3_EPA_Guidance-for-SOPs.txt') as f:
-        for line in f.readlines():
-            for word in line.split():
-                word = re.findall('[A-Za-z]+', word)
-                if word:
-                    M.append(word[0])
+f = open("C:/Users/John Green/Desktop/follows.txt", "r")
+text = f.read()
+#make a list of the file broken into lines
+lines = text.split('\n')
+max_words = -1
+word = ''
+for line in lines:
+    length = count_words(line)
+    if length > max_words:
+        max_words = length
+        words = line.split()
+f.close()
+print(words[0])
 
-    S = list(set(M))
-    S = sorted(S, key=str.lower)
-
-    with open("output.txt", "w") as f:
-        for i in S:
-            f.write(i + "\n")
 # %%
+
+
+    #Total number of words per line in a text file
+
+
+def count_words(line):
+    words = line.split()
+    return len(words)
+
+f = open("/home/bmarron/Desktop/TEST.txt", "r")
+text = f.read()
+#make a list of the file broken into lines
+lines = text.split('\n')
+max_words = -1
+word = ''
+for line in lines:
+    length = count_words(line)
+    if length > max_words:
+        max_words = length
+        words = line.split()
+f.close()
+print(words[0])
+
+
+
+# %%
+
+
+
+# count the occurrences of number of spaces!?
+
+txt = "Just an example here move along" 
+count = 1
+for i in txt:
+    if i == " ":
+       count += 1
+print(count)
+
+
+
+
+
+# %%
+
+"""
+USE THIS!!
+Find next word
+"""
+    # How to find the next word of a specific word in a txt-file
+    # https://stackoverflow.com/questions/70730240/q-how-to-find-the-next-word-of-a-specific-word-in-a-txt-file
+
+
+with open('/home/bmarron/Desktop/TEST.txt','r') as f:
+    data = f.read()
+
+search_word = "ingeniería"
+list_of_words = data.split()
+next_word = list_of_words[list_of_words.index(search_word) + 1]
+
+
+
+# %%
+
+
 
 '''
 Optical Character Recognition (OCR)
