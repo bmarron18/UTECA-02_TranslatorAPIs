@@ -44,9 +44,9 @@ $ gcloud config list project
 
 '''
     On Google Cloud Translation API
+    in Google Cloud Console (w/o IPython)
 '''
 
-    #  in Google Cloud Console (w/o IPython)
 
 $ gcloud services enable translate.googleapis.com
 
@@ -121,7 +121,6 @@ $ ipython
     On initial attempts at using Spyder for Google Cloud APIs
     (tricky!)
 
-SKIP THIS....FYI ONLY
 '''
 
 ---- Options
@@ -145,6 +144,7 @@ OR
 /home/bmarron/.local/spyder-6/envs/spyder-runtime/lib/python3.11/site-packages/
 
     # LinuxMint's python interpreter is here
+    # note both python distros in same directory
 /usr/lib/python2.7
 /usr/lib/python3
 
