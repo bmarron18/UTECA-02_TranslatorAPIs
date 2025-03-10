@@ -126,6 +126,9 @@ $ cat Webdoc* > complete.txt
 
 $ pdfunite in-1.pdf in-2.pdf in-n.pdf ouput.pdf
 
+$ pdfunite W*01.pdf W*02.pdf W*03.pdf W*04.pdf W*05.pdf W*06.pdf W*07.pdf W*08.pdf W*09.pdf W*10.pdf W*11.pdf W*12.pdf ouput.pdf
+
+
 
 # %%
 
