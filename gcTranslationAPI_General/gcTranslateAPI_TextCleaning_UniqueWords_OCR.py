@@ -18,6 +18,9 @@ print (os.getcwd())
 # %%
 '''
 =========  Extraction of Vocab  ==============================
+'''
+# %%
+'''
 Step 1
     USE THIS to remove end of line returns from text file
     End of line returns are coded as, /n
@@ -31,8 +34,8 @@ Step 1
     $ tr '\n' ' ' < input_filename
     
 
-    # USE THIS!!
-$ tr '\n' ' ' < Test.txt > Test2.txt
+    # USE THIS!! Step 1
+$ tr '\n' ' ' < complete.txt > Test2.txt
 
 # %%
 
@@ -53,9 +56,28 @@ reject numbers, underscores, whitespace, quote marks, and other punctuation.
 The \p{L} matches all Unicode letters regardless of modifiers passed to the regex compile.
     re.findall(r"[p{L}\-\']+", s)
 
+https://docs.python.org/3/library/re.html
+In regex, there are 12 characters with special meanings: 
+    the backslash \, 
+    the caret ^, 
+    the dollar sign $, 
+    the period or dot ., 
+    the vertical bar or pipe symbol |, 
+    the question mark ?, 
+    the asterisk or star *, 
+    the plus sign +, 
+    the opening parenthesis (, 
+    the closing parenthesis ), 
+    the opening square bracket [, and 
+    the opening curly brace {, 
+These special characters are often called metacharacters and should be escaped with backslash Ab\(123\) if used as literal.
+This can be automagically achieved using re.escape()
+
+# %%
  
 
-    # USE THIS!!   
+
+    # USE THIS!!   Step 2
 import re
 from contextlib import chdir
 
@@ -64,7 +86,7 @@ with chdir('/home/bmarron/Desktop'):
     with open('Test2.txt') as f:
         for line in f.readlines():
             for word in line.split():
-                word = re.findall('[A-Za-zñáéíóúü\,\-\.\)]+', word)    #words in español and w/ comma, dash, period
+                word = re.findall('[A-Za-zñáéíóúü\,\-\.\“\\(]+', word)    #words in español and w/ comma, dash, period
                 if word:
                     M.append(word[0])
 
@@ -87,8 +109,10 @@ Step 3
     # How to find the next word of a specific word in a txt-file
     # https://stackoverflow.com/questions/70730240/q-how-to-find-the-next-word-of-a-specific-word-in-a-txt-file
 
+# %%
 
-    # USE THIS!!
+
+    # USE THIS!! Step 3 NB ==> Replace search_word
 from contextlib import chdir
 
 
@@ -97,7 +121,7 @@ with chdir('/home/bmarron/Desktop'):
     with open('Test2.txt','r') as f:
         data = f.read()
 
-    search_word = "tecnologías"
+    search_word = "valoracién"
     list_of_words = data.split()
     next_word = list_of_words[list_of_words.index(search_word) + 1]
     prev_word = list_of_words[list_of_words.index(search_word) - 1]
@@ -110,13 +134,21 @@ with chdir('/home/bmarron/Desktop'):
         *create text files for Extraction of Vocab
 '''
     # STEP 1 ==> pdf to png
+    # if a multipage pdf, will out individual ,pngs; one per pdf page
 $ pdftoppm -png Webdoc.pdf Webdoc
 
-    # STEP 2 ==> png to txt
+    # STEP 2a ==> one png file to txt 
 $ tesseract Webdoc-1.png Webdoc-1 --dpi 250^C
 
-    # STEP 3 ==> compile/concatentae text files
-$ cat Webdoc* > complete.txt
+    # STEP 2b ==> multiple ,png
+    # loop thru Webdoc-xx.png files
+    # create a text file from each image
+$ for i in Webdoc-??.png; 
+do tesseract "$i" "text-$i" -l eng; 
+done
+
+    # STEP 3 ==> compile/concatentae text files (if needed)
+$ cat text-Webdoc* > complete.txt
 
 # %%
 '''
