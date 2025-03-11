@@ -47,6 +47,7 @@ Many file types can be translated by Google Translate API (NMT model). Translati
 
 Extension			MIME code Google API
 ---------			---------------------
+.txt				text/plain
 .doc				application/msword
 .docx				application/vnd.openxmlformats-officedocument.wordprocessingml.document
 .pdf				application/pdf

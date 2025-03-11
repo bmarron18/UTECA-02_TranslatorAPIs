@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created: 06 Jan 2025
-Modified: 25 Jan 2025
+Modified: 11 Mar 2025
 @author: bmarron
 
 sources: 
@@ -20,8 +20,8 @@ sources:
 
 '''
 Login to Google Cloud account (marron,bruce,mx@gmail,com)
-Activate Cloud Shell 
-Check account status and exit
+    Check account status
+    Exit
 '''
 https://console.cloud.google.com/
 
@@ -43,7 +43,7 @@ marron_bruce_mx@cloudshell:~ (my-project-uteca1)$
 # %%
 
 '''
-Install gcloud SDK on home compu 
+Install gcloud SDK on home compu (if not already done)
     [==> /home/bmarron/google-cloud-sdk]
 '''
 https://cloud.google.com/sdk/docs/install
@@ -59,16 +59,20 @@ $ ./google-cloud-sdk/bin/gcloud cheat-sheet
 # %%
 '''
 Check for google-cloud-sdk updates
-Revert google-cloud-sdk to previous version (if needed)
+    [Last update 11 Mar 2025]
+    Current Google CLI version: 514.0.0
+    Previous Google CLI : 511.0.0
+    
+
+
 '''
     
 $ cd ~
 $ ./google-cloud-sdk/bin/gcloud components update
 
 
-
-To revert your CLI to the previously installed version:
-  $ gcloud components update --version 505.0.0
+    # Revert to previous version (if needed)
+$ gcloud components update --version 511.0.0
  
  
 
@@ -76,8 +80,8 @@ To revert your CLI to the previously installed version:
 
 # %%
 '''
-   Obtain Application Default Credentials (ADC)
-   (Only once; stored as .json file)
+   Obtain Application Default Credentials (ADC) (if not already done)
+   
 '''
 
   # Initial get of ADC credentials 
@@ -91,7 +95,7 @@ $ cd ~
 $ ./google-cloud-sdk/bin/gcloud auth application-default login
 
 
-   
+    # Obtain only once; stored as .json file
     # ADC credentials are saved here:: 
 /home/bmarron/.config/gcloud/application_default_credentials.json
 
@@ -136,21 +140,54 @@ Google client libraries for billing and quota.
 ============== Workflow_gcloudAPI_StandardNMT_GeneralTranslation_docs.py  ============
 
 # %%
+'''
+Check for google-cloud-sdk updates
+    [Last update 11 Mar 2025]
+    Current Google CLI version: 514.0.0
+    Previous Google CLI : 511.0.0
+'''
+    
+$ cd ~
+$ ./google-cloud-sdk/bin/gcloud components update
+
+
+    # Revert to previous version (if needed)
+$ gcloud components update --version 511.0.0
+ 
+# %%
+
+'''
+Check the authentication account used by gcloud
+
+'''
+    #Check current authentication account
+$ cd ~
+$ ./google-cloud-sdk/bin/gcloud auth list
+
+      Credentialed Accounts
+ACTIVE  ACCOUNT
+*       marron.bruce.mx@gmail.com
+
+
+    # set the authentication account (if needed)
+$ gcloud config set account `ACCOUNT`   #<== re-type 'ACCOUNT' w/ apostrophes!!
+
+
+# %%
 
 '''
 Doing complete document translations thru API with the Standard NMT model
   Account and Project Configuration
-  (Re-set every session)
+  Re-set every session
 '''
 
   # sign in and follow prompts for account and project config
-  #  ==> follow prompts
+  #  ==> follow prompts until:
+  # The Google Cloud CLI is configured and ready to use!
+
 $ cd ~ 
 $ ./google-cloud-sdk/bin/gcloud init
 
-Welcome! This command will take you through the configuration of gcloud.....
-
-The Google Cloud CLI is configured and ready to use!
 
 
   
@@ -182,14 +219,18 @@ pip install spyder-kernels ipython google-cloud-translate
 $ python -c "import sys; print(sys.executable)"
     /home/bmarron/venv-translate/bin/python  
 
+    
+    # Normal Spyder ==> Python 3.11.11 and IPython 8.32.0
     # in spyder
 Tools > Preferences > Python Interpreter > Use the following interpreter
-    * paste the path
-    * paste file name into text box
+    * paste the path ==>  /home/bmarron/venv-translate/bin/
+    * paste file name into text box ==> python
 
-* Start a new IPython console in Spyder
-* Spyder now operating in virtual env ==> (venv-translate)
-* Can now use Spyder for all subsequent python calls
+
+    # Start a new IPython console in Spyder
+    # Spyder now operating in virtual env ==> (venv-translate)
+    # venv-translate Spyder ==> Python 3.10.12 and IPython 8.34.0
+    # Can now use Spyder for all subsequent python calls
 
 # %%
 '''
@@ -203,7 +244,7 @@ Tools > Preferences > Python Interpreter > Use the following interpreter
 '''
 
 import os
-#from google.cloud import translate
+    #from google.cloud import translate
 from google.cloud import translate_v3 as translate
 
 
@@ -231,13 +272,13 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
 
      # document to be translated
      # path to the document
-doc_to_translate = "SCJ_Honorarios_2_197190_3278.pdf" ;
-doc_dir = "/home/bmarron/Desktop/UTECA/UTECA_AI_TranslatorSetup/UTECA1_TranslatorAPIs/gcCloudAPI_Workflows/ToTranslate_Docs" ;
+doc_to_translate = "new_2.pdf" ;
+doc_dir = "/home/bmarron/Desktop/UTECA/UTECA_AI_TranslatorSetup/UTECA1_TranslatorAPIs/gcTranslationAPI_Workflows/ToTranslate_Docs" ;
 file_path = os.path.join(doc_dir, doc_to_translate)
 
 
     # target language for translation
-target = "en"
+target = "es"
 
 
 
