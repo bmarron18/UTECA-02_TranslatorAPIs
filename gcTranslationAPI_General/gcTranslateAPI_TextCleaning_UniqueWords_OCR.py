@@ -35,7 +35,7 @@ Step 1
     
 
     # USE THIS!! Step 1
-$ tr '\n' ' ' < complete.txt > Test2.txt
+$ tr '\n' ' ' < Vocab.txt > Test2.txt
 
 # %%
 
@@ -86,7 +86,7 @@ with chdir('/home/bmarron/Desktop'):
     with open('Test2.txt') as f:
         for line in f.readlines():
             for word in line.split():
-                word = re.findall('[A-Za-zñáéíóúü\,\-\.\“\\(]+', word)    #words in español and w/ comma, dash, period
+                word = re.findall('[A-Za-zñáéíóúüÁÉÍÓÚ\,\-\.\“\\(]+', word)    #words in español and w/ comma, dash, period
                 if word:
                     M.append(word[0])
 
@@ -128,6 +128,9 @@ with chdir('/home/bmarron/Desktop'):
 
     with open("two-word_terms.txt", "a") as f:
         print(prev_word,"",search_word,"",next_word, file=f)
+
+# %%
+
 
 # %%
 '''    OCR for optical pdf files
