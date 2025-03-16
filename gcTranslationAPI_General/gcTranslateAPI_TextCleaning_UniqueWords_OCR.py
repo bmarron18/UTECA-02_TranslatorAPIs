@@ -35,7 +35,7 @@ Step 1
     
 
     # USE THIS!! Step 1
-$ tr '\n' ' ' < Vocab.txt > Test2.txt
+$ tr '\n' ' ' < VocabDump.txt > Test2.txt
 
 # %%
 
@@ -121,7 +121,7 @@ with chdir('/home/bmarron/Desktop'):
     with open('Test2.txt','r') as f:
         data = f.read()
 
-    search_word = "valoracién"
+    search_word = "Zipf"
     list_of_words = data.split()
     next_word = list_of_words[list_of_words.index(search_word) + 1]
     prev_word = list_of_words[list_of_words.index(search_word) - 1]
