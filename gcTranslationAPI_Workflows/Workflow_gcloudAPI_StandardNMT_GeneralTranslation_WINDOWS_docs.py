@@ -20,7 +20,7 @@ sources:
 # %%
 
     #change the directory to root using
-> cd/
+> cd|
 
 
     # change to home directory
@@ -51,6 +51,7 @@ C:\Program Files\Notepad++
 
 '''
     Search Windows dorectories
+    ONLY works for regular terminal, NOT PowerShell
 '''
 https://stackoverflow.com/questions/8066679/how-to-do-a-simple-file-search-in-cmd
 
@@ -83,11 +84,12 @@ https://stackoverflow.com/questions/8066679/how-to-do-a-simple-file-search-in-cm
 # %%
 
 '''
-    Search ALL Windows dorectories for Pyhton
+    Search ALL Windows directories for Pyhton
 '''
 C:\Users\bmarr\> cd\
 C:\> 
 
+    # Note that Windows 11 has \OneDrive\Desktop
 C:\> dir /b/s *python* >>C:\Users\bmarr\Desktop\python.txt
 
 # %%
@@ -591,6 +593,45 @@ f.write(response.document_translation.byte_stream_outputs[0])
 f.close()
 print(f"Response: Detected Language Code - {response.document_translation.detected_language_code}")
 return response
+
+# %%
+
+  # the translation fxn: single doc to single language
+def translate_document(project_id: str,file_path: str,):
+    
+    client = translate.TranslationServiceClient()
+    location = "us-central1"
+    parent = f"projects/{project_id}/locations/{location}"
+    
+   
+    with open(file_path, "rb") as document:
+        document_content = document.read()
+  
+    document_input_config = {
+        "content": document_content,
+        "mime_type": "application/pdf",
+    }
+
+    response = client.translate_document(
+        request={
+            "parent": parent,
+            "target_language_code": target,
+            "document_input_config": document_input_config,
+        }
+    )
+
+    # To output the translated document, uncomment the code below.
+    f = open('/home/bmarron/Desktop/gcTranslate_output.pdf', 'wb')
+    f.write(response.document_translation.byte_stream_outputs[0])
+    f.close()
+
+    # If not provided in the TranslationRequest, the translated file will only be returned through a byte-stream
+    # and its output mime type will be the same as the input file's mime type
+    print(
+        f"Response: Detected Language Code - {response.document_translation.detected_language_code}"
+    )
+
+    return response
 
 # %%
 
