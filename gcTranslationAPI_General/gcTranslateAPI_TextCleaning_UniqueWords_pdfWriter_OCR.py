@@ -131,6 +131,95 @@ with chdir('/home/bmarron/Desktop'):
 
 # %%
 
+=========== pdf Manipulations ========================
+
+# %%
+
+"""
+pypdf module
+"""
+https://pypdf.readthedocs.io/en/stable/user/installation.html
+https://pypdf.readthedocs.io/en/stable/user/adding-pdf-annotations.html
+
+Hence I would distinguish three types of PDF documents:
+
+    #Digitally-born PDF files: The file was created digitally on the computer. It can contain images, texts, links, outline items (a.k.a., bookmarks), JavaScript, … If you Zoom in a lot, the text still looks sharp.
+
+    #Scanned PDF files: Any number of pages was scanned. The images were then stored in a PDF file. Hence the file is just a container for those images. You cannot copy the text, you don’t have links, outline items, JavaScript.
+
+    #OCRed PDF files: The scanner ran OCR software and put the recognized text in the background of the image. Hence you can copy the text, but it still looks like a scan. If you zoom in enough, you can recognize pixels.
+
+# %%
+
+
+$ cd ~ 
+pip install pypdf[full]
+
+# Spyder py modules here
+/home/bmarron/.local/spyder-6/envs/spyder-runtime/lib/python3.11/site-packages
+
+# move pypdf and Pillow
+$ cd ~/.local/lib/python3.10/site-packages
+mv -R pypd* ~/.local/spyder-6/envs/spyder-runtime/lib/python3.11/site-packages/
+
+
+$ cd /usr/lib/python3/dist-packages
+$ sudo mv Pillo* ~/.local/spyder-6/envs/spyder-runtime/lib/python3.11/site-packages/
+
+
+# %%
+
+"""
+Add text box comment
+font color hex codes
+"""
+
+import os
+import pypdf
+from pypdf import PdfReader, PdfWriter
+from pypdf.annotations import FreeText
+
+
+# path to the document
+doc_to_comment = "terminologia 6.1_Leslie.pdf" ;
+doc_dir = "/home/bmarron/Desktop" ;
+pdf_path = os.path.join(doc_dir, doc_to_comment)
+
+
+# Fill the writer with the pages you want
+reader = PdfReader(pdf_path)
+page = reader.pages[0]
+writer = PdfWriter()
+writer.add_page(page)
+
+# Create the annotation and add it
+annotation = FreeText(
+    text="LATE\n \n 8.0",
+    rect=(200, 700, 150, 650), # a square! why???
+    #font="New Times Roman",
+    #bold=True,
+    #italic=True,
+    #font_size="20pt",
+    #font_color="000000",
+    border_color="d70029",
+    background_color="ffffff",
+)
+
+# Set annotation flags to 4 for printable annotations.
+# See "AnnotationFlag" for other options, e.g. hidden etc.
+annotation.flags = 4
+
+writer.add_annotation(page_number=0, annotation=annotation)
+
+# Write the annotated file to disk
+with open("/home/bmarron/Desktop/annotated.pdf", "wb") as fp:
+    writer.write(fp)
+    
+    
+# %%
+
+========== Optical Character Reader for Scanned pdf Files ===============
+
 
 # %%
 '''    OCR for optical pdf files
