@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created: 06 Jan 2025
-Modified: 25 Jan 2025
+Modified: 20 Mar 2025
 @author: bmarron
 
 sources: 
@@ -25,7 +25,7 @@ sources:
     (look for "Simbolo del sistema" terminal)
 '''
 
-    # Open (regular) terminal
+    # To open (regular) terminal
 Click the Start menu and type "cmd" in the search bar to 
 find the Command Prompt. 
 
@@ -34,11 +34,13 @@ NB. To open a terminal in a specific folder on Windows 10, navigate to the
 desired folder in File Explorer, then hold down the Shift key, right-click
  within the folder, and select "Open in terminal" from the context menu. 
 
+    # General navigation:
     # open terminal
-    # change the directoryto the top of the file system
-    # NB. forward slash for Windows (DOS) file system
+    # change the directory to the top of the file system
+    # NB. use forward slash for Windows (DOS) file system
+    # in all commands, REPLACE <you> with your user name
 
-C:\Users\bmarr\> cd\
+C:\Users\<you>\> cd\
 C:\>
     
     # check the contents of the current directory
@@ -60,30 +62,45 @@ C:\> cd %homedrive%%homepath%
 '''
 https://stackoverflow.com/questions/8066679/how-to-do-a-simple-file-search-in-cmd
 
-    # searches in current folder and sub folders.
-    # finds directories as well as files
-    # wildcards * (like Linux)
-    # /s Lists every occurrence of the specified file name within the specified directory and all subdirectories.
-    # printo text file
+ 
+'''
+/b flag 
+    treats files as binary (i.e., a raw stream of meaningless bytes), 
+
+/a flag
+    treats files as lines of text (with end-of-line characters, 
+    end-of-files, etc.)
+/s flag
+    Lists every occurrence of the specified file name within 
+    the specified directory and all subdirectories.
+    
+* symbol
+    wildcards (like Linux)
+'''
+
+   # searches in current folder and sub folders.
+   # finds directories as well as files
+   # print to text file
 
 > dir /b/s *foo* 
 
-    # -d excludes directoriesC:\>
+
+    # -d excludes directories C:\>
     # /a: 
 > dir /a:-d /b/s *foo* >> file.txt
 
 
 
-    #List all Hidden Files
+    #List all Hidden Files w/o directories
 > dir /a:h-d /b/s
 
-    #List all System Files
+    #List all System Files w/o directories
 > dir /a:s-d /b/s
 
-    List all ReadOnly Files
+    List all ReadOnly Files w/o directories
 > dir /a:r-d /b/s
 
-    # List all Non Indexed Files
+    # List all Non Indexed Files w/o directories
 > dir /a:i-d /b/s
 
 
@@ -94,7 +111,7 @@ https://stackoverflow.com/questions/8066679/how-to-do-a-simple-file-search-in-cm
     Google "install notepad++ Windows" (automatic download)
 '''
 
-    # Notepad++ installs here
+    # NB. Notepad++ installs here
 C:\Program Files\Notepad++
 
 # %%
@@ -113,14 +130,16 @@ C:\> mkdir API_translate
     Search ALL Windows directories for Pyhton
 '''
     # go to the top of the filesystem
-C:\Users\bmarr\> cd\
+C:\Users\<you>\> cd\
 C:\> 
 
-   # search for ALL python-named files and directories and send the output to text file
-C:\> dir /b/s *python* >>C:\Users\bmarr\Desktop\python.txt   # Windows 10
+
+   # search for ALL python-named files and directories
+   # send the output to text file to Desktop OR to newly-created directory (folder)
+C:\> dir /b/s *python* >>C:\Users\<you>\Desktop\python.txt   # Windows 10
 
 
-C:\> dir /b/s *python* >>C:\API_translate\python.txt        # Windows 11
+C:\> dir /b/s *python* >> C:\API_translate\python.txt        # Windows 11
 
 # %%
 
@@ -128,10 +147,11 @@ C:\> dir /b/s *python* >>C:\API_translate\python.txt        # Windows 11
     Search ALL Windows directories for pyhton.exe
     Output to text file
 '''
-C:\Users\bmarr\> cd\
+C:\Users\<you>\> cd\
 C:\> 
 
-C:\> dir /b/s python.exe >> C:\Users\bmarr\Desktop\python_exe_files.txt  # Windows 10
+    # Output to a text file on Desktop OR "API_translate" directory (folder)
+C:\> dir /b/s python.exe >> C:\Users\<you>\Desktop\python_exe_files.txt  # Windows 10
 
 C:\> dir /b/s python.exe >> C:\API_translate\python_exe_files.txt  # Windows 11
 
@@ -180,17 +200,15 @@ C:\Users\bmarr\AppData\Local\spyder-6\Scripts\pip.exe   #<== this one!!
 # %%
 
 '''
-    Search ALL Windows directories for virtualenv and output to text file
+    Search ALL Windows directories forPython module, "virtualenv"
     (virtualenv.exe is a program that creates virtual env.s in Python)
  '''
  
     # virtualenv folder should have virtualenv.exe
     # find it
-C:\> dir /b/s virtualenv.exe >> C:\Users\bmarr\Desktop\venv_exe_files.txt  #Windows 10
 
-C:\> dir /b/s virtualenv.exe >> C:\API_translate\venv_exe_files.txt  #Windows 11
-
-File Not Found
+C:\> dir /b/s virtualenv.exe 
+File Not Found   #<== this is ok
 
  
 '''
@@ -211,20 +229,19 @@ C:\Users\bmarr\AppData\Local\spyder-6\Lib\venv\scripts\nt\python.exe
 # %%
 
 '''
-    Install virtualenv using pip (in spyder)
+    Install virtualenv into Spyder directories using pip
 '''
 
-    # install virtualenv
-    # after installation virtualenv.exe will be found in your 
-    # python installation directory under the Scripts subdirectory.
+    # install virtualenv in specific location in Spyder
+    # verify installation 
 
-C:\Users\bmarr\AppData\Local\spyder-6\Scripts> pip install virtualenv
+C:\Users\<you>\AppData\Local\spyder-6\Scripts> pip install virtualenv
 
 
-  
+      # virtualenv.exe should be found in spyder-6 under the Scripts subdirectory.
       # verify installation and locate
 C:\>dir /b/s virtualenv.exe
-C:\Users\bmarr\AppData\Local\spyder-6\Scripts\virtualenv.exe
+C:\Users\<you>\AppData\Local\spyder-6\Scripts\virtualenv.exe
 
 
 # %%
@@ -234,33 +251,33 @@ C:\Users\bmarr\AppData\Local\spyder-6\Scripts\virtualenv.exe
 '''
 
 
- # install pyhton 2.7 Windows
+     # install pyhton 2.7 Windows
+     # at Setup, select "Install just for me"
 Python 2.7.18 is the last release of Python 2.
 https://www.python.org/downloads/release/python-2718/
 
 
-    # Python 2 will be here
+    # Python 2 should be here
 C:\Python27\
 
     
-
+    # NB. Now have Python 2 AND Python 3 (need both)
     # Python3 is here (in spyder) as python.exe and/or python3
-C:\Users\bmarr\AppData\Local\spyder-6>
+C:\Users\<you>\AppData\Local\spyder-6>
 
 
-
-
-
+# NB.DO NOT mess with PYTHONPATH environmental variable!!
+  
 
 '''
     Note on global environmental variables
+    in Windows search, Advanced System Settings to find env variables
+   
 '''
 https://stackoverflow.com/questions/13596505/python-command-not-working-in-command-prompt
 https://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-so-it-finds-my-modules-packages
 
-    # in Windows search, Advanced System Settings to find env variables
-    # Don't mess with PYTHONPATH environmental variable
-    # DO NOT change python env to PYTHONPATH env variable
+ 
     
   
  
@@ -276,44 +293,45 @@ https://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-wind
 
 '''
 Create a Google Cloud Platform acct (need RFC)
-Login to Google Cloud account (marron,bruce,mx@gmail,com)
-Activate Cloud Shell 
+Login to Google Cloud account (non-school email)
+Activate Cloud Shell
+Create a new project
 Check account status and exit Cloud Shell
 '''
 https://console.cloud.google.com/
 
 
+    #  Google Cloud Console shell looks like this (ie computer terminal)
+marron_bruce_mx@cloudshell:~ (my-project-uteca1)$ 
+
+
 
 
 '''
-my Google Cloud acct
+my Google Cloud acct...
 
 '''
 Project name
     My Project-UTECA1
-Project number
-    735387290281
-Project ID
-    my-project-uteca1
+Project number           
+    735387290281          # <== IMPORTANT!! 
+Project ID                
+    my-project-uteca1     # <== IMPORTANT!!
 
 
 Welcome to Cloud Shell! Type "help" to get started.
 Your Cloud Platform project in this session is set to my-project-uteca1.
 Use “gcloud config set project [PROJECT_ID]” to change to a different project.
 
-    #  Google Cloud Console shell (ie computer)
-marron_bruce_mx@cloudshell:~ (my-project-uteca1)$ 
-
-
 
 # %%
 
 '''
-gcloud SDK (gcloud CLI) info
+Notes/Info on gcloud SDK (gcloud CLI) 
 
 '''
 
-    # 'bundled with Python 3" means that the scripts are in python3
+    # gcloud SDK 'bundled with Python 3" means that the scripts are in python3
     # 'run a supported version of Python' means having python installed
    
 By default, the Windows version of Google Cloud CLI comes bundled with 
@@ -342,7 +360,7 @@ Install gcloud SDK (gcloud CLI) on home compu
 
 '''
 
-    # Download installer .exe  (or Open Power Shell for cmd line install)
+    # Download installer (GoogleCloudSDKInstaller.exe)
     # accept all defaults on last page of installer
 
 https://cloud.google.com/sdk/docs/install
@@ -352,7 +370,7 @@ https://cloud.google.com/sdk/docs/install
 
    # installer places SDK here
    # ALL google-cloud-sdk files here
-C:\Users\bmarr\AppData\Local\Google\Cloud SDK>
+C:\Users\<you>\AppData\Local\Google\Cloud SDK>
 
 
        
@@ -366,7 +384,11 @@ C:\Users\bmarr\AppData\Local\Google\Cloud SDK>
 You are now authenticated with the gcloud CLI!
     https://cloud.google.com/sdk/auth_success
     
-   
+
+    
+'''
+on my compu...
+'''
 
 > You are signed in as: [marron.bruce.mx@gmail.com].
 
@@ -399,12 +421,12 @@ https://stackoverflow.com/questions/71949010/google-cloud-sdk-python-was-not-fou
 
 
     # check for updates
-C:\Users\bmarr\AppData\Local\Google\Cloud SDK> gcloud components update
+C:\Users\<you>\AppData\Local\Google\Cloud SDK> gcloud components update
 
 All components are up to date.
 
     # To revert your CLI to the previously installed version:
-C:\Users\bmarr\AppData\Local\Google\Cloud SDK> gcloud components update --version 505.0.0
+C:\Users\<you>\AppData\Local\Google\Cloud SDK> gcloud components update --version 505.0.0
   
   
   # helpful (about Python)
@@ -427,9 +449,6 @@ C:\Users\bmarr\AppData\Local\Google\Cloud SDK> gcloud components update --versio
     (Only once; stored as .json file)
  '''
  
-  ADC credentials will be used by any library that requests Application Default Credentials (ADC).
- Quota project "my-project-uteca1" was added to ADC which can be used by Google client libraries for billing and quota. Note that some services may still bill the project owning the resource.
-
  
     # Initial get of ADC credentials (stored locally as .json file)
     # ADC authentication is thru google-cloud-sdk 
@@ -437,24 +456,24 @@ C:\Users\bmarr\AppData\Local\Google\Cloud SDK> gcloud components update --versio
     # NOT setting up a Service Account; ADC stored locally
     # once have credentials will be used by any library that requests ADCs
 
-C:\Users\bmarr\AppData\Local\Google\Cloud SDK> gcloud auth application-default login
+C:\Users\<you>\AppData\Local\Google\Cloud SDK> gcloud auth application-default login
  
    * select Google acct
    * Sign in to Google Auth Library
    * 'Google Auth Library wants to access your Google Account'
 
    # set the authentication account (if needed)
-C:\Users\bmarr\AppData\Local\Google\Cloud SDK> gcloud config set account `ACCOUNT`   #<== re-type 'ACCOUNT' w/ apostrophes!!
+C:\Users\<you>\AppData\Local\Google\Cloud SDK> gcloud config set account `ACCOUNT`   #<== re-type 'ACCOUNT' w/ apostrophes!!
 
 
 
         # check for credentialed accounts OR
         # get ADC credentials
-C:\Users\bmarr\AppData\Local\Google\Cloud SDK> gcloud auth list
+C:\Users\<you>\AppData\Local\Google\Cloud SDK> gcloud auth list
 
 
    # ADC credentials Credentials saved to file: 
-C:\Users\bmarr\AppData\Roaming\gcloud\application_default_credentials.json
+C:\Users\<you>\AppData\Roaming\gcloud\application_default_credentials.json
 
 
  
@@ -463,6 +482,13 @@ C:\Users\bmarr\AppData\Roaming\gcloud\application_default_credentials.json
 '''
 my acct
 '''
+
+ADC credentials will be used by any library that requests 
+Application Default Credentials (ADC).
+Quota project "my-project-uteca1" was added to ADC which can be used by Google client 
+libraries for billing and quota. Note that some services may still bill the project 
+owning the resource.
+
       Credentialed Accounts
 ACTIVE  ACCOUNT
 *       marron.bruce.mx@gmail.com
@@ -473,14 +499,11 @@ ACTIVE  ACCOUNT
 
 
 '''
-    Ser quota and billing in ADC
+    Set quota and billing in ADC
 '''
-   
 
 
-C:\Users\bmarr\AppData\Local\Google\Cloud SDK> gcloud auth application-default set-quota-project my-project-uteca1
-
-
+C:\Users\<you>\AppData\Local\Google\Cloud SDK> gcloud auth application-default set-quota-project my-project-uteca1
 
 
 # %%
@@ -496,12 +519,12 @@ https://stackoverflow.com/questions/71949010/google-cloud-sdk-python-was-not-fou
 
 
     # check for updates
-C:\Users\bmarr\AppData\Local\Google\Cloud SDK> gcloud components update
+C:\Users\<you>\AppData\Local\Google\Cloud SDK> gcloud components update
 
 All components are up to date.
 
     # To revert your CLI to the previously installed version:
-C:\Users\bmarr\AppData\Local\Google\Cloud SDK> gcloud components update --version 505.0.0
+C:\Users\<you>\AppData\Local\Google\Cloud SDK> gcloud components update --version 505.0.0
   
   
   # helpful (about Python)
@@ -513,7 +536,7 @@ C:\Users\bmarr\AppData\Local\Google\Cloud SDK> gcloud components update --versio
 # %%
 
 '''
-Doing complete document translations thru API with the Standard NMT model
+Document translations thru API with the Standard NMT model
   Account and Project Configuration
   (Re-set every session)
 '''
@@ -521,12 +544,12 @@ Doing complete document translations thru API with the Standard NMT model
   # sign in and follow prompts for account and project config
   #  ==> follow prompts
   
-C:\Users\bmarr\AppData\Local\Google\Cloud SDK> gcloud init
+C:\Users\<you>\AppData\Local\Google\Cloud SDK> gcloud init
 
 
 
 '''
-    my compu and acct
+    on my compu ...
 '''
 
 Welcome! This command will take you through the configuration of gcloud.....
@@ -568,47 +591,46 @@ The Google Cloud CLI is configured and ready to use!
     Create a virtual Python environment on local machine (home computer)
       ==> Install IPython
       ==> Install the SDK for Google language translation (google-cloud-translate)
-      ( aka the Google Translation API client library)
-      ==> DONT (yet( install spyder kernels
-'''
+      (aka the Google Translation API client library)
+      
+      
 
-'''
- # Spyder ISSUES !! TO FIX!!
+      
+# Spyder ISSUES w. virtualenv!! NEED TO FIX!!
+    ==> DONT (install spyder kernels yet)
 # installed spyder kernels separately
 [spyder](base) C:\Users\bmarr\AppData\Local\spyder-6\Scripts> conda install spyder-kernels=3.0
     #check contents
 C:\Users\bmarr\AppData\Local\spyder-6\Scripts> dir /b/s venv-translate >> C:\Users\bmarr\Desktop\venv.txt
     # found python.exe but spyder won't accept this
-C:\Users\bmarr\AppData\Local\spyder-6\Scripts\venv-translate\Scripts\python.exe
+C:\Users\bmarr\AppData\Local\spyder-6\Scripts\venv-translate\Scripts\python.exe                   
+ # NOT spyder-kernels==3.0.*
 '''
 
 
-
-
     # cd to the directory with virtualenv.exe
-C:\Users\bmarr> cd C:\Users\bmarr\AppData\Local\spyder-6\Scripts
+C:\Users\<you>> cd C:\Users\<you>\AppData\Local\spyder-6\Scripts
 
    # Initialize conda for final clean-up
-   # must re-start shell
-C:\Users\bmarr\AppData\Local\spyder-6\Scripts> conda init
+   # must re-start shell (terminal)
+C:\Users\<you>\AppData\Local\spyder-6\Scripts> conda init
 
  
      # create virtual env, 'venv-translate'
-C:\Users\bmarr\AppData\Local\spyder-6\Scripts> virtualenv venv-translate
+C:\Users\<you>\AppData\Local\spyder-6\Scripts> virtualenv venv-translate
 
 
     # activate
-C:\Users\bmarr\AppData\Local\spyder-6\Scripts> activate
+C:\Users\<you>\AppData\Local\spyder-6\Scripts> activate
 
 
     # activated if see [spyder](base)
-[spyder](base) C:\Users\bmarr\AppData\Local\spyder-6\Scripts>
+[spyder](base) C:\Users\<you>\AppData\Local\spyder-6\Scripts>
 
 
 
     # install ipython google-cloud-translate
-    # NOT spyder-kernels==3.0.*
-[spyder](base) C:\Users\bmarr\AppData\Local\spyder-6\Scripts> pip install ipython google-cloud-translate
+[spyder](base) C:\Users\<you>\AppData\Local\spyder-6\Scripts> pip install ipython google-cloud-translate
 
 
 
@@ -617,12 +639,13 @@ C:\Users\bmarr\AppData\Local\spyder-6\Scripts> activate
 
 
    #RUN ipython in virtual env (going thru terminal NOT thru spyder)
-[spyder](base) C:\Users\bmarr\AppData\Local\spyder-6\Scripts>ipython
+[spyder](base) C:\Users\<you>\AppData\Local\spyder-6\Scripts>ipython
+
 
 
 
 '''
-my compu
+on my compu...
 '''
 Python 3.11.9 | packaged by conda-forge | (main, Apr 19 2024, 18:27:10) [MSC v.1938 64 bit (AMD64)]
 Type 'copyright', 'credits' or 'license' for more information
@@ -635,20 +658,22 @@ In [1]:
 
 # %%
 
-    # Now in Python (ipython interpreter)
+    # Now in Python!! (ipython interpreter in your terminal)
     
 '''
-   
     Import modules
       ==> os
     Import methods (fxns)
       ==> google.cloud.translate_v3.services.translation_service.TranslationServiceAsyncClient.translate_text
       ==> google.cloud.translate_v3.services.translation_service.TranslationServiceClient
       ==> method "translate_v3" from google.cloud.translate (SDK)
-'''
 
+    COPY/PASTE the python code exactly as is into your terminal
+'''
+    # this is what your terminal looks like running python
 In [1]:
-    
+
+    # this is the python code to copy/paste       
 import os
 from google.cloud import translate_v3 as translate
 
@@ -656,15 +681,16 @@ from google.cloud import translate_v3 as translate
 # %%
 
 '''
-  Set Google API variables 
+  Set Google API variables (Google Cloud project used for translation work)
   Set Google credentials for billing and quots
+  
 '''
  
- # Google Cloud project used for translation work
+
  
 In [2]:
     
-PROJECT_ID = "my-project-uteca1";
+PROJECT_ID = "<your project ID>";
 assert PROJECT_ID ;
 project_id = PROJECT_ID
 
@@ -673,14 +699,14 @@ project_id = PROJECT_ID
   
 In [3]:
     
-credential_path = "C:\\Users\\bmarr\\AppData\\Roaming\\gcloud\\application_default_credentials.json"
+credential_path = "C:\\Users\\<you>\\AppData\\Roaming\\gcloud\\application_default_credentials.json"
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
 
 
 
 # %%
 
-    # WINDOWS 10
+    # WINDOWS 10 !! (skip if running Windows 11)
 '''
     Define the Python translation fxn, "translate_document" Windows 10
 '''
@@ -717,7 +743,7 @@ request={
 "document_input_config": document_input_config,
 }
 )
-f = open('C:\\Users\\bmarr\\Desktop\\gcTranslate_output.pdf', 'wb')
+f = open('C:\\Users\\<you>\\Desktop\\gcTranslate_output.pdf', 'wb')
 f.write(response.document_translation.byte_stream_outputs[0])
 f.close()
 print(f"Response: Detected Language Code - {response.document_translation.detected_language_code}")
@@ -726,7 +752,7 @@ return response
 
 # %%
 
-    # WINDOWS 10
+    # WINDOWS 10!! (skip if running Windows 11)
 '''
     Set name and path of doc to be translated Windows 10
     Set target language (code) for translation
@@ -738,7 +764,7 @@ return response
 In [5]:
 
 doc_to_translate = "Semiconductores-Tecnológico-Nacional-México.pdf" ;
-doc_dir = "C:\\Users\\bmarr\\Desktop\\Translate" ;
+doc_dir = "C:\\Users\\<you>\\Desktop\\Translate" ;
 file_path = os.path.join(doc_dir, doc_to_translate)
 
 
@@ -752,7 +778,7 @@ file_path = os.path.join(doc_dir, doc_to_translate)
     # NB path separators (forward slashes) must be DOUBLED (escape the fist slash)
     # NB Windows adds a HIDDEN .pdf extension to pdf files!!
     # NB cut/paste the ENTIRE translation fxn into IPython
-    # CHANGE name of output file 
+    # CHANGE name of output file if desired
     
     
     # Cut/paste the ENTIRE translation fxn into IPython
@@ -788,7 +814,8 @@ def translate_document(project_id: str,file_path: str,):
         }
     )
 
-    # To output the translated document
+    # Output the translated document
+    # Name of output file is currently set to, "gcTranslate_output.pdf"
     f = open('C:\\API_translate\\gcTranslate_output.pdf', 'wb')
     f.write(response.document_translation.byte_stream_outputs[0])
     f.close()
@@ -808,15 +835,15 @@ def translate_document(project_id: str,file_path: str,):
 
     # WINDOWS 11
 '''
-    Set name and path of doc to be translated Windows 11
+    Set name and path of document to be translated
     Set target language (code) for translation
 '''
 
-     # document to be translated Windows 11
-     # path to the document (with DOUBLE SLASHES)
+     # document to be translated is currently,"Semiconductores-Tecnológico-Nacional-México.pdf"
+     # path to the document (with DOUBLE SLASHES!!)
      
 In [5]:
-
+    # input the name of the doc to be translated (a .pdf file)
 doc_to_translate = "Semiconductores-Tecnológico-Nacional-México.pdf" ;
 doc_dir = "C:\\API_translate" ;
 file_path = os.path.join(doc_dir, doc_to_translate)
@@ -828,6 +855,7 @@ file_path = os.path.join(doc_dir, doc_to_translate)
 '''
 Define "print_supported_languages Fxn" 
 List all supported language codes
+Output to text file
 
 '''
 
@@ -849,13 +877,15 @@ def print_supported_languages(display_language_code: str):
         print(f"{language_code:10}{display_name}")
 
 
-print_supported_languages("en")
+print_supported_languages("en") >> C:\Users\<you>\Desktop\python_exe_files.txt  # Windows 10
+
+print_supported_languages("en") >> C:\API_translate\python_exe_files.txt  # Windows 11
 
 # %%
 
 '''
 Set target language for translation
-Tarket language codes 
+Need target language code
 '''
 
 In [7]:
@@ -868,7 +898,7 @@ target = "zh"
 # %%
 
 '''
-    Translate !
+    Translate !!!!
 '''
  
 In [8]: 
@@ -894,6 +924,7 @@ model: "projects/735387290281/locations/us-central1/models/general/nmt"
 
 '''
     # EXIT Cloud Shell IPython session
+    # return to normal shell (terminal)
 In [12]: 
     
     exit
@@ -901,17 +932,18 @@ In [12]:
       
 
     # DEACTIVATE the Python virtual environment with "conda deactivate"
- C:\Users\bmarr\AppData\Local\spyder-6\Scripts> conda deactivate 
+ C:\Users\<you>\AppData\Local\spyder-6\Scripts> conda deactivate 
     
 
     
    # DELETE virtual environment folder and all files
    #    ==>  /q disables Yes/No prompting
    #    ==> /s means delete the file(s) from all subdirectories.
- C:\Users\bmarr\AppData\Local\spyder-6\Scripts> rmdir /s /q venv-translate
+ C:\Users\<you>\AppData\Local\spyder-6\Scripts> rmdir /s /q venv-translate
 
-    # check removal
-C:\Users\bmarr\AppData\Local\spyder-6\Scripts> dir /b/s venv-translate
+
+    # check the removal
+C:\Users\<you>\AppData\Local\spyder-6\Scripts> dir /b/s venv-translate
 
 
 # %%
