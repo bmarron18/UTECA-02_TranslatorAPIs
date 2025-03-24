@@ -36,8 +36,9 @@ from pypdf import PdfReader
 
     # change pdf name
 with chdir('/home/bmarron/Desktop'):
-    reader = PdfReader("Survey.pdf")
-    for page_num in range(len(reader.pages)):
+    reader = PdfReader("contratos.pdf")
+    #for page_num in range(len(reader.pages)):  # short articles
+    for page_num in range(8):                   # books
         page = reader.pages[page_num]
         with open("VocabDump.txt", "a") as f:
             print(page.extract_text(), file=f)
