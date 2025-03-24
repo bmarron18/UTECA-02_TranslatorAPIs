@@ -19,31 +19,61 @@ print (os.getcwd())
 '''
 =========  Extraction of Vocab  ==============================
 '''
+
+# %%
+
+'''
+STEP 1
+    Extract text from pdf
+    (see pypdf below)
+'''
+ # extract text preserving horizontal positioning without excess vertical
+ # whitespace (removes blank and "whitespace only" lines)
+ # "a" is append
+
+from contextlib import chdir
+from pypdf import PdfReader
+
+    # change pdf name
+with chdir('/home/bmarron/Desktop'):
+    reader = PdfReader("Survey.pdf")
+    for page_num in range(len(reader.pages)):
+        page = reader.pages[page_num]
+        with open("VocabDump.txt", "a") as f:
+            print(page.extract_text(), file=f)
+         #print(page.extract_text(extraction_mode="layout", layout_mode_space_vertically=False), file=f)
+
+
+
+
+
 # %%
 '''
-Step 1
+STEP 2
     USE THIS to remove end of line returns from text file
     End of line returns are coded as, /n
     tr is truncate Linux command
 '''
-    
+    # sample code
+'''
         # delete all newlines
     $ tr --delete '\n' < yourfile.txt
     
         # replace newlines with space
     $ tr '\n' ' ' < input_filename
-    
+''' 
 
-    # USE THIS!! Step 1
+    # USE THIS!! STEP2
+    # Linux terminal
 $ tr '\n' ' ' < VocabDump.txt > Test2.txt
 
 # %%
 
 
 '''
-Step 2
-    *Generating a unique word list from texts
-    *Gives single words for student vocab lists
+INFO
+    Generating a unique word list from texts
+    Gives single words for student vocab lists
 '''
 
 https://stackoverflow.com/questions/43025188/regular-expression-re-findall-for-set-of-all-alphabetic-words
@@ -74,10 +104,14 @@ These special characters are often called metacharacters and should be escaped w
 This can be automagically achieved using re.escape()
 
 # %%
- 
+ '''
+ STEP 3
+     *Generating a unique word list from texts
+     *Gives single words for student vocab lists
+ '''
 
 
-    # USE THIS!!   Step 2
+    # USE THIS!! STEP 3
 import re
 from contextlib import chdir
 
@@ -102,7 +136,7 @@ with chdir('/home/bmarron/Desktop'):
 # %%
 
 """
-Step 3
+INFO
     Use this to find two-word vocab
     Find next word
 """
@@ -110,9 +144,12 @@ Step 3
     # https://stackoverflow.com/questions/70730240/q-how-to-find-the-next-word-of-a-specific-word-in-a-txt-file
 
 # %%
+'''
+STEP 4 (as needed)
+'''
 
-
-    # USE THIS!! Step 3 NB ==> Replace search_word
+    # USE THIS!! (as needed)
+    # Replace search_word
 from contextlib import chdir
 
 
@@ -121,7 +158,7 @@ with chdir('/home/bmarron/Desktop'):
     with open('Test2.txt','r') as f:
         data = f.read()
 
-    search_word = "Zipf"
+    search_word = "channel"
     list_of_words = data.split()
     next_word = list_of_words[list_of_words.index(search_word) + 1]
     prev_word = list_of_words[list_of_words.index(search_word) - 1]
@@ -149,7 +186,6 @@ Hence I would distinguish three types of PDF documents:
 
     #OCRed PDF files: The scanner ran OCR software and put the recognized text in the background of the image. Hence you can copy the text, but it still looks like a scan. If you zoom in enough, you can recognize pixels.
 
-# %%
 
 
 $ cd ~ 
@@ -168,6 +204,12 @@ $ sudo mv Pillo* ~/.local/spyder-6/envs/spyder-runtime/lib/python3.11/site-packa
 
 
 # %%
+
+
+
+# %%
+
+
 
 """
 Add text box comment
