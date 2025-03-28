@@ -508,7 +508,7 @@ C:\Users\<you>\AppData\Local\Google\Cloud SDK> gcloud auth application-default s
 
 # %%
 
-============== Workflow_gcloudAPI_StandardNMT_GeneralTranslation_WINDOWS_docs.py  ============
+==============Workflow_gcloudAPI_NMT_GenTrans_WINDOWS-1_docs-pdf.py  ============
 
 # %%
 '''
@@ -673,6 +673,8 @@ In [1]:
     # this is what your terminal looks like running python
 In [1]:
 
+    
+
     # this is the python code to copy/paste       
 import os
 from google.cloud import translate_v3 as translate
@@ -706,7 +708,7 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
 
 # %%
 
-    # WINDOWS 10 !! (skip if running Windows 11)
+    # WINDOWS 10 ONLY!! (skip if running Windows 11)
 '''
     Define the Python translation fxn, "translate_document" Windows 10
 '''
@@ -752,7 +754,7 @@ return response
 
 # %%
 
-    # WINDOWS 10!! (skip if running Windows 11)
+    # WINDOWS 10 ONLY!! (skip if running Windows 11)
 '''
     Set name and path of doc to be translated Windows 10
     Set target language (code) for translation
@@ -770,7 +772,7 @@ file_path = os.path.join(doc_dir, doc_to_translate)
 
 # %%
 
-    # WINDOWS 11
+    # WINDOWS 11 ONLY
 '''
     Define the Python translation fxn, "translate_document" Windows 11
 '''
@@ -833,7 +835,7 @@ def translate_document(project_id: str,file_path: str,):
 
 # %%
 
-    # WINDOWS 11
+    # WINDOWS 11 Only
 '''
     Set name and path of document to be translated
     Set target language (code) for translation
@@ -876,10 +878,10 @@ def print_supported_languages(display_language_code: str):
         display_name = language.display_name
         print(f"{language_code:10}{display_name}")
 
+    # togglehashtag to select
+# print_supported_languages("en") >> C:\Users\<you>\Desktop\language_codes.txt  # Windows 10
 
-print_supported_languages("en") >> C:\Users\<you>\Desktop\python_exe_files.txt  # Windows 10
-
-print_supported_languages("en") >> C:\API_translate\python_exe_files.txt  # Windows 11
+print_supported_languages("en") >> C:\API_translate\language_codes.txt  # Windows 11
 
 # %%
 

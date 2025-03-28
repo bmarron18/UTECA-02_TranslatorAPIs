@@ -36,7 +36,7 @@ from pypdf import PdfReader
 
     # change pdf name
 with chdir('/home/bmarron/Desktop'):
-    reader = PdfReader("nature.pdf")
+    reader = PdfReader("medical.pdf")
     for page_num in range(len(reader.pages)):  # short articles
     #for page_num in range(8):                   # books
         page = reader.pages[page_num]
@@ -159,7 +159,7 @@ with chdir('/home/bmarron/Desktop'):
     with open('Test2.txt','r') as f:
         data = f.read()
 
-    search_word = "channel"
+    search_word = "blockchain-enabled"
     list_of_words = data.split()
     next_word = list_of_words[list_of_words.index(search_word) + 1]
     prev_word = list_of_words[list_of_words.index(search_word) - 1]
