@@ -22,54 +22,6 @@ print (os.getcwd())
 
 # %%
 
-'''
-STEP 1
-    Extract text from pdf
-    (see pypdf below)
-'''
- # extract text preserving horizontal positioning without excess vertical
- # whitespace (removes blank and "whitespace only" lines)
- # "a" is append
-
-from contextlib import chdir
-from pypdf import PdfReader
-
-    # change pdf name
-with chdir('/home/bmarron/Desktop'):
-    reader = PdfReader("gpt.pdf")
-    for page_num in range(len(reader.pages)):  # short articles
-    #for page_num in range(8):                   # books
-        page = reader.pages[page_num]
-        with open("VocabDump.txt", "a") as f:
-            print(page.extract_text(), file=f)
-         #print(page.extract_text(extraction_mode="layout", layout_mode_space_vertically=False), file=f)
-
-
-
-
-
-# %%
-'''
-STEP 2
-    USE THIS to remove end of line returns from text file
-    End of line returns are coded as, /n
-    tr is truncate Linux command
-'''
-    # sample code
-'''
-        # delete all newlines
-    $ tr --delete '\n' < yourfile.txt
-    
-        # replace newlines with space
-    $ tr '\n' ' ' < input_filename
-''' 
-
-    # USE THIS!! STEP2
-    # Linux terminal
-$ tr '\n' ' ' < VocabDump.txt > Test2.txt
-
-# %%
-
 
 '''
 INFO
@@ -105,6 +57,65 @@ These special characters are often called metacharacters and should be escaped w
 This can be automagically achieved using re.escape()
 
 # %%
+
+"""
+INFO
+    Use this to find two-word vocab
+    Find next word
+"""
+    # How to find the next word of a specific word in a txt-file
+    # https://stackoverflow.com/questions/70730240/q-how-to-find-the-next-word-of-a-specific-word-in-a-txt-file
+
+
+# %%
+
+'''
+STEP 1
+    Extract text from pdf
+    (see pypdf below)
+'''
+ # extract text preserving horizontal positioning without excess vertical
+ # whitespace (removes blank and "whitespace only" lines)
+ # "a" is append
+
+from contextlib import chdir
+from pypdf import PdfReader
+
+    # change pdf name
+with chdir('/home/bmarron/Desktop'):
+    reader = PdfReader("debt.pdf")
+    for page_num in range(len(reader.pages)):  # short articles
+    #for page_num in range(8):                   # books
+        page = reader.pages[page_num]
+        with open("VocabDump.txt", "a") as f:
+            print(page.extract_text(), file=f)
+         #print(page.extract_text(extraction_mode="layout", layout_mode_space_vertically=False), file=f)
+
+
+
+# %%
+'''
+STEP 2
+    USE THIS to remove end of line returns from text file
+    End of line returns are coded as, /n
+    tr is truncate Linux command
+'''
+    # sample code
+'''
+        # delete all newlines
+    $ tr --delete '\n' < yourfile.txt
+    
+        # replace newlines with space
+    $ tr '\n' ' ' < input_filename
+''' 
+
+    # USE THIS!! STEP2
+    # Linux terminal
+$ tr '\n' ' ' < VocabDump.txt > Test2.txt
+
+
+
+# %%
  '''
  STEP 3
      *Generating a unique word list from texts
@@ -135,16 +146,6 @@ with chdir('/home/bmarron/Desktop'):
 
 
 # %%
-
-"""
-INFO
-    Use this to find two-word vocab
-    Find next word
-"""
-    # How to find the next word of a specific word in a txt-file
-    # https://stackoverflow.com/questions/70730240/q-how-to-find-the-next-word-of-a-specific-word-in-a-txt-file
-
-# %%
 '''
 STEP 4 (as needed)
 '''
@@ -159,13 +160,37 @@ with chdir('/home/bmarron/Desktop'):
     with open('Test2.txt','r') as f:
         data = f.read()
 
-    search_word = "Feynman"
+    search_word = "ADCC"
     list_of_words = data.split()
     next_word = list_of_words[list_of_words.index(search_word) + 1]
     prev_word = list_of_words[list_of_words.index(search_word) - 1]
 
     with open("two-word_terms.txt", "a") as f:
         print(prev_word,"",search_word,"",next_word, file=f)
+
+
+# %%
+'''
+STEP 5 (as needed)
+  Building a comprehensive vocab list
+'''
+  
+
+
+    # 5a. Replace spaces with hyphens
+    # Linux
+    
+$ tr ' ' '-' <AllVocab.txt >Test2.txt
+
+
+    # 5b. Sort unique words with Step 3 above
+    # get "output.txt"
+    
+    
+    # 5c. Revert to spaces in vocab list
+$ tr '-' ' ' <output.txt >AllVocab2.txt
+
+
 
 # %%
 
