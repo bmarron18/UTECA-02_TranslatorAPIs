@@ -8,6 +8,38 @@ Revision Date:		08Jan2025
 
 
 
+###########
+Git Recovery
+#############
+stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit
+
+
+
+	git log					<== To check the commits
+							<== or in GitHub or Gitk
+
+	git checkout afe52								<== HASH
+	git checkout 'master@{1979-02-26 18:30:00}'		<== by date
+	git checkout @{14.days.ago}						<== by days
+
+To go back to where you were, just check out the branch you were on again:
+	git checkout master
+
+
+For those wanting to download a specific Commit from GitHub, steps are below:
+   	Click icon w/ number of commits(a clock-ish thing)
+	Click the "<>" icon to browse repo at various commits
+    Go back to the top of the repo at old commit
+	Click on "<> Code" icon
+    Select Clone or Download
+    Download ZIP
+
+
+Cloning a Commit In this case you can check out the old branch by using its branch name:
+	git clone --branch <branchname> <remote-repo-url-commit>
+
+
+
 ###################
 Offsite (Github)
 Repositories Set up

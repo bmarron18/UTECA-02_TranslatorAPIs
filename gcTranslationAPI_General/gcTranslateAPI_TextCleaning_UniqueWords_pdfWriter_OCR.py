@@ -83,7 +83,7 @@ from pypdf import PdfReader
 
     # change pdf name
 with chdir('/home/bmarron/Desktop'):
-    reader = PdfReader("debt.pdf")
+    reader = PdfReader("science.pdf")
     for page_num in range(len(reader.pages)):  # short articles
     #for page_num in range(8):                   # books
         page = reader.pages[page_num]
@@ -160,7 +160,7 @@ with chdir('/home/bmarron/Desktop'):
     with open('Test2.txt','r') as f:
         data = f.read()
 
-    search_word = "ADCC"
+    search_word = "(Tipping"
     list_of_words = data.split()
     next_word = list_of_words[list_of_words.index(search_word) + 1]
     prev_word = list_of_words[list_of_words.index(search_word) - 1]
@@ -190,6 +190,44 @@ $ tr ' ' '-' <AllVocab.txt >Test2.txt
     # 5c. Revert to spaces in vocab list
 $ tr '-' ' ' <output.txt >AllVocab2.txt
 
+
+
+
+# %%
+'''
+=========  Finding Dups in Text Files  ==============================
+'''
+
+# %%
+
+'''
+Find and print duplicates in ONE vocab list;
+file1
+'''
+
+    # Linux
+$ sort file1.txt | uniq -cd >> dups.txt
+
+
+# %%
+
+'''
+Find and print duplicates found in TWO vocab lists;
+file1 and file2
+'''
+
+from contextlib import chdir
+
+with chdir('/home/bmarron/Desktop'):
+    with open("file1.txt") as f1,open("file2.txt") as f2:
+        words1=set(line.strip() for line in f1)
+        words2=set(line.strip() for line in f2)
+
+    dups=list(words1.intersection(words2))
+    
+    with open("duplicateVocab.txt", "a") as f:
+        print(dups, file=f)
+        
 
 
 # %%
