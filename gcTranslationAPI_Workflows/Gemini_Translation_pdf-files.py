@@ -7,14 +7,18 @@ Created on Fri Sep 12 11:20:22 2025
 Gemini API Coding Guidelines (Python)
 https://github.com/googleapis/python-genai/blob/main/codegen_instructions.md
 
-Google search
-    types.GenerateContentConfig in the Gemini API 
+Document understanding (Gemini)
+https://ai.google.dev/gemini-api/docs/document-processing
+
+HTML-to-pdf
+https://stackoverflow.com/questions/23359083/how-to-convert-webpage-into-pdf-by-using-python
+
 """
 
 
 # %%
 
-### Translation of mime-type = "text/plain" files ####
+### Translation of mime-type = "application/pdf" files ####
 
 '''
 This script will:
@@ -28,19 +32,22 @@ This script will:
 Additional info follows the script
 
 '''
+
+
 # %%
 
 
 from google import genai
 from google.genai import types
+from pathlib import Path
 import os
 
 # --- Define Files and File Paths ---
     # .txt files already exist on Desktop (make 'em!)
     # Change the languages as needed
     
-INPUT_FILE = "english_text.txt"  
-OUTPUT_FILE = "spanish_text.txt"
+INPUT_FILE = "english.pdf"  
+OUTPUT_FILE = "spanish.html"
 
 doc_to_translate = INPUT_FILE;
 doc_to_print = OUTPUT_FILE;
@@ -48,39 +55,39 @@ doc_dir = "/home/bmarron/Desktop" ;
 input_filepath = os.path.join(doc_dir, doc_to_translate)
 output_filepath = os.path.join(doc_dir, doc_to_print)
 
+    # Retrieve the PDF as PosixPath
+filepath = Path(input_filepath)
 
 #--- Set the API Key ---
     # Get my Gemini API Key here:
     # /home/bmarron/Desktop/UTECA/GithubToken_UTECALogins.txt
     
 API_KEY = "AIzaSyB61uJatZ0L3gq4g9QnrWlhurqOm9yn_u8"
-client = genai.Client(api_key=API_KEY)
+client = genai.Client(api_key=API_KEY) 
 
-#--- upload file to be translated ---
-    # watch file name for uploaded file ==> strictly alpha! 
-    # NO dashes or underline (won't upload)
-    
-uploadedfile = client.files.upload(
-        file=input_filepath,
-#       config=dict(mime_type='application/pdf')
-       config=dict(mime_type='text/plain')
-    )
 
 #--- The Prompt and Select Languages ---
     # Change translation "to" and "from" languages as needed
-prompt = "Translate the following English text into natural, fluent Spanish."
 
-#--- The API call to the AI with system instructions ---
+
+
+#--- The API call to the AI ---
+prompt = "Translate the following pdf (in English) to natural, \
+    fluent Spanish and generate the output in HTML."
 response = client.models.generate_content(
     model="gemini-2.5-flash",
     config=types.GenerateContentConfig(
-        system_instruction="You are an expert liguist \
-            specializing in translation. Maintain the original \
-            meaning, tone, and any specific formatting (like line breaks, paragraphs).\
-            Provide ONLY the requested translation without any additional \
-            commentary, introductory phrases, other language translations, \
-            or conversational remarks."),
-    contents=[uploadedfile],
+               system_instruction="You are an expert liguist \
+                   specializing in translation. Maintain the original \
+                   meaning, tone, and any specific formatting (like line breaks, paragraphs).\
+                   Provide ONLY the requested translation without any additional \
+                   commentary, introductory phrases, other language translations, \
+                   or conversational remarks."),
+    contents=[types.Part.from_bytes(
+            data=filepath.read_bytes(),
+            mime_type='application/pdf'
+            ),
+            prompt]
     )
 
 #--- Generate output to Python---
@@ -89,12 +96,13 @@ response = client.models.generate_content(
 #   OR
 
 #--- Generate output to ,txt file---
-translated_text = response.text
+html_text = response.text
 
 with open(output_filepath, "w", encoding="utf-8") as f:
-     f.write(translated_text)
+     f.write(html_text)
      
 print(f"Translation complete! Translated text saved to '{output_filepath}'.")
+
 
 
 
