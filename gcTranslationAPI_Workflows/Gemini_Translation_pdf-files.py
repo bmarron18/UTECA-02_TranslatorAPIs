@@ -61,8 +61,8 @@ filepath = Path(input_filepath)
 #--- Set the API Key ---
     # Get my Gemini API Key here:
     # /home/bmarron/Desktop/UTECA/GithubToken_UTECALogins.txt
-    
-API_KEY = "AIzaSyB61uJatZ0L3gq4g9QnrWlhurqOm9yn_u8"
+
+API_KEY = "MY_API_KEY"
 client = genai.Client(api_key=API_KEY) 
 
 
