@@ -1,0 +1,14 @@
+
+BLUE Score
+
+
+###########
+reference text
+#############
+SEXTO. En principio será motivo de análisis el motivo de inconformidad que se refiere a la existencia de violación a las reglas del procedimiento laboral, porque de resultar fundado haría innecesario el estudio de los restantes. El apoderado legal de las quejosas señala lo siguiente: a) Que en la audiencia trifásica celebrada el veintidós de mayo de dos mil dos, en el expediente número 47.2001, se ofreció, entre otras, la inspección ocular que debería realizarse en el domicilio de la demandada sobre las listas de raya, nóminas de personal, recibos o comprobantes de sueldos o salarios, tarjetas de control de asistencia y demás documentación que acostumbre llevar o utilice para el manejo de su personal, por el periodo comprendido del veintidós de noviembre de dos mil al veintidós de noviembre de dos mil uno, con la finalidad de acreditar que los nombres de los actores aparecen en dichos documentos como trabajadores de la demandada. Petición que la Junta responsable acordó favorable en acuerdo de diecinueve de agosto de ese año, apercibiendo a la parte demandada con fundamento en el artículo 828 de la Ley Federal del Trabajo, que de no exhibir la documentación requerida se tendrían por presuntivamente ciertos los hechos que la parte actora pretende probar.
+
+
+##############
+candidate
+#############
+"SIXTH. In principle, the reason for disagreement that refers to the existence of a violation of the rules of labor procedure will be a reason for analysis, because if it is founded it would make the study of the remaining ones unnecessary. The legal representative of the complainants points out the following: a) That in the three-phase hearing held on May 22, 2002, in file number 47.2001, it was offered, among others, the ocular inspection that should be carried out at the defendant's domicile on the payroll lists, personnel payrolls, receipts or vouchers for salaries or wages, attendance control cards and other documentation that it usually keeps or uses for the management of its personnel, for the period from November 22, 2000 to November 22, 2001, with the purpose of proving that the names of the actors appear in said documents as workers of the defendant. Request that the responsible Board agreed to favorably in an agreement of August 19 of that year, warning the defendant based on article 828 of the Federal Labor Law, that if the required documentation is not exhibited, the facts that the plaintiff intends to prove would be presumed to be true.
