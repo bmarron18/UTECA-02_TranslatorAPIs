@@ -5,8 +5,6 @@ NLTK
 ##########
 NLTK has been called a wonderful tool for teaching and working in computational linguistics using Python and an amazing library to play with natural language.
 
-
-
 https://www.nltk.org/
 https://www.nltk.org/book/
 https://www.geeksforgeeks.org/nlp/nlp-bleu-score-for-evaluating-neural-machine-translation-python/
@@ -17,17 +15,40 @@ Before you get to that round, though, you’ll probably need to use at least one
     You’re evaluating across an entire corpus AND
     You know the limitations of the metric and you’re prepared to accept them.
 
+https://www.nltk.org/py-modindex.html
 https://thepythoncode.com/article/bleu-score-in-python
+https://www.kaggle.com/code/ahmadulkc/evaluation-metrics-in-natural-language-processing
+
+############
+METEOR
+############
+“Meteor: An Automatic Metric for MT Evaluation with HighLevels of Correlation with Human Judgments” by Alon Lavie and Abhaya Agarwal, in Proceedings of ACL. https://www.cs.cmu.edu/~alavie/METEOR/pdf/Lavie-Agarwal-2007-METEOR.pdf
+
+
+
+
+##########
+BLEU
+#########
+"The closer a machine translation is to a professional human translation, the better it is.”
+
+Why language isn't specified:
+    Language-Independent:
+    BLEU was designed to be language-independent, allowing it to evaluate machine translations across various language pairs (e.g., English to Chinese, French to German). 
+
+Focus on N-grams:
+The core of BLEU is the comparison of n-grams (sequences of n-words) between the machine output and human references. This comparison doesn't rely on any specific language grammar or vocabulary. 
 
 
 
 *	AI generated from Google query [generate blue score for a long text in python]------------
 To calculate the BLEU score for a long text in Python, you can use the nltk.translate.bleu_score module, specifically the corpus_bleu function. This function is designed to handle multiple sentences (a corpus) and provides a more robust evaluation than sentence_bleu for longer texts. Both should be provided as (Python) lists of tokenized words [tokenize sentences ==> tokenize words] 
-The BLEU score requires 
-	reference texts (human-written translations or summaries)
-	candidate text (the machine-generated text). 
+The BLEU score requires:
+	Language A ==> Language B translation by prof. translator and LLM
+	reference texts (human-written translations or summaries in Language B)
+	candidate text (the machine-generated text in Language B). 
 
---- Import necessary modules.
+--- Import necessary modules (sentence tokenize, word tokenize)
     from nltk.translate.bleu_score import corpus_bleu
     from nltk.tokenize import sent_tokenize, word_tokenize
 	

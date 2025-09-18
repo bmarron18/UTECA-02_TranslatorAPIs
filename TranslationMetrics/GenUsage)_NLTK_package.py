@@ -83,10 +83,12 @@ with open(output_filepath, "w", encoding="utf-8") as f:
 #print(references)
 
 # %%
-
+'''
+BLEU Score
+'''
 
 import os
-from nltk.translate.bleu_score import corpus_bleu
+from nltk.translate.bleu_score import corpus_bleu, sentence_bleu
 from nltk.tokenize import sent_tokenize, word_tokenize
 
     # Setup for output
@@ -98,25 +100,79 @@ output_filepath = os.path.join(doc_dir, doc_to_print)
 
     # Define reference texts 
  
-reference_text_1 = "SEXTO. En principio será motivo de análisis el motivo de inconformidad que se refiere a la existencia de violación a las reglas del procedimiento laboral, porque de resultar fundado haría innecesario el estudio de los restantes. El apoderado legal de las quejosas señala lo siguiente: a) Que en la audiencia trifásica celebrada el veintidós de mayo de dos mil dos, en el expediente número 47.2001, se ofreció, entre otras, la inspección ocular que debería realizarse en el domicilio de la demandada sobre las listas de raya, nóminas de personal, recibos o comprobantes de sueldos o salarios, tarjetas de control de asistencia y demás documentación que acostumbre llevar o utilice para el manejo de su personal, por el periodo comprendido del veintidós de noviembre de dos mil al veintidós de noviembre de dos mil uno, con la finalidad de acreditar que los nombres de los actores aparecen en dichos documentos como trabajadores de la demandada. Petición que la Junta responsable acordó favorable en acuerdo de diecinueve de agosto de ese año, apercibiendo a la parte demandada con fundamento en el artículo 828 de la Ley Federal del Trabajo, que de no exhibir la documentación requerida se tendrían por presuntivamente ciertos los hechos que la parte actora pretende probar."
+reference_text_1 = "I think therefore I am."
 #reference_text_2 = "Another reference text that is also long and provides a different perspective on the same topic. This helps in capturing more nuances."
 
-candidate_text = "SIXTH. In principle, the reason for disagreement that refers to the existence of a violation of the rules of labor procedure will be a reason for analysis, because if it is founded it would make the study of the remaining ones unnecessary. The legal representative of the complainants points out the following: a) That in the three-phase hearing held on May 22, 2002, in file number 47.2001, it was offered, among others, the ocular inspection that should be carried out at the defendant's domicile on the payroll lists, personnel payrolls, receipts or vouchers for salaries or wages, attendance control cards and other documentation that it usually keeps or uses for the management of its personnel, for the period from November 22, 2000 to November 22, 2001, with the purpose of proving that the names of the actors appear in said documents as workers of the defendant. Request that the responsible Board agreed to favorably in an agreement of August 19 of that year, warning the defendant based on article 828 of the Federal Labor Law, that if the required documentation is not exhibited, the facts that the plaintiff intends to prove would be presumed to be true."
-
-   # tokenize to sentences and then to words
-references = [
-        [word_tokenize(sent) for sent in reference_text_1.split('. ') if sent],
+candidate_text = "I think therefore I am."
+   # split sentences and then tokenize to words
+#references = [
+#        [word_tokenize(sent) for sent in reference_text_1.split('. ') if sent],
 #        [word_tokenize(sent) for sent in reference_text_2.split('. ') if sent]
-    ]
+#    ]
 
+references = [word_tokenize(sent) for sent in reference_text_1.split('. ') if sent]
 candidate = [word_tokenize(sent) for sent in candidate_text.split('. ') if sent]
 
-weights=(.75, 0.25, 0, 0)
+ref_sents = sent_tokenize(reference_text_1)
+ref_sents_strg = "".join(ref_sents)
+ref_words = word_tokenize(ref_sents_strg)
 
-bleu_score = corpus_bleu(references, candidate, weights)
+
+cand_sents = sent_tokenize(candidate_text)
+cand_sents_strg = "".join(cand_sents)
+cand_words = word_tokenize(cand_sents_strg)
+
+
+weights=(.50, 0.50, 0, 0)
+
+bleu_score = sentence_bleu(ref_words, cand_words, weights)
+#bleu_score = corpus_bleu(references, candidate, weights)
+#bleu_score = corpus_bleu(ref_words, cand_words, weights)
  
 print(bleu_score)
 
 
 # %%
+
+'''
+METEOR Score
+'''
+from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.translate.meteor_score import single_meteor_score 
+
+# Define candidate and reference sentences 
+reference_text= "The quick brown fox jumps over the lazy dog. And finds himself caught." 
+candidate_text = "A fast brown fox leaps over a lazy dog. And is captured."
+
+
+ref = word_tokenize(reference_text)
+hypo = word_tokenize(candidate_text)
+
+
+# Calculate METEOR score 
+score = single_meteor_score(ref, hypo) 
+
+# Print the result 
+print(f"METEOR Score: {score:.3f}")
+
+# %%
+'''
+Tokenizing
+
+'''
+
+import nltk
+from nltk.tokenize import sent_tokenize, word_tokenize
+
+text = "NLTK is a powerful library for natural language processing. It's widely used! You can do a lot with it."
+sentences = sent_tokenize(text)
+sent_strg = "".join(sentences)
+words = word_tokenize(sent_strg)
+
+print(sentences)
+
+print(words)
+
+# %%
+
 
