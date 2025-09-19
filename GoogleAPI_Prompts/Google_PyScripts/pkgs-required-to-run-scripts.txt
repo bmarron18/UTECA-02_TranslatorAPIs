@@ -12,3 +12,9 @@ langchain-google-vertexai==1.0.6
 numpy<2
 openai==1.30.5
 immutabledict==4.2.0
+
+to run tests
+backoff==2.2.1
+google-api-core==2.19.0
+pytest==8.2.0
+pytest-asyncio==0.23.6

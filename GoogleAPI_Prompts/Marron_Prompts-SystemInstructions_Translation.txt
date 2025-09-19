@@ -1,0 +1,31 @@
+
+%%%%%%%%	Google Gemini Translation Prompts and System Instructions	%%%%%%%%%%%%%%%%%%%%%%
+
+########
+Prompts 
+########
+
+prompt = "Translate the following English text into natural, fluent Spanish. \
+		Maintain all specific formatting (line breaks, indents, spaces, paragraphs)."
+
+
+prompt = "Translate the following pdf file (in English) to natural, \
+    fluent Spanish. Maintain all specific formatting (line breaks, indents, spaces, paragraphs). \
+	Generate the output in Latex. The output translation should be formated as \
+	a .tex file ready to open LaTex."
+
+
+
+#####################
+System Instructions
+Statements
+#####################
+
+config = types.GenerateContentConfig(
+               system_instruction="You are an expert liguist \
+                   specializing in translation. Provide ONLY the requested \
+				   translation without any additional commentary, introductory phrases, \
+				   other language translations, or conversational remarks."),
+				   
+ 
+

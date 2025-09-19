@@ -30,11 +30,14 @@ https://github.com/googleapis/python-genai/blob/main/codegen_instructions.md
 """
 # %%
 
-# in Linux terminal
-
+# in Linux terminal (available to internal Spyder Python)
     $ pip install google-genai
   
-
+# in (spyder_env) thru Anaconda (available to Spyder in (spyder_env) Python)
+    $ conda activate spyder_env
+    (spyder_env) $ conda install google-genai
+    (spyder_env) $ conda deactivate
+    
 
 # %%
 

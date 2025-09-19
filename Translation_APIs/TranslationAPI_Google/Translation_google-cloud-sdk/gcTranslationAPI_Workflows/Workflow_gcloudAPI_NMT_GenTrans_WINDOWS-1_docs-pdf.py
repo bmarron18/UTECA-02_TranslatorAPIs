@@ -15,7 +15,7 @@ sources:
 
 # %%
 
-====    Windows Preliminaries and Background Info    ==========================
+#====    Windows Preliminaries and Background Info    ==========================
 
 # %%
 
@@ -287,7 +287,7 @@ https://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-wind
 
 
 
-=======   Google Preliminaries   ===========================
+# =======   Google Preliminaries   ===========================
 
 # %%
 

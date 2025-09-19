@@ -49,12 +49,26 @@ from pathlib import Path
 import os
 
 # --- Define Files and File Paths ---
-    # Empty text files must already exist on Desktop (make 'em!)
-    # Change the languages and file types as needed
-    
-INPUT_FILE = "english.pdf"  
-OUTPUT_FILE = "spanish.tex"
+    # Create one (1) empty file on the Desktop
+        # ==> OUTPUT_FILE will hold the Translated text from the AI
+        # ==> file extension should match prompt (eg, ,txt, .tex, docx. etc)
+    # Select .pdf file to be translated and place in Desktop
+        # ==> INPUT_FILE will hold the .pdf To Be Translated
 
+    # watch file name for INPUT_FILE
+        # ==> strictly alpha! 
+        # ==> NO dashes or underline (won't upload to Gemini)
+    
+    # Change the language names in the files as needed
+    # Change the file extension of OUTPUT_FILE as needed
+    
+INPUT_FILE = "englishTBT.pdf"  
+OUTPUT_FILE = "spanish_T.tex"
+
+
+    # set up the file paths for the input / output files
+    # set the file path to your Desktop
+    
 doc_to_translate = INPUT_FILE;
 doc_to_print = OUTPUT_FILE;
 doc_dir = "/home/bmarron/Desktop" ;
@@ -64,13 +78,32 @@ output_filepath = os.path.join(doc_dir, doc_to_print)
     # Retrieve the UNPUT_FILE as PosixPath
 filepath = Path(input_filepath)
 
-#--- Set the API Key ---
-    # Get my Gemini API Key here:
-    # /home/bmarron/Desktop/UTECA/GithubToken_UTECALogins.txt
 
+
+#--- Set the API Key ---
+    # Retrieve your API key from its secret location
+    # type in your API key (in quotes)
+    # erase API key when finished with translation activities
+    
 #API_KEY = "MY_API_KEY"
-API_KEY = "AIzaSyB61uJatZ0L3gq4g9QnrWlhurqOm9yn_u8"
 client = genai.Client(api_key=API_KEY) 
+
+
+'''
+#--- Read and process file to be translated (file UPLOADED) ---
+
+uploadedfile = client.files.upload(
+    file=input_filepath,
+    config=dict(mime_type='text/plain')
+    )
+'''
+
+#--- Read and process file to be translated (file NOT UPLOADED)---
+
+processedfile = types.Part.from_bytes(
+        data=filepath.read_bytes(),
+        mime_type='application/pdf'
+        )
 
 
 #--- The Prompt and Select Languages ---
@@ -84,27 +117,23 @@ prompt = "Translate the following pdf file (in English) to natural, \
 
 #--- The API call to the AI ---
 response = client.models.generate_content(
-    model="gemini-2.5-flash",
-    config=types.GenerateContentConfig(
+    model = "gemini-2.5-flash",
+    config = types.GenerateContentConfig(
                system_instruction="You are an expert liguist \
                    specializing in translation. Maintain the original \
                    meaning, tone, and any specific formatting (like line breaks, paragraphs).\
                    Provide ONLY the requested translation without any additional \
                    commentary, introductory phrases, other language translations, \
                    or conversational remarks."),
-    contents=[types.Part.from_bytes(
-            data=filepath.read_bytes(),
-            mime_type='application/pdf'
-            ),
-            prompt]
+    contents = [processedfile, prompt]
     )
 
-#--- Generate output to Python---
+#--- output to IPython window ---
 #print(response.text)
 
 #   OR
 
-#--- Generate output to emoty file on Desktop ---
+#--- Output to OUTPUT_FILE ---
 GeminiOutput = response.text
 
 with open(output_filepath, "w", encoding="utf-8") as f:

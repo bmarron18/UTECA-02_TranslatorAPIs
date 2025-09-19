@@ -33,66 +33,96 @@ Additional info follows the script
 
 from google import genai
 from google.genai import types
+from pathlib import Path
 import os
 
 # --- Define Files and File Paths ---
-    # .txt files already exist on Desktop (make 'em!)
-    # Change the languages as needed
-    
-INPUT_FILE = "english_text.txt"  
-OUTPUT_FILE = "spanish_text.txt"
+    # create two (2) empty .txt files on the Desktop
+        # ==> INPUT_FILE will hold the text To Be Translated
+        # ==> OUTPUT_FILE will hold the Translated text from the AI
 
-doc_to_translate = INPUT_FILE;
-doc_to_print = OUTPUT_FILE;
-doc_dir = "/home/bmarron/Desktop" ;
+    # Remove all quotation marks in the INPUT_FILE o/w Gemini will just \
+    # translate the text inside the quotes
+    # watch file name for uploaded INPUT_FILE 
+        # ==> strictly alpha! 
+        # ==> NO dashes or underline (won't upload to Gemini)
+    
+    
+    # Change the language names in the files as needed
+    
+INPUT_FILE = "englishTBT.txt"  
+OUTPUT_FILE = "spanish_T.txt"
+
+
+    # set up the file paths for the input / output files
+    # set the file path to your Desktop
+    
+doc_to_translate = INPUT_FILE
+doc_to_print = OUTPUT_FILE
+doc_dir = "/home/bmarron/Desktop"
 input_filepath = os.path.join(doc_dir, doc_to_translate)
 output_filepath = os.path.join(doc_dir, doc_to_print)
 
+    # Retrieve the UNPUT_FILE as PosixPath
+filepath = Path(input_filepath)
+
 
 #--- Set the API Key ---
-    # Get my Gemini API Key here:
-    # /home/bmarron/Desktop/UTECA/GithubToken_UTECALogins.txt
-    
-API_KEY = "MY_API_KEY"
+    # Retrieve your API key from its secret location
+    # type in your API key (in quotes)
+    # erase API key when finished with translation activities
+
+#API_KEY = "MY_API_KEY"
 client = genai.Client(api_key=API_KEY)
 
-#--- upload file to be translated ---
-    # watch file name for uploaded file ==> strictly alpha! 
-    # NO dashes or underline (won't upload)
-    
+'''
+#--- Read and process file to be translated (file UPLOADED) ---
+
 uploadedfile = client.files.upload(
-        file=input_filepath,
-#       config=dict(mime_type='application/pdf')
-       config=dict(mime_type='text/plain')
+    file=input_filepath,
+    config=dict(mime_type='text/plain')
     )
+'''
+#   --- OR ---
 
-#--- The Prompt and Select Languages ---
+
+#--- Read and process file to be translated (file NOT UPLOADED)---
+
+processedfile = types.Part.from_bytes(
+        data=filepath.read_bytes(),
+        mime_type='text/plain'
+        )
+
+
+#--- The Prompt and Selected Languages ---
     # Change translation "to" and "from" languages as needed
-prompt = "Translate the following English text into natural, fluent Spanish."
 
-#--- The API call to the AI with system instructions ---
+prompt = "Translate the following English text into natural, fluent Spanish. \
+		Maintain all specific formatting (line breaks, indents, spaces, paragraphs)."
+
+#--- The API call to the AI with system (behavior) instructions ---
 response = client.models.generate_content(
     model="gemini-2.5-flash",
     config=types.GenerateContentConfig(
         system_instruction="You are an expert liguist \
             specializing in translation. Maintain the original \
-            meaning, tone, and any specific formatting (like line breaks, paragraphs).\
-            Provide ONLY the requested translation without any additional \
-            commentary, introductory phrases, other language translations, \
-            or conversational remarks."),
-    contents=[uploadedfile],
+            meaning and tone. Provide ONLY the requested translation without \
+            any additional commentary, introductory phrases, other language \
+            translations or conversational remarks."),
+#    contents=[uploadedfile, prompt]
+    contents=[processedfile, prompt]
     )
 
-#--- Generate output to Python---
+#--- Output to IPython window ---
 #print(response.text)
 
-#   OR
+#   --- OR ---
 
-#--- Generate output to ,txt file---
-translated_text = response.text
+#--- Output to OUTPUT_FILE---
+GeminiOutput = response.text
 
-with open(output_filepath, "w", encoding="utf-8") as f:
-     f.write(translated_text)
+with open(output_filepath, "w", encoding="Latin-1") as f:
+     f.write(GeminiOutput)
      
 print(f"Translation complete! Translated text saved to '{output_filepath}'.")
 
