@@ -1,0 +1,197 @@
+
+
+####################
+OpenAI has 
+	Responses API	[OpenAI's most advanced interface for generating model responses]
+	Chat Completions API
+########################
+
+https://platform.openai.com/docs/quickstart
+https://cookbook.openai.com
+
+https://platform.openai.com/docs/api-reference/responses
+
+https://platform.openai.com/docs/api-reference/responses/create
+https://platform.openai.com/docs/guides/migrate-to-responses
+https://platform.openai.com/docs/guides/pdf-files?api-mode=responses
+
+https://community.openai.com/t/translation-script-not-working/896719/2
+https://platform.openai.com/docs/api-reference/chat/create?lang=python
+
+
+https://transcy.crisp.help/en/article/how-to-use-openai-translation-vni6lx/
+
+Voice Translation into Different Languages
+cookbook.openai.com/examples/voice_solutions/voice_translation_into_different_languages_using_gpt-4o
+
+
+########
+Pricing
+########
+https://platform.openai.com/docs/guides/rate-limits
+https://platform.openai.com/settings/organization/billing/overview
+
+Supported countries and territories
+Countries and territories that currently support access to our API services.
+Mexico!!
+
+Tier	Qualification										Usage limits
+Free	User must be in an allowed geography					$100 / month
+Tier 1	$5 paid													$100 / month
+Tier 2	$50 paid and 7+ days since first successful payment		$500 / month
+Tier 3	$100 paid and 7+ days since first successful payment	$1,000 / month
+Tier 4	$250 paid and 14+ days since first successful payment	$5,000 / month
+Tier 5	$1,000 paid and 30+ days since first successful payment	$200,000 / month
+
+My Costs
+https://platform.openai.com/usage
+
+
+###########
+Notes
+##########
+One important note is that reasoning models perform better and demonstrate higher intelligence when used with the Responses API.
+
+If you're building any text generation app, we recommend using the Responses API over the older Chat Completions API. 
+
+
+You could think about developer and user messages like a function and its arguments in a programming language.
+    *developer messages provide the system's rules and business logic, like a function definition.
+    *user messages provide inputs and configuration to which the developer message instructions are applied, like 
+	arguments to a function.
+
+
+instructions parameter 
+	gives the model high-level instructions on how it should behave while generating a response, including tone, goals, 
+	and examples of correct responses. Any instructions provided this way will take priority over a prompt in the input 
+	parameter.
+input parameter (string or array)
+	Text, image, or file inputs to the model, used to generate a response.
+
+
+
+
+Only models that support both text and image inputs, such as gpt-4o, gpt-4o-mini, or o1, can accept PDF files as input.
+
+You can upload multiple files, each less than 10 MB. The total content limit across all files in a single API request is 32 MB.
+
+
+
+##########
+Code
+########
+
+>>> python -----------------------------
+from openai import OpenAI
+cli = OpenAI(api_key=api_key)
+
+sys_prompt: “You are a linguistics expert specializing in translations. Do not provide additional commentary. Just perform the task at hand. Leave web URLs as is.”
+
+user_prompt: “Convert the following statements to standard Dutch:”
+
+resp = cli.chat.completions.create(				<== deprecated
+    model='gpt-4.1',
+    temperature=0,
+    messages=[
+        {'role': 'system', 'content': sys_prompt},
+        {'role': 'user', 'content': user_prompt},
+    ]
+)
+
+ resp = openai.ChatCompletion.create(			<== deprecated
+          model = "gpt-3.5-turbo",
+          messages=[{"role": "user", "content": wText}],
+          request_timeout = 60, 
+          temperature = 0.5,
+        )
+-----------------------------------------------------------------------		
+
+
+
+
+
+
+
+Chat Completion API usage
+>>> python ------------------------------------------
+from openai import OpenAI
+client = OpenAI(API_KEY)
+
+completion = client.chat.completions.create(		<== Chat Completion API
+  model="gpt-5",
+  messages=[
+    {"role": "developer", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "Hello!"}
+  ]
+)
+
+print(completion.choices[0].message)
+-----------------------------------------------------------------
+
+
+
+
+	
+Response API usage	
+>>> python ------------------------------------------
+from openai import OpenAI
+client = OpenAI(API_KEY)
+
+response = client.responses.create(				<== Responses API
+  model="gpt-5",
+  reasoning={"effort": "low"}
+  temperature=1.3
+  instructions="Talk like a pirate.",
+  input="Write a one-sentence bedtime story about a unicorn."
+)
+
+print(response.output_text)
+
+
+
+
+
+Response API usage		<== USE THIS for .pdf / .txt translation!!
+>>> python ------------------------------------------
+from openai import OpenAI
+client = OpenAI(API_KEY)
+
+	# Upload a .pdf / .txt referenced in input = []
+file = client.files.create(
+    file=open("draconomicon.pdf", "rb"),
+    purpose="user_data",
+)
+
+	# Developer level
+sys_prompt = “You are a linguistics expert specializing in translations. Do not provide additional commentary. Just perform the task at hand.”
+
+	# User level
+user_prompt= “Translate the uploaded file to standard Dutch:”
+
+
+
+	# API call
+response = client.responses.create(
+    model="gpt-5",
+	reasoning={"effort": "low"}
+    temperature=1.3
+    instructions= sys_prompt,
+    input=[
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "input_file",
+                    "file_id": file.id,
+                },
+                {
+                    "type": "input_text",
+                    "text": user_prompt,
+                },
+            ]
+        }
+    ]
+)
+
+	# API output
+print(response.output_text)
