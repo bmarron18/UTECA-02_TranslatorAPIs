@@ -41,7 +41,7 @@ Simple Test Run
 from openai import OpenAI
 
 #client = OpenAI(api_key=API_KEY)
-client = OpenAI(api_key="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")
+
 
 response = client.responses.create(
   model = "gpt-4o",
@@ -76,7 +76,6 @@ import os
 
 
 #client = OpenAI(api_key=API_KEY)
-client = OpenAI(api_key="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")
 
 
 
