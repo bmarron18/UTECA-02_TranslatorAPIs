@@ -36,6 +36,16 @@ from google.genai import types
 from pathlib import Path
 import os
 
+    # API_KEY is saved as an ENV VARIABLE on home compu
+gemini_api_key = os.getenv("GEMINI_API_KEY")
+client = genai.Client(api_key=gemini_api_key)
+
+    # API_KEY is inserted directly
+#client = genai.Client(api_key=ACTUAL_API_KEY)
+
+
+
+
 # --- Define Files and File Paths ---
     # create two (2) empty .txt files on the Desktop
         # ==> INPUT_FILE will hold the text To Be Translated
@@ -67,13 +77,6 @@ output_filepath = os.path.join(doc_dir, doc_to_print)
 filepath = Path(input_filepath)
 
 
-#--- Set the API Key ---
-    # Retrieve your API key from its secret location
-    # type in your API key (in quotes)
-    # erase API key when finished with translation activities
-
-#API_KEY = "MY_API_KEY"
-client = genai.Client(api_key=API_KEY)
 
 '''
 #--- Read and process file to be translated (file UPLOADED) ---
