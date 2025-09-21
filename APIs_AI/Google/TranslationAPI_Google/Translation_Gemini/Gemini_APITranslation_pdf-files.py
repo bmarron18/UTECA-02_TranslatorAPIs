@@ -2,16 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Sep 12 11:20:22 2025
-
 @author: bmarron / Gemini 2.5 Flash /
-Gemini API Coding Guidelines (Python)
-https://github.com/googleapis/python-genai/blob/main/codegen_instructions.md
-
-Document understanding (Gemini)
-https://ai.google.dev/gemini-api/docs/document-processing
-
-HTML-to-pdf
-https://stackoverflow.com/questions/23359083/how-to-convert-webpage-into-pdf-by-using-python
 
 """
 
@@ -48,6 +39,19 @@ from google.genai import types
 from pathlib import Path
 import os
 
+
+#--- API Key ---------------------
+    # API_KEY is saved as an ENV VARIABLE on home compu
+    # (See "Info_Gemini_API.txt for procedure)
+gemini_api_key = os.getenv("GEMINI_API_KEY")
+client = genai.Client(api_key=gemini_api_key)
+
+
+    # API_KEY also can be inserted directly
+#client = genai.Client(api_key=ACTUAL_API_KEY)
+
+
+
 # --- Define Files and File Paths ---
     # Create one (1) empty file on the Desktop
         # ==> OUTPUT_FILE will hold the Translated text from the AI
@@ -55,9 +59,7 @@ import os
     # Select .pdf file to be translated and place in Desktop
         # ==> INPUT_FILE will hold the .pdf To Be Translated
 
-    # watch file name for INPUT_FILE
-        # ==> strictly alpha! 
-        # ==> NO dashes or underline (won't upload to Gemini)
+ 
     
     # Change the language names in the files as needed
     # Change the file extension of OUTPUT_FILE as needed
@@ -79,24 +81,6 @@ output_filepath = os.path.join(doc_dir, doc_to_print)
 filepath = Path(input_filepath)
 
 
-
-#--- Set the API Key ---
-    # Retrieve your API key from its secret location
-    # type in your API key (in quotes)
-    # erase API key when finished with translation activities
-    
-#API_KEY = "MY_API_KEY"
-client = genai.Client(api_key=API_KEY) 
-
-
-'''
-#--- Read and process file to be translated (file UPLOADED) ---
-
-uploadedfile = client.files.upload(
-    file=input_filepath,
-    config=dict(mime_type='text/plain')
-    )
-'''
 
 #--- Read and process file to be translated (file NOT UPLOADED)---
 
@@ -143,69 +127,4 @@ print(f"Translation complete! Translated text saved to '{output_filepath}'.")
 
 
 
-
-# %%
-
-### Additional info  ############
-
-'''
-
---- Doc MIME Types ---------------
-The most comprehensive list of MIME types is maintained by the 
-Internet Assigned Numbers Authority (IANA). 
-
-
-Text:
-    text/plain: Plain text files (.txt) 
-    text/csv: Comma-separated values files (.csv) 
-    text/html: HyperText Markup Language files (.html, .htm)
-    text/x-tex: Various common LaTex files (.tex, .cls, .sty)
-
-Image:
-    image/jpeg: JPEG image files (.jpeg, .jpg) 
-    image/png: Portable Network Graphics files (.png) 
-    image/gif: Graphics Interchange Format files (.gif) 
-    image/svg+xml: Scalable Vector Graphics files (.svg) 
-
-Audio:
-    audio/mpeg: MPEG audio files (.mp3) 
-
-Video:
-    video/mp4: MP4 video files (.mp4) 
-    video/webm: WebM video files (.webm) 
-
-Application:
-    application/pdf: Portable Document Format files (.pdf) 
-    application/json: JavaScript Object Notation files (.json) 
-    application/zip: ZIP compressed archive files (.zip) 
-    application/octet-stream: A general-purpose type for unspecified binary data 
-1*    application/vnd.openxmlformats-officedocument.wordprocessingml.document (.docx)
-
-
-1* Gemini gave me a .json file when this mime type was requested
-
-----   Explanation of the Gemini Prompt ------------
-
-This is the most critical part for getting good results. 
-We are telling Gemini:
-
-**Role-playing:
-    "You are an expert linguist..." This helps the model adopt 
-    the right persona.
-
-**Clear Task:
-    "Translate the following English text into natural, fluent 
-    Spanish."
-
-**Key Instructions:
-    "Maintain the original meaning, tone, and any specific 
-    formatting..." (Crucial for text files).
-    
-    "Provide ONLY the Spanish translation, without any additional
-    commentary..." (Prevents the model from adding things like 
-    "Here is your translation:" or "I have translated the text 
-    for you.").
-
-
-'''
 # %%
