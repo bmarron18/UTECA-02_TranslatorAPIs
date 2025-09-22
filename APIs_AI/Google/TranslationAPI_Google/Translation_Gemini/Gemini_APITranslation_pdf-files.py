@@ -9,29 +9,79 @@ Created on Fri Sep 12 11:20:22 2025
 
 # %%
 
-### Natural Language Translation of .pdf-to-(other-file-types) ####
-
+### Translation of mime-type = "application/pdf" files ####
 '''
 This script will:
-1.  Read an English (or any other language) pdf file.
+1.  Read an English (or any other language) .pdf file.
 2.  Construct a clear translator request (prompt + config) for the 
     Gemini 2.5 Flash model.
 3.  Send the request to the Gemini 2.5 Flash model.
 4.  Write the Spanish (or any other language) translation to 
     a new file type.
 
-Document types available for Gemini output:
-    text/plain
-    text/html
-    text/json
-    text/x-tex
+Document MIME types available for Gemini output:
+    text/plain   ==> .txt
+    text/html    ==> .html
+    text/json    ==> ,json
+    text/x-tex   ==> .tex
     
-Additional info follows the script
+'''
+# %%
+
+'''
+Simple Test Run
+
+'''
+from google import genai
+from google.genai import types
+import os
+
+
+#--- API Key ---------------------
+    # API_KEY is saved as an ENV VARIABLE on home compu
+    # (See "Info_Gemini_API.txt for procedure)
+gemini_api_key = os.getenv("GEMINI_API_KEY")
+client = genai.Client(api_key=gemini_api_key)
+
+
+
+#--- The API call to the AI
+    # ==> modify "prompt" (user level) as needed
+    # ==> modify "system instruction" (behavior) as needed
+
+prompt = "Write a one-sentence bedtime story about a unicorn."
+
+response = client.models.generate_content(
+    model = "gemini-2.5-flash",
+    config = types.GenerateContentConfig(
+               system_instruction="Talk like a pirate."),
+    contents = [prompt]
+    )
+
+#--- Output from AI (response.text) ---
+
+   # Send to IPython window
+print(response.text)
+
+
+'''
+"The grand unicorn, her horn glintin' like a mast in the moonlight, \
+snuggled deep into her cloud-hammock, dreamin' of sailin' across seas of \
+stardust 'til the mornin' tide."
 
 '''
 
 
+
+
 # %%
+
+'''
+Translate content of .pdf files
+    * returns UTF-8 output
+    * output may be requested as any accepted MIME type file
+
+'''
 
 
 from google import genai
@@ -46,84 +96,108 @@ import os
 gemini_api_key = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=gemini_api_key)
 
-
     # API_KEY also can be inserted directly
 #client = genai.Client(api_key=ACTUAL_API_KEY)
 
 
 
-# --- Define Files and File Paths ---
-    # Create one (1) empty file on the Desktop
-        # ==> OUTPUT_FILE will hold the Translated text from the AI
-        # ==> file extension should match prompt (eg, ,txt, .tex, docx. etc)
-    # Select .pdf file to be translated and place in Desktop
-        # ==> INPUT_FILE will hold the .pdf To Be Translated
+# --- Prep Files, and Define Files and File Paths -------
+    # INPUT_FILE
+       #==> this is the .pdf file (T)o (B)e (T)ranslated
+       #==> Move .pdf file (T)o (B)e (T)ranslated to the Desktop
+ 
+    # OUTPUT_FILE 
+        #==> will hold the (T)ranslated text from the AI
+        #==> this file will be generated automatically by Python after \
+        # the translation is complete
+   
+    
+    # Name the INPUT_FILE and OUTPUT_FILE
+    # Change names of files as needed
+        # ==> INPUT_FILE must stay as .pdf
+        # ==> OUTPUT_FILE can be any of the Document types available for \
+        # Gemini output (see header of this script)
+    
+INPUT_FILE = "Gemini_Doc-English_TBT.pdf"  
+OUTPUT_FILE = "Gemini_Doc-Spanish_T.txt"
+
+
+    # Set up the file paths for the INPUT_FILE and the OUTPUT_FILE
+    # Set the file path to your Desktop
+    # Path() represents file+directory paths in a platform-independent manner.
+    
+doc_to_translate = INPUT_FILE
+doc_to_print = OUTPUT_FILE
+doc_dir = "/home/bmarron/Desktop"
+
+
+    # create paths to files
+    # Retrieve files as PosixPaths
+
+input_filepath = os.path.join(doc_dir, doc_to_translate)
+input_f = Path(input_filepath)
+
+output_filepath = os.path.join(doc_dir, doc_to_print)
+output_f = Path(output_filepath)
 
  
-    
-    # Change the language names in the files as needed
-    # Change the file extension of OUTPUT_FILE as needed
-    
-INPUT_FILE = "englishTBT.pdf"  
-OUTPUT_FILE = "spanish_T.tex"
 
 
-    # set up the file paths for the input / output files
-    # set the file path to your Desktop
-    
-doc_to_translate = INPUT_FILE;
-doc_to_print = OUTPUT_FILE;
-doc_dir = "/home/bmarron/Desktop" ;
-input_filepath = os.path.join(doc_dir, doc_to_translate)
-output_filepath = os.path.join(doc_dir, doc_to_print)
+#--- Read and process file to be translated ---
+    # File UPLOADED to Google
+    # (NOT recommended)
+'''
+uploadedfile = client.files.upload(
+    file=input_f,
+    config=dict(mime_type='text/plain')
+    )
+'''
 
-    # Retrieve the UNPUT_FILE as PosixPath
-filepath = Path(input_filepath)
-
-
-
-#--- Read and process file to be translated (file NOT UPLOADED)---
+    # File NOT UPLOADED to Google
+    # (recommended)
 
 processedfile = types.Part.from_bytes(
-        data=filepath.read_bytes(),
+        data=input_f.read_bytes(),
         mime_type='application/pdf'
         )
 
 
-#--- The Prompt and Select Languages ---
-    # Change translation "to" and "from" languages as needed
-    # Change the doc types as needed
+#--- The API call to the AI
+    # ==> modify "prompt" (user level) as needed
+    # ==> modify "system instruction" (behavior) as needed
 
-prompt = "Translate the following pdf file (in English) to natural, \
-    fluent Spanish and generate the output in Latex. That is, the\
-    output translation should be formated as a .tex file ready to open Latex."
+prompt = "Translate the document, processedfile (a .pdf file in English) to \
+    standard, natural, fluent Spanish. Maintain all specific formatting \
+    (line breaks, indents, spaces, paragraphs, and quotations). Generate the \
+    output as MIME type= text/plain. That is, generate the output as a \
+    plain text file (.txt)."
 
-
-#--- The API call to the AI ---
 response = client.models.generate_content(
     model = "gemini-2.5-flash",
     config = types.GenerateContentConfig(
                system_instruction="You are an expert liguist \
                    specializing in translation. Maintain the original \
-                   meaning, tone, and any specific formatting (like line breaks, paragraphs).\
-                   Provide ONLY the requested translation without any additional \
-                   commentary, introductory phrases, other language translations, \
-                   or conversational remarks."),
+                   meaning, and tone of the original. Provide ONLY the \
+                   requested translation without any additional commentary, \
+                   introductory phrases, other language translations, or \
+                   conversational remarks."),
     contents = [processedfile, prompt]
     )
 
-#--- output to IPython window ---
+#--- Output from AI (response.text) ---
+
+   # Send to IPython window
 #print(response.text)
 
-#   OR
-
-#--- Output to OUTPUT_FILE ---
+    # Send to OUTPUT_FILE
 GeminiOutput = response.text
 
-with open(output_filepath, "w", encoding="utf-8") as f:
+
+
+with open(output_f, "w", encoding="utf-8") as f:
      f.write(GeminiOutput)
      
-print(f"Translation complete! Translated text saved to '{output_filepath}'.")
+print(f"Translation complete! Translated text saved to '{output_f}'.")
 
 
 

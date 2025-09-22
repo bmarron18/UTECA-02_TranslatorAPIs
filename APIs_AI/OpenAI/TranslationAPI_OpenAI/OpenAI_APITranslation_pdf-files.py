@@ -4,9 +4,29 @@
 """
 Created on Fri Sep 19 2025
 @author: bmarron
-
-
 """
+
+
+# %%
+
+### Translation of mime-type = "application/pdf" files ####
+
+'''
+This script will:
+1.  Read an English (or any other language) .pdf file.
+2.  Construct a clear translator request for an OpenAI model
+    (gpt-4o, gpt-5, etc).
+3.  Send the request to the OpenAI model.
+4.  Write the Spanish (or any other language) translation to 
+    a new file type.
+
+Document MIME types available for OpenAI output:
+    text/plain   ==> .txt
+    text/html    ==> .html
+    text/json    ==> ,json
+    text/x-tex   ==> .tex
+    
+'''
 
 # %%
 
@@ -22,7 +42,7 @@ from openai import OpenAI
 openai_api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=openai_api_key)
 
-    # API_KEY is inserted directly
+    # API_KEY can be inserted directly
 #client = OpenAI(api_key=ACTUAL_API_KEY)
 
 
@@ -46,9 +66,9 @@ pirate driftin' to sleep among the stars.
 # %%
 
 '''
-Translate content of .pdf files w/o uploading to OpenAI's Vector Store
-    * returns UTF-8 output (a text file)
-    * output may be requested as a .txt or .tex file
+Translate content of .pdf files
+    * returns UTF-8 output
+    * output may be requested as any accepted MIME type file
 
 '''
 
@@ -67,20 +87,25 @@ client = OpenAI(api_key=openai_api_key)
 
 
 
-# --- Define Files and File Paths ---
-    # Create one (1) empty file on the Desktop, the OUTPUT_FILE
-        # ==> OUTPUT_FILE will hold the (T)ranslated text from the AI
-        # ==> set file extension to .txt unless requesting a .tex file
-
-    # Select .pdf file to be translated and place on the Desktop
-        # ==> INPUT_FILE will hold the .pdf file (T)o (B)e (T)ranslated
+# --- Prep Files, and Define Files and File Paths -------
+    # INPUT_FILE
+        #==> this is the .pdf file (T)o (B)e (T)ranslated
+        #==> Move .pdf file (T)o (B)e (T)ranslated to the Desktop
+ 
+    # OUTPUT_FILE 
+        #==> will hold the (T)ranslated text from the AI
+        #==> this file will be generated automatically by Python after \
+        # the translation is complete
 
       
-    # Change the language names in the files as needed
-    # Change the file extension of OUTPUT_FILE as needed
+   # Name the INPUT_FILE and OUTPUT_FILE
+   # Change names of files as needed
+       # ==> INPUT_FILE must stay as .pdf
+       # ==> OUTPUT_FILE can be any of the Document types available for \
+       # OpenAI output (see header of this script)
     
-INPUT_FILE = "englishTBT.pdf"  
-OUTPUT_FILE = "spanish_T.txt"
+INPUT_FILE = "OpenAI_Doc-English_TBT.pdf"  
+OUTPUT_FILE = "OpenAI_Doc-Spanish_T.txt"
     
     
     # set up the file paths for the INPUT_FILE and the OUTPUT_FILE
@@ -102,9 +127,13 @@ output_filepath = os.path.join(doc_dir, doc_to_print)
 output_f = Path(output_filepath)
 
 
-    
+#--- Read and process file to be translated ---
+    # File UPLOADED to OpenAI Vector Store
+    # (NOT recommended)
 
-	# Read the .pdf INPUT_FILE (now named, input_f)
+
+    # File NOT UPLOADED to OpenAI
+
 file = client.files.create(
     file=open(input_f, "rb"),
     purpose="user_data",
@@ -118,11 +147,11 @@ sys_prompt = "You are an expert liguist \
     translations or conversational remarks."
 
 	# User level message
-user_prompt= "Translate the .pdf file (in English) to standard, natural, \
+user_prompt= "Translate the file (a .pdf file in English) to standard, natural, \
     and fluent Spanish. Maintain all specific formatting (line breaks, \
-    indents, spaces, paragraphs)."
-
-
+    indents, spaces, paragraphs, and quotations). Generate the output as \
+    MIME type= text/plain. That is, generate the output as a plain text \
+    file (.txt)."
 
 
 	# Response API call
@@ -147,12 +176,14 @@ response = client.responses.create(
     ]
 )
 
-	# API output to IPython
+
+#--- Output from AI (response.output_text) ---
+
+	# Send to IPython window
 #print(response.output_text)
 
 
-#--- Output to OUTPUT_FILE---
-
+   # Send to OUTPUT_FILE
 with open(output_f, "w", encoding="utf-8") as f:
      f.write(response.output_text)
      

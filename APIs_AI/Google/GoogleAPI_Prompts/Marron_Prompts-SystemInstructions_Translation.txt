@@ -1,18 +1,26 @@
 
-%%%%%%%%	Google Gemini Translation Prompts and System Instructions	%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%	Translation Prompts and System Instructions	%%%%%%%%%%%%%%%%%%%%%%
 
 ########
-Prompts 
+User Prompts 
 ########
 
-prompt = "Translate the following English text into natural, fluent Spanish. \
-		Maintain all specific formatting (line breaks, indents, spaces, paragraphs)."
 
-
-prompt = "Translate the following pdf file (in English) to natural, \
+prompt = "Translate the document, processedfile (a .pdf file in English) to standard, natural, \
     fluent Spanish. Maintain all specific formatting (line breaks, indents, spaces, paragraphs). \
-	Generate the output in Latex. The output translation should be formated as \
-	a .tex file ready to open LaTex."
+	Generate the output as MIME_Type = text/x-tex. That is. the output translation should be formated as \
+	a .tex file ready to open in LaTex."
+	
+prompt = "Translate the document, processedfile (a .pdf file in English) to standard, natural, \
+    fluent Spanish. Maintain all specific formatting (line breaks, indents, spaces, paragraphs). \
+	Generate the output as MIME type= text/plain. That is, generate the output as a plain text file (.txt)."
+
+
+prompt = "Translate the document, processedfile (a .txt file in English) to standard, natural, \
+    fluent Spanish. Maintain all specific formatting (line breaks, indents, spaces, paragraphs, quotation marks). \
+	Generate the output as a plain text file (.txt); that is, as MIME_type= text/plain."
+
+
 
 
 
@@ -23,9 +31,11 @@ Statements
 
 config = types.GenerateContentConfig(
                system_instruction="You are an expert liguist \
-                   specializing in translation. Provide ONLY the requested \
-				   translation without any additional commentary, introductory phrases, \
-				   other language translations, or conversational remarks."),
+                   specializing in translation. Maintain the original \
+                   meaning, and tone of the original. Provide ONLY the \
+                   requested translation without any additional commentary, \
+                   introductory phrases, other language translations, or \
+                   conversational remarks."),
 				   
  
 
