@@ -51,9 +51,7 @@ Basic Inference (Text Generation)
 from google import genai
 
     # Set the API Key
-    # Get my Gemini API Key here:
-    # /home/bmarron/Desktop/UTECA/GithubToken_UTECALogins.txt
-    
+     
 API_KEY = "MY_KEY_ALPHANUMERIC"
 client = genai.Client(api_key=API_KEY)
 
@@ -68,8 +66,7 @@ print(response.text)
 from google import genai
 
     # Set the API Key
-    # Get my Gemini API Key here:
-    # /home/bmarron/Desktop/UTECA/GithubToken_UTECALogins.txt
+ 
     
 API_KEY = "MY_KEY_ALPHANUMERIC"
 client = genai.Client(api_key=API_KEY)
@@ -162,8 +159,7 @@ from google import genai
 
 
     # Set the API Key
-    # Get my Gemini API Key here:
-    # /home/bmarron/Desktop/UTECA/GithubToken_UTECALogins.txt
+  
     
 API_KEY = "MY_KEY_ALPHANUMERIC"
 client = genai.Client(api_key=API_KEY)
