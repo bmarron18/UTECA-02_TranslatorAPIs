@@ -58,7 +58,8 @@ https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety
 # NB. shell configuration files ( .bashrc, .zshrc, or .bash_profile)
 # I have ~/.bashrc
 
-    # creates a .bash_profile file at /home/bmarron
+    # in Linux creates a .bash_profile file at /home/bmarron
+$ echo "export GEMINI_API_KEY='my-key'" >> ~/.bashrc
 $ echo "export OPENAI_API_KEY='my-key'" >> ~/.bashrc
 
     # update shell with new variable

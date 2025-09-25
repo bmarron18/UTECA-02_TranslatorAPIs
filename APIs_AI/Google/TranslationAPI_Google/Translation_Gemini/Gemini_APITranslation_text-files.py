@@ -34,9 +34,15 @@ Document MIME types available for Gemini output:
 Simple Test Run
 
 '''
+
 from google import genai
 from google.genai import types
 import os
+
+
+#import google.generativeai as genai
+#from google.generativeai import types
+#import os
 
 
 #--- API Key ---------------------
