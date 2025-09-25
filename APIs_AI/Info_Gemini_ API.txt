@@ -1,6 +1,6 @@
-Title:				Setup instructions for using Google Gemini API 
+Title:			Info for using Google Gemini API 
 Project Desc.:		UTECA Interpretacion y Traduccion 	
-Author:				bmarron
+Author:			bmarron
 Origin Date:		22 Sept 2025
 Revision Date:		22 Sept 2025
 
