@@ -65,8 +65,8 @@ Using Google Gemini API
 	# My Linux has a ~/.bashrc file
 	
 	a. export the API Key to  a .bashrc
-$ echo "export GEMINI_API_KEY='AIzaSyB61uJatZ0L3gq4g9QnrWlhurqOm9yn_u8'" >> ~/.bashrc
-$ echo "export OPENAI_API_KEY='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'" >> ~/.bashrc
+$ echo "export GEMINI_API_KEY='key'" >> ~/.bashrc
+$ echo "export OPENAI_API_KEY='key'" >> ~/.bashrc
 
     b. update shell with new variable
 $ source ~/.bashrc
