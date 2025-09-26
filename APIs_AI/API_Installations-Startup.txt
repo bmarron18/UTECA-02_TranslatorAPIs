@@ -2,7 +2,7 @@ Title:			Setup instructions for using Google Gemini API
 Project Desc.:		UTECA Interpretacion y Traduccion 	
 Author:			bmarron
 Origin Date:		22 Sept 2025
-Revision Date:		24 Sept 2025
+Revision Date:		26 Sept 2025
 
 
 %%%%%%%%%%%%%%%%%%	Instructions for Using Google and OpenAI APIs %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -129,15 +129,27 @@ and Python pkgs
 [nltk ==> Natural Language Toolkit
 [jiter ==> A standalone version of the JSON parser. use this package directly if you do not use pydantic.]
 ###################
---- with venv  THIS WORKED!!
+--- Command Line
+
 $ python3 -m pip install --upgrade pip
 
-$ sudo aptitude install python3.11-venv
+$ pip install --target /home/bmarron18/virtualenv virtualenv
 
-$ python3.11 -m venv ./spyder-6/envs/ai-apis
+$ sudo aptitude install python3.11-venv			<== install a python versionvenv pkg, to work with python 3.11
+										python3.11-venv_3.11.0~rc1-1~22.04_amd64.deb
+										The first release candidate of Python 3.11.orc1
+
+$ python3.11 -m venv ./spyder-6/envs/ai-apis		<== using python 3.11 to create venv named ai-apis
+										./home/bmarron18/spyder-6/envs/ai-apis/pyvenv.cfg
+										<== in ai-apis is python 3.10 and 3.11.orc1
+										
+										
 
 $ source ./spyder-6/envs/ai-apis/bin/activate
+
 (ai-apis) bmarron18@bmarron18-HP-Notebook:~$ pip install spyder-kernels google-genai openai nltk jiter
+
+(ai-apis) bmarron18@bmarron18-HP-Notebook:~$ deactivate 
 
 	open Spyder and change to "wrench" to ai-apis [/home/bmarron18/spyder-6/envs/ai-apis/bin/python3.11]
 	close and reopen spyder (or close Interpreter)
@@ -145,9 +157,11 @@ $ source ./spyder-6/envs/ai-apis/bin/activate
 	if desired, reset "wrench" to run Spyder outside of virtual env
 	close spyder
 	
-(ai-apis) bmarron18@bmarron18-HP-Notebook:~$ deactivate 
 
 
+
+This runs Python 3.11.0rc1 in spyder
+This is the first release candidate of Python 3.11
 	
 	8. You are now ready to access the API!
 		- deactive all Anaconda work envs and close everything
