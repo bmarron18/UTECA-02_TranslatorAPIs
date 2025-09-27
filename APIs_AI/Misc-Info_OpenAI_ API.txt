@@ -129,22 +129,6 @@ Notes
 *	reasoning models perform better and demonstrate higher intelligence when used with the Responses API. If you're building any text generation app, we recommend using the Responses API over the older Chat Completions API. 
 
 
-*	You could think about developer and user messages like a function and its arguments in a programming language.
-    	-developer messages provide the system's rules and business logic, like a function definition.
-    	-user messages provide inputs and configuration to which the developer message instructions are applied, like 
-		arguments to a function.
-
-	instructions parameter (developer messages)
-		gives the model high-level instructions on how it should behave while generating a response, including tone, 
-		goals, and examples of correct responses. Any instructions provided this way will take priority over a prompt 
-		in the input parameter.
-		
-	input parameter (user messages; as string or array)
-		Text, image, or file inputs to the model, used to generate a response.
-
-
-
-
 *	Only models that support both text and image inputs, such as gpt-4o, gpt-4o-mini, or o1, can accept PDF files as input o/w need to upload files to the Vector Storage Library
 
 You can upload multiple files, each less than 10 MB. The total content limit across all files in a single API request is 32 MB.

@@ -139,12 +139,6 @@ file = client.files.create(
     purpose="user_data",
 )
 
-	# Developer level message
-sys_prompt = "You are an expert liguist \
-    specializing in translation. Maintain the original \
-    meaning and tone. Provide ONLY the requested translation without \
-    any additional commentary, introductory phrases, other language \
-    translations or conversational remarks."
 
 	# User level message
 user_prompt= "Translate the file (a .pdf file in English) to standard, natural, \
@@ -152,6 +146,15 @@ user_prompt= "Translate the file (a .pdf file in English) to standard, natural, 
     indents, spaces, paragraphs, and quotations). Generate the output as \
     MIME type= text/plain. That is, generate the output as a plain text \
     file (.txt)."
+
+
+	# Developer level message
+sys_prompt = "You are an expert liguist \
+    specializing in translation. Maintain the original \
+    meaning and tone. Provide ONLY the requested translation without \
+    any additional commentary, introductory phrases, other language \
+    translations or conversational remarks."
+
 
 
 	# Response API call

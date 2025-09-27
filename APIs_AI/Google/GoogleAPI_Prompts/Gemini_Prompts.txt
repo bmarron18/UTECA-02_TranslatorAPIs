@@ -1,9 +1,10 @@
 
-%%%%%%%%	Translation Prompts and System Instructions	%%%%%%%%%%%%%%%%%%%%%%
+##################
+Sample Gemini Prompts
+and System Instructions
+################
 
-########
-User Prompts 
-########
+--- User Prompts ------------------------------
 
 
 prompt = "Translate the document, processedfile (a .pdf file in English) to standard, natural, \
@@ -22,12 +23,7 @@ prompt = "Translate the document, processedfile (a .txt file in English) to stan
 
 
 
-
-
-#####################
-System Instructions
-Statements
-#####################
+--- System Instruction Prompts ------------------------------------------
 
 config = types.GenerateContentConfig(
                system_instruction="You are an expert liguist \

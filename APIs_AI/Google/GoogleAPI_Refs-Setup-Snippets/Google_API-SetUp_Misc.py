@@ -10,72 +10,8 @@ Created on Mon Dec 30 21:54:30 2024
 # %%
 
 
-====    Windows Background/info    ==========================
+====    Windows Setup    ==========================
 
-# %%
-
-    #change the directory to root using
-> cd/
-
-
-    # change to home directory
-> cd %homedrive%%homepath%
-
-# %%
-
-'''
-Open terminal
-'''
-Click the Start menu and type "cmd" in the search bar to 
-find the Command Prompt. 
-
-
-To open a terminal in a specific folder on Windows 10, navigate to the 
-desired folder in File Explorer, then hold down the Shift key, right-click
- within the folder, and select "Open in terminal" from the context menu. 
-
-# %%
-'''
-Install Notepad++
-'''
-
-C:\Program Files\Notepad++
-
-
-# %%
-
-'''
-    Search Windows dorectories
-'''
-https://stackoverflow.com/questions/8066679/how-to-do-a-simple-file-search-in-cmd
-
-    #searches in current folder and sub folders.
-    # finds directories as well as files
-    # wildcards * like Linux
-    # /s Lists every occurrence of the specified file name within the specified directory and all subdirectories.
-    # printo text file
-
-> dir /b/s *foo* 
-
-    # -d excludes directories
-    # /a: 
-> dir /a:-d /b/s *foo* >> file.txt
-
-
-
-    #List all Hidden Files
-> dir /a:h-d /b/s
-
-    #List all System Files
-> dir /a:s-d /b/s
-
-    List all ReadOnly Files
-> dir /a:r-d /b/s
-
-    # List all Non Indexed Files
-> dir /a:i-d /b/s
-
-# %%
 
 '''
     Search ALL Windows dorectories for Pyhton
@@ -298,6 +234,161 @@ IPython 8.33.0 -- An enhanced Interactive Python. Type '?' for help.
 In [1]:
 
 
+
+
+
+# %%
+'''
+Install Notepad++
+'''
+
+C:\Program Files\Notepad++
+
+# %%
+'''
+    install virtualenv with _conda in spyder?
+'''
+    # NO GO
+C:\Users\bmarr\AppData\Local\spyder-6>_conda install virtualenv
+
+NoBaseEnvironmentError: This conda installation has no default base environment. Use
+'conda create' to create new environments and 'conda activate' to
+activate environments.
+
+# %%
+
+'''
+    Install virtualenv using pip in spyder
+'''
+
+    # install virtualenv
+    # virtualenv.exe will likely now be found in your python installation directory 
+    # under the Scripts subdirectory.
+
+
+C:\Users\bmarr\AppData\Local\spyder-6\Scripts> pip install virtualenv
+
+Collecting virtualenv
+  Downloading virtualenv-20.29.3-py3-none-any.whl.metadata (4.5 kB)
+  ....
+virtualenv in c:\users\bmarr\appdata\local\spyder-6\lib\site-packages (20.29.3)
+  
+      # verify installation and locate
+C:\>dir /b/s virtualenv.exe
+C:\Users\bmarr\AppData\Local\spyder-6\Scripts\virtualenv.exe
+
+
+   
+
+# %%
+'''
+    CREATE virtual env in Windows
+    ACTIVTE
+    DELETE
+'''
+
+https://stackoverflow.com/questions/35950740/virtualenv-is-not-recognized-as-an-internal-or-external-command-operable-prog
+https://stackoverflow.com/questions/46896093/how-to-activate-virtual-environment-from-windows-10-command-prompt
+https://mothergeo-py.readthedocs.io/en/latest/development/how-to/venv-win.html
+
+
+    # CREATE a virtual environment
+     # virtualenv is installed correctly
+     # create virtual env, 'venv-translate'
+C:\Users\bmarr\AppData\Local\spyder-6\Scripts> virtualenv venv-translate
+
+
+    # ACTIVATE the virtual environment
+C:\Users\bmarr\AppData\Local\spyder-6\Scripts> activate
+
+    # activated !!
+[spyder](base) C:\Users\bmarr\AppData\Local\spyder-6\Scripts>
+
+      # venv-translate directory exists? YES!!!
+C:\Users\bmarr\AppData\Local\spyder-6\Scripts> dir /b/s venv-translate 
+
+
+
+    # To stop using the Python virtual environment
+    # DEACTIVATE and rmdir 
+    
+    # First initialize conda
+ C:\Users\bmarr\AppData\Local\spyder-6\Scripts> conda init
+ ==> For changes to take effect, close and re-open your current shell
+ 
+ 
+     # DEACTIVATE
+     # restart terminal to send deactivate command
+     # conda deactivate 
+ C:\Users\bmarr\AppData\Local\spyder-6\Scripts> conda deactivate 
+    
+
+    
+   # DELETE virtual environment folder and all files
+   #    ==>  /q disables Yes/No prompting
+   #    ==> /s means delete the file(s) from all subdirectories.
+ C:\Users\bmarr\AppData\Local\spyder-6\Scripts> rmdir /s /q venv-translate
+
+    # check
+C:\Users\bmarr\AppData\Local\spyder-6\Scripts>dir /b/s venv-translate
+File Not Found
+
+
+   
+   
+    
+# %%
+'''
+    Create a virtual Python environment on local machine (home computer)
+      ==> Install IPython
+      ==> Install the SDK for Google language translation (google-cloud-translate)
+      ( aka the Google Translation API client library)
+      ==> spyder kernels
+'''
+    
+    # cd to directory with virtualenv.exe
+C:\Users\bmarr> cd C:\Users\bmarr\AppData\Local\spyder-6\Scripts
+
+ 
+     # create virtual env, 'venv-translate'
+C:\Users\bmarr\AppData\Local\spyder-6\Scripts> virtualenv venv-translate
+
+
+    # activate
+C:\Users\bmarr\AppData\Local\spyder-6\Scripts> activate
+
+
+    # activated !!
+[spyder](base) C:\Users\bmarr\AppData\Local\spyder-6\Scripts>
+
+
+
+    # install ipython google-cloud-translate
+    # NOT spyder-kernels==3.0.*
+[spyder](base) C:\Users\bmarr\AppData\Local\spyder-6\Scripts> pip install ipython spyder-kernels google-cloud-translate
+
+
+    # installed spyder kernels separately
+[spyder](base) C:\Users\bmarr\AppData\Local\spyder-6\Scripts> conda install spyder-kernels=3.0
+
+
+    #check contents
+C:\Users\bmarr\AppData\Local\spyder-6\Scripts> dir /b/s venv-translate >> C:\Users\bmarr\Desktop\venv.txt
+
+
+    # found python.exe but spyder won't accept this
+C:\Users\bmarr\AppData\Local\spyder-6\Scripts\venv-translate\Scripts\python.exe
+
+
+    #RUN ipython from terminal
+
+[spyder](base) C:\Users\bmarr\AppData\Local\spyder-6\Scripts>ipython
+
+Python 3.11.9 | packaged by conda-forge | (main, Apr 19 2024, 18:27:10) [MSC v.1938 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 8.33.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]:
 
 
 
