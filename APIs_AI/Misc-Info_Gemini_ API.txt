@@ -4,12 +4,8 @@ Author:			bmarron
 Origin Date:		22 Sept 2025
 Revision Date:		22 Sept 2025
 
-####################
-General Info for
-Google Gemini API 
-##########################
 
-
+----	General Info for Google Gemini API ----------------------
 
 ############
 Misc

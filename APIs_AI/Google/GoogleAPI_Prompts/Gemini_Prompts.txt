@@ -1,4 +1,24 @@
 
+#################
+Notes on prompts
+##################
+
+*	You could think about developer and user messages like a function and its arguments in a programming language.
+    	-developer messages provide the system's rules and business logic, like a function definition.
+    	-user messages provide inputs and configuration to which the developer message instructions are applied, like 
+		arguments to a function.
+		- a prompt contains BOTH message types
+
+	instructions parameter (developer messages)
+		gives the model high-level instructions on how it should behave while generating a response, including tone, 
+		goals, and examples of correct responses. Any instructions provided this way will take priority over a prompt 
+		in the input parameter.
+		
+	input parameters (user messages; as string or array)
+		Ant text, image, or file inputs to the model that are used to generate a specific response.
+
+
+
 ##################
 Sample Gemini Prompts
 and System Instructions

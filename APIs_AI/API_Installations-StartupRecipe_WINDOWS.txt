@@ -5,7 +5,7 @@ Origin Date:		22 Sept 2025
 Revision Date:		26 Sept 2025
 
 
-%%%%%%%%%%%%%%%%%%	Setup Instructions for Using Google and OpenAI APIs %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%	Setup Instructions for WINDOWS Using Google and OpenAI APIs %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 #########################
 Setup for Google Gemini
@@ -62,34 +62,10 @@ Setup for Google Gemini
 	2. Store your API key as ENV VARIABLE in your computer [recommended]
 		https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety
 		
---- Example of storage as ENV VARIABLE in Linux --------------------------------------------------------
-	# NB. shell configuration files include  .bashrc, .zshrc, or .bash_profile
-	# My Linux system has a ~/.bashrc file
-	
-	a. export the API Key to  a .bashrc
-$ echo "export GEMINI_API_KEY='key'" >> ~/.bashrc
-$ echo "export OPENAI_API_KEY='key'" >> ~/.bashrc
 
-    b. update shell with new variable
-$ source ~/.bashrc
 
-    c. check  ~/.bashrc file
-    c1. should have entries at the bottom of the file
-    		==> export GEMINI_API_KEY="sk-proj-xxxxxxxxxx..."
-		==> export OPENAI_API_KEY="AIzaSxxxxxxxx..."     
-$ notepadqq ./.bashrc
+--- Example of storage as ENV VARIABLE in WINDOWS --------------------------------------------------------
 
-    d. confirm you have set the API key correctly
-$ echo $GEMINI_API_KEY
-$ echo $OPENAI_API_KEY
-
-    e. check that Python finds the key
->>> import os
->>> gemini_api_key = os.getenv("GEMINI_API_KEY")
->>> openai_api_key = os.getenv("OPENAI_API_KEY")
-
->>> print(gemini_api_key)
->>> print(openai_api_key)
 -------------------------------------------------------------------------
 
 
@@ -108,42 +84,80 @@ https://platform.openai.com/docs/quickstart
 
 
 
-
-####################
-Install 
-	Spyder IDE		<== the Spyder Integrated Development Environment (comes w/ its own Python distro.)
-##########################
-
-*	The Spyder website will automatically recognize your system and offer a download 
-	https://www.spyder-ide.org/download
-
-
-*	when asked by the installer where to install Spyder, select a simple location, like your home directory
-
-For example, 
-Spyder will now be installed into this location:
-	/home/bmarron/spyder-6
-	PREFIX=/home/bmarron18/spyder-6	<==A prefix is the path on your computer where a software package is installed
-
-*	 set a panel icon for launching Spyder, if desired
-
-
-############
-Install 
-	pip 				<== a Python package manager
-	Python 3.11		<== a Python version that works well with current APIs
-	virtualenv		<== a Python package that creates separate working (virtual) environments on your compu
 ###################
+Setup / Configuration 
+of Major Components
+on Local Compu
+####################
 
-$ python3 -m pip install --upgrade pip
+** Install Python
+	- Follow the instruction in this website
+		https://www.python.org/downloads/
+		
+		Stable Releases
+		Python 3.13.7 - Aug. 14, 2025
+			Python-3.13.7.tar.xz				<== Linux
+			Download Windows installer (64-bit)	<== Windows
+		
 
-$ pip install --target /home/bmarron18/virtualenv virtualenv
 
-$ sudo aptitude install python3.11-venv			<== install python 3.11 @ /usr/bin/python3.11 from
-										python3.11-venv_3.11.0~rc1-1~22.04_amd64.deb
-										The first release candidate of python 3.11 is Python 3.11.orc1
-										This version works well with virtualenv
-										
+** Verify pip installed and updated ("pip" is a Python package manager)
+	- pip should already be installed with Python 3.13.7
+	- Open a terminal and go to the top of the filesystem
+		> cd\
+		> pip --version		<== Windows
+		$ pip --version		<== Linux
+			pip 25.2 from /home/bmarron18/.local/lib/python3.10/site-packages/pip (python 3.10)
+			
+	- upgrade pip
+	> python -m ensurepip --upgrade
+	
+	- If needed, follow the instructions in this website
+		https://phoenixnap.com/kb/install-pip-windows
+	
+
+** Install Spyder
+	- Go to https://www.spyder-ide.org/
+	- Spyder will automatically detect your OS and suggest a download
+	- define simple location for Spyder install. For example
+		/home/bmarron/spyder-6								<== Linux and Mac OS
+		C:\Users\<username>\AppData\Local\Programs\spyder-6		<== Windows
+		
+** Review Windows filesystem operations snippets
+	- Open the file, "API_Installations_Windows-Basics.py" in Spyder-6
+	- Review the information (snippets) in the large-window on the left-hand side
+	- Start at [Command Line Operations in Windows] and scroll all the way through the document
+
+
+** Find the version of Python running in Spyder-6
+	- Locate the IPython Interpreter mini-window in the lower right-hand corner of Spyder-6
+	- Scroll to the top of the mini-window to find the Python distribution (distro) information
+	- Something like
+		Python 3.11.0rc1 (main, Aug 12 2022, 10:02:14) [GCC 11.2.0]
+		Type "copyright", "credits" or "license" for more information
+	
+
+** Open a terminal and go to your home directory
+		$ cd ~							<== Linux and Mac OS
+		> cd %homedrive%%homepath%			<== Windows
+	
+	- Check / find the Spyder installation directory (folder)
+		$ find ./ -name "*spyder*" -type d			<== Linux and Mac OS
+		> dir /b/s *spyder*						<== Windows
+		> where spyder*
+
+
+** Install the "virtualenv" package (Python) into Spyder directories using pip
+	- Open a terminal
+	- Install "virtualenv" in specific location in Spyder
+
+	> pip install --target C:\Users\<user-name>\AppData\Local\spyder-6\Scripts virtualenv
+
+
+      - Verify the installation and locate
+		C:\> dir /b/s virtualenv.exe
+			C:\Users\<you>\AppData\Local\spyder-6\Scripts\virtualenv.exe
+
 
 
 ################################################
@@ -164,6 +178,10 @@ Install
 $ python3.11 -m venv ./spyder-6/envs/ai-apis		<== using python 3.11 to create venv named ai-apis
 										./home/bmarron18/spyder-6/envs/ai-apis/pyvenv.cfg
 										<== in ai-apis are python 3.10 and 3.11.orc1
+
+> python -m venv C:\path\to\new\virtual\environment
+
+
 *	Activate the ai-apis virtual environment
 	NB. You will see (ai-apis) before at the command line
 

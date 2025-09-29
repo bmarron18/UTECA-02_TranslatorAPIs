@@ -120,10 +120,10 @@ C:\Users
         s  == system files
         -   == NOT
   
-'''
-* References
+References
     https://stackoverflow.com/questions/8066679/how-to-do-a-simple-file-search-in-cmd
 
+'''
 
 * searches in current directory and sub-directories for a specific name
   (name of file OR directory)
@@ -145,12 +145,20 @@ C:\Users\bmarr> dir /ad /b *spyder*  >> C:\Users\bmarr\Desktop\spyder2.txt
 # %%
 
 '''
-    Search ALL Windows dorectories for Pyhton
+    Search ALL Windows dorectories for Pyhton and send output to text file
+    on the Desktop
 '''
+    # change to top of filesystem
 C:\Users\bmarr\> cd\
 C:\> 
 
+    # search method 1
 C:\> dir /b/s *python* >> C:\Users\bmarr\Desktop\python.txt
+
+   # search method 2
+C:\> where *python* >> C:\Users\bmarr\Desktop\python.txt
+
+
 
 # %%
 
