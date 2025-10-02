@@ -59,7 +59,7 @@ C:\Users\bmarr>
      >> == send output somewhere besides the terminal 
      files.txt == a new text file created as needed
      cd .. == go back one step in the filesytem
-     
+     Chapters
 
  
  '''
@@ -127,7 +127,7 @@ References
 
 * searches in current directory and sub-directories for a specific name
   (name of file OR directory)
-    # type "dir /b/s *<name>*"
+    # type "dir /b/s *<name>*
 
 C:\Users\bmarr\Desktop> dir /b/s *Linux*
 OUTPUT: C:\Users\bmarr\Desktop\general_Linux.txt

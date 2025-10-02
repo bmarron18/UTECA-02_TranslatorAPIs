@@ -2,7 +2,7 @@ Title:			Setup instructions for using Google Gemini and OpenAI APIs
 Project:			UTECA Interpretacion y Traduccion 	
 Author:			bmarron
 Origin Date:		22 Sept 2025
-Revision Date:		26 Sept 2025
+Revision Date:		01 Oct 2025
 
 
 %%%%%%%%%%%%%%%%%%	Setup Instructions for WINDOWS Using Google and OpenAI APIs %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -90,7 +90,7 @@ of Major Components
 on Local Compu
 ####################
 
-** Install Python
+** Install Python **
 	- Follow the instruction in this website
 		https://www.python.org/downloads/
 		
@@ -119,10 +119,12 @@ on Local Compu
 ** Install Spyder
 	- Go to https://www.spyder-ide.org/
 	- Spyder will automatically detect your OS and suggest a download
-	- define simple location for Spyder install. For example
-		/home/bmarron/spyder-6								<== Linux and Mac OS
+	- Let the installer decide where to install Spyder OR define a simple location.
+	For example
+		/home/bmarron/spyder-6								<== Linux
 		C:\Users\<username>\AppData\Local\Programs\spyder-6		<== Windows
-		
+
+
 ** Review Windows filesystem operations snippets
 	- Open the file, "API_Installations_Windows-Basics.py" in Spyder-6
 	- Review the information (snippets) in the large-window on the left-hand side
@@ -130,16 +132,19 @@ on Local Compu
 
 
 ** Find the version of Python running in Spyder-6
+	- Open the Spyder application
 	- Locate the IPython Interpreter mini-window in the lower right-hand corner of Spyder-6
 	- Scroll to the top of the mini-window to find the Python distribution (distro) information
 	- Something like
-		Python 3.11.0rc1 (main, Aug 12 2022, 10:02:14) [GCC 11.2.0]
-		Type "copyright", "credits" or "license" for more information
+		Python 3.11.13 | packaged by conda-forge | (main, Jun  4 2025, 14:48:23) [GCC 13.3.0]
+		Type "copyright", "credits" or "license" for more information.
 	
 
-** Open a terminal and go to your home directory
+** Verify the Spyder installation
+	- Open a terminal and go to your home directory
 		$ cd ~							<== Linux and Mac OS
 		> cd %homedrive%%homepath%			<== Windows
+		> cd C:\Users\<your_user_name>\
 	
 	- Check / find the Spyder installation directory (folder)
 		$ find ./ -name "*spyder*" -type d			<== Linux and Mac OS
@@ -147,16 +152,22 @@ on Local Compu
 		> where spyder*
 
 
-** Install the "virtualenv" package (Python) into Spyder directories using pip
-	- Open a terminal
-	- Install "virtualenv" in specific location in Spyder
 
-	> pip install --target C:\Users\<user-name>\AppData\Local\spyder-6\Scripts virtualenv
-
-
-      - Verify the installation and locate
+** Verify that your python distro has the package, "virtualenv"
+	- search (and pipe the output to a file on the Desktop)
 		C:\> dir /b/s virtualenv.exe
-			C:\Users\<you>\AppData\Local\spyder-6\Scripts\virtualenv.exe
+
+		$ sudo find ./ -name "*virtualenv*" -type d >> ~/Desktop/test.txt
+			./.local/lib/python3.10/site-packages/virtualenv
+			./.local/lib/python3.10/site-packages/virtualenv-20.34.0.dist-info
+
+
+** Learn the fundamentals of virtual environments in python
+	https://realpython.com/python-virtual-environments-a-primer/
+
+
+
+
 
 
 
@@ -172,14 +183,22 @@ Install
 	nltk 			<== Natural Language Toolkit
 ###################################################################
 
-*	Specify the use of python 3.11 to create working environment 
-	The working (virtual) environment is created with the Python package, in /spyder-6/envs called ai-apis
+*	Specify the use of python to create a separate working environment (a virtual environment)
+	The virtual environment is created with the Python package, "venv" 
+	The "venv" package will be called (ai-apis) and installed in .../spyder-6/envs
 
-$ python3.11 -m venv ./spyder-6/envs/ai-apis		<== using python 3.11 to create venv named ai-apis
+										<== in Linux use python 3.11-venv to create (ai-apis)
 										./home/bmarron18/spyder-6/envs/ai-apis/pyvenv.cfg
-										<== in ai-apis are python 3.10 and 3.11.orc1
+										<== in (ai-apis) are python 3.10 and 3.11.orc1
+$ python3.11 -m venv ./spyder-6/envs/ai-apis
 
-> python -m venv C:\path\to\new\virtual\environment
+
+
+										<== in Windows use python 3.13 to create (ai-apis)
+										<== in (ai-apis) are python 
+> python3.13 -m venv C:\Users\<username>\AppData\Local\Programs\spyder-6\envs\ai-apis
+
+
 
 
 *	Activate the ai-apis virtual environment
