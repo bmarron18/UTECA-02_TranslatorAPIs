@@ -2,7 +2,7 @@ Title:			Setup instructions for using Google Gemini and OpenAI APIs
 Project:			UTECA Interpretacion y Traduccion 	
 Author:			bmarron
 Origin Date:		22 Sept 2025
-Revision Date:		01 Oct 2025
+Revision Date:		02 Oct 2025
 
 
 %%%%%%%%%%%%%%%%%%	Using Google Gemini and OpenAI APIs %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -106,7 +106,7 @@ $		<== indicates a Linux/MacOS terminal
 		
 
 
-** Verify pip installed and updated ("pip" is a Python package manager) ****
+** Verify "pip" installed and updated ("pip" is a Python package manager) ****
 	- pip should already be installed with Python 3.13.7
 	- Open a terminal and go to the top of the filesystem
 		> cd\
@@ -168,6 +168,7 @@ $		<== indicates a Linux/MacOS terminal
 ** Check that your python distro has the package, "virtualenv" ****
 	- search (and pipe the output to a file on the Desktop)
 		C:\> dir /b/s virtualenv.exe									<== Windows
+			C:\Users\<you>\AppData\Local\spyder-6\Scripts\virtualenv.exe
 
 		$ sudo find ./ -name "*virtualenv*" -type d >> ~/Desktop/test.txt	<== Linux/MacOS
 			(eg ./.local/lib/python3.10/site-packages/virtualenv)
@@ -184,7 +185,7 @@ $		<== indicates a Linux/MacOS terminal
 
       - Verify installation
 		> dir /b/s virtualenv.exe							<==Winows
-		C:\Users\<you>\AppData\Local\spyder-6\Scripts\virtualenv.exe
+			C:\Users\<you>\AppData\Local\spyder-6\Scripts\virtualenv.exe
 	 
 		$ cd ~											<== Linux/MacOS
 		$ find ./ -name "virtualenv*" -type f  

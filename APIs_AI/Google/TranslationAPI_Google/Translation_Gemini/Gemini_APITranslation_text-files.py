@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Sep 12 11:20:22 2025
+Updated: 02 Oct 2025
 @author: bmarron / Gemini 2.5 Flash /
 
 """
@@ -182,7 +183,7 @@ prompt = "Translate the following English text into standard, natural, \
 response = client.models.generate_content(
     model="gemini-2.5-flash",
     config=types.GenerateContentConfig(
-        system_instruction="You are an expert liguist \
+        system_instruction="You are an expert linguist \
             specializing in translation. Maintain the original \
             meaning and tone. Provide ONLY the requested translation without \
             any additional commentary, introductory phrases, other language \

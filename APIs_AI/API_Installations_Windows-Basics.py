@@ -69,7 +69,8 @@ C:\Users\bmarr>
  
  C:\Users\bmarr> dir
  
- 
+ Extra Credit: Learn how to store your API key as ENV VARIABLE in your computer [recommended]
+
  
  * list files and directories at your current locations (organized)
      # type "dir /s/b/o:gn"
