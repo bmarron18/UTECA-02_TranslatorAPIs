@@ -13,6 +13,16 @@ METEOR Metric using the Natural Language Tool Kit (ntlk)
 
 '''
 
+# %%
+
+    # after import NLTK package, need to download all the corpus, etc files
+    # the command below opens a separate window to select items
+    # select all
+    
+import nltk
+nltk.download()
+
+
 
 # %%
 
@@ -20,11 +30,15 @@ METEOR Metric using the Natural Language Tool Kit (ntlk)
 METEOR Score: Test Run
 '''
 from nltk.tokenize import word_tokenize
-from nltk.translate.meteor_score import single_meteor_score 
+from nltk.translate.meteor_score import single_meteor_score
 
-# Define candidate and reference sentences 
+
+ 
+    # Define the reference text
 reference_text= "The quick brown fox jumps over the lazy dog. \
     And finds himself caught." 
+    
+    # Define the translated (candidate) text
 candidate_text = "A fast brown fox leaps over a lazy dog. \
     And is captured."
 
@@ -34,10 +48,11 @@ hypo = word_tokenize(candidate_text, "english")
 
 
 # Calculate METEOR score 
-score = single_meteor_score(ref, hypo) 
+score = single_meteor_score(ref, hypo)
 
 # Print the result 
 print(f"METEOR Score: {score:.4f}")
+# METEOR Score: 0.6621
 
 # %%
 

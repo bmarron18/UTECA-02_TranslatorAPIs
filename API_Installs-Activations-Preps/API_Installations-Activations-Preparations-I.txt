@@ -113,15 +113,20 @@ $		<== indicates a Linux/MacOS terminal
 		> pip --version		<== Windows
 		
 		$ pip --version		<== Linux/MacOS
-			(eg, pip 25.2 from /home/bmarron18/.local/lib/python3.10/site-packages/pip (python 3.10)
+			(eg, pip 25.2 from /home/bmarron18/.local/lib/python3.10/site-packages/pip (python 
+			3.10)
+			
+			
+		./.local/lib/python3.10/site-packages/virtualenv
+		./.local/lib/python3.10/site-packages/virtualenv-20.34.0.dist-info
 			
 	- If needed, follow the instructions in this website
 		https://phoenixnap.com/kb/install-pip-windows
 			
 	- upgrade pip
-	> python -m ensurepip --upgrade				<== Windows
+		> python -m ensurepip --upgrade				<== Windows
 	
-	$ python3 -m pip install --upgrade pip			<== Linux/MacOS
+		$ python3 -m pip install --upgrade pip			<== Linux/MacOS
 
 	
 	
@@ -168,16 +173,18 @@ $		<== indicates a Linux/MacOS terminal
 ** Check that your python distro has the package, "virtualenv" ****
 	- search (and pipe the output to a file on the Desktop)
 		C:\> dir /b/s virtualenv.exe									<== Windows
-			C:\Users\<you>\AppData\Local\spyder-6\Scripts\virtualenv.exe
+			C:\Users\<you>\AppData\Local\spyder-6\...\virtualenv.exe
 
 		$ sudo find ./ -name "*virtualenv*" -type d >> ~/Desktop/test.txt	<== Linux/MacOS
-			(eg ./.local/lib/python3.10/site-packages/virtualenv)
+			(eg ./.local/lib/python3.10/site-packages/virtualenv
+			./.local/lib/python3.10/site-packages/virtualenv
+			./.local/lib/python3.10/site-packages/virtualenv-20.34.0.dist-info
 
 ** Install and verify the installation of "virtualenv" package into Spyder directories using pip
 	(If you do not have it)
 
     - install "virtualenv" in specific location in Spyder
-  		> cd C:\Users\<you>\AppData\Local\spyder-6\Scripts		<== Windows
+  		> cd C:\Users\<you>\AppData\Local\spyder-6\...		<== Windows
 		> pip install virtualenv
 	
 		$ pip install --target ~/spyder-6/env/ virtualenv			<== Linux/MacOS
@@ -185,7 +192,7 @@ $		<== indicates a Linux/MacOS terminal
 
       - Verify installation
 		> dir /b/s virtualenv.exe							<==Winows
-			C:\Users\<you>\AppData\Local\spyder-6\Scripts\virtualenv.exe
+			C:\Users\<you>\AppData\Local\spyder-6\...\virtualenv.exe
 	 
 		$ cd ~											<== Linux/MacOS
 		$ find ./ -name "virtualenv*" -type f  
@@ -215,9 +222,9 @@ Install into (ai-apis)
 	The virtual environment is created with the Python package, "virtualenv" using the command "venv"
 	
 
-										<== in Windows use python 3.13 to create (ai-apis)
-										<== in (ai-apis) are all python distros available on compu 
-> C:\Users\<you>\AppData\Local\spyder-6\Scripts> python3.13 -m venv ai-apis
+										<== in Windows use python 3.13 in (ai-apis)
+										<== NB. in (ai-apis) will see all python distros available on compu 
+> C:\Users\<you>\AppData\Local\spyder-6\...\env\> python3.13 -m venv ai-apis
 
 
 
@@ -258,6 +265,14 @@ $ python3.11 -m venv ./spyder-6/envs/ai-apis
 Set Spyder 
 to run in (ai-apis)
 ##############
+
+https://docs.spyder-ide.org/5/faq.html#using-existing-environment
+	Q. How do I get SPyder to work with my existing pkgs/env?
+
+To work with an existing environment in Spyder, change the default Python interpreter for new IPython Consoles to point to this environment.
+To do so, open the Python interpreter section of Spyder’s preferences (Tools ? Preferences, or Spyder ? Preferences on macOS). Here, select the option Use the following Python interpreter, and use the dropdown below to select your preferred environment. If it’s not listed, see the note below.
+	
+
 
 ** open Spyder and clic on the "wrench" in the toolbar to open the Preferences window ****
 	- in left-hand column clic on "Python Interpreter"

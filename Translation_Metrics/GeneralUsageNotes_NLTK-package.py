@@ -16,7 +16,7 @@ Using the Natural Language Tool Kit (ntlk)
 
 # %%
 
-    # after impot package, need tdownload all the corpus, etc files
+    # after impot package, need to download all the corpus, etc files
     # opens a separate window to select items
     # select all
     
@@ -26,7 +26,7 @@ nltk.download()
 # %%
 
 '''
-Test Code
+NLTK Test Code
 
 '''
 
@@ -36,7 +36,7 @@ from nltk.translate.bleu_score import sentence_bleu
     # Weights for uni-gram, bi-gram, tri-gram, and 4-gram
 weights = (0.25, 0.25, 0, 0) 
 
-    # Reference and predicted texts (same as before)
+    # Reference and predicted texts
     # These are tokenized lists (not tokenized strings)
 reference = [["the", "picture", "is", "clicked", "by", "me"],
              ["this", "picture", "was", "clicked", "by", "me"]]
@@ -45,6 +45,7 @@ predictions = ["the", "picture", "the", "picture", "by", "me"]
     # Calculate BLEU score with weights
 score = sentence_bleu(reference, predictions, weights=weights)
 print(score)
+# 0.7186082239261684
 
 # %%
 
@@ -127,7 +128,7 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 OUTPUT_FILE = "tokenized_refs.txt"
 
 doc_to_print = OUTPUT_FILE;
-doc_dir = "/home/bmarron/Desktop" ;
+doc_dir = "/home/bmarron18/Desktop" ;
 output_filepath = os.path.join(doc_dir, doc_to_print)
 
     # Define reference texts

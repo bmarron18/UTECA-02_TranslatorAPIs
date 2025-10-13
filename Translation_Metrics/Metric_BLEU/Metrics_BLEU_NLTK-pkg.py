@@ -8,13 +8,22 @@ Created on Wed Sep 17 11:35:19 2025
 
 # %%
 
+    # after import NLTK package, need to download all the corpus, etc files
+    # the command below opens a separate window to select items
+    # select all
+    
+import nltk
+nltk.download()
+
+
+
+# %%
+
 '''
 The BLEU (Bilingual Evaluation Understudy) Metric 
 using the Natural Language Tool Kit (ntlk) in Python
 
 '''
-
-
 
 
 # %%
@@ -27,23 +36,24 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 
 
     # Define reference texts 
- 
 reference_text_1 = "The quick brown fox jumps over the lazy dog. \
     And finds himself caught." 
 reference_text_2 = "A fast brown fox leaps over a lazy dog. \
     And is captured."
 
+    # Define translated (candidate) text
 candidate_text =  "The quick brown fox hops over the slow-moving dog. \
     And gets caught."
 
 
-   # list sentences and then tokenize to words
+   # make list of the refernce sentences and then tokenize to words
 sentences = [reference_text_1, reference_text_2]
-
-
 references = [word_tokenize(sentence, "english") for sentence in sentences]
+
+    # only one candidate sentence so can tokenize directly to words 
 candidate = word_tokenize(candidate_text, "english")
 
+    # set the n-gram weights
 weights=(.50, 0.50, 0, 0)
 
 
@@ -51,6 +61,7 @@ bleu_score = sentence_bleu(references, candidate, weights)
 
  
 print(bleu_score)
+# 0.6504436355879909
 
 
 # %%
