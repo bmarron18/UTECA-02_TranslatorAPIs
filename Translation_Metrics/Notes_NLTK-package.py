@@ -47,6 +47,50 @@ score = sentence_bleu(reference, predictions, weights=weights)
 print(score)
 # 0.7186082239261684
 
+
+# %%
+
+from nltk.translate.bleu_score import corpus_bleu
+from nltk.tokenize import sent_tokenize, word_tokenize
+
+
+candidate_text =  "The Ministry of Labor and Social Welfare must decide on the \
+    registration request within twenty days of receiving it. If it fails to do so \
+    the applicants may request that it issue the corresponding resolution within three \
+    days of submitting the request. After thid period has elapsed without notification \
+    of the resolution, the registration will be deemed to have been made for the legal \
+    purposes to which it gives rise"
+    
+    # creates a list(string) of tokenized words 
+    # EXCLUDES periods "."
+split_fxn =  "The Ministry of Labor and Social Welfare must decide on the \
+    registration request within twenty days of receiving it. If it fails to do so \
+    the applicants may request that it issue the corresponding resolution within three \
+    days of submitting the request. After thid period has elapsed without notification \
+    of the resolution, the registration will be deemed to have been made for the legal \
+    purposes to which it gives rise".split()
+ 
+    
+    # creates a list(string) of tokenized words 
+    # INCLUDES tokenized periods "."
+token_fxn2 = word_tokenize(candidate_text, "english")
+
+
+   # creates a list(list(string)) of tokenized words 
+   # EXCLUDES tokenized periods "."
+token_fxn3 = [word_tokenize(candidate_text, "english")]
+
+
+    # creates a list(string1, string2, string3) of tokenized sentences
+    # EXCLUDES tokenized periods "."
+token_fxn4 = sent_tokenize(candidate_text)
+
+
+token_fxn5 = word_tokenize(str(token_fxn4), "english")
+
+token_fxn6 = [word_tokenize(sentence, "english") for sentence in candidate_text]
+
+
 # %%
 
 from nltk.tokenize import sent_tokenize
@@ -114,6 +158,24 @@ print(sentences)
 
 #print(words)
 
+
+# %%
+'''
+Tokenizing
+
+'''
+
+import nltk
+from nltk.tokenize import sent_tokenize, word_tokenize
+
+text = "NLTK is a powerful library for natural language processing. It's widely used! You can do a lot with it."
+sentences = sent_tokenize(text)
+sent_strg = "".join(sentences)
+words = word_tokenize(sent_strg)
+
+print(sentences)
+
+print(words)
 # %%
 
 '''

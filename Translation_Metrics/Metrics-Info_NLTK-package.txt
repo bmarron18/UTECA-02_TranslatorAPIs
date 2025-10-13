@@ -36,17 +36,15 @@ BLEU
 		language pairs (e.g., English to Chinese, French to German). 
 
 *	Focus on N-grams:
-		The core of BLEU is the comparison of n-grams (sequences of n-words) between the machine output and human 
-		references. This comparison doesn't rely on any specific language grammar or vocabulary. 
+		The core of BLEU is the comparison of n-grams (sequences of n-words) between the machine output and human references. This comparison doesn't rely on any specific language grammar or vocabulary. 
 
 *	Descriptions of BLEU
 https://www.geeksforgeeks.org/nlp/nlp-bleu-score-for-evaluating-neural-machine-translation-python/
 https://medium.com/data-science/evaluating-text-output-in-nlp-bleu-at-your-own-risk-e8609665a213
-	Before you get to that round, though, you’ll probably need to use at least one automatic evaluation 		
-	metric. And I would urge you to use BLEU if and only if:
-    	You’re doing machine translation AND
-    	You’re evaluating across an entire corpus AND
-    	You know the limitations of the metric and you’re prepared to accept them.
+	Before you get to that round, though, you’ll probably need to use at least one automatic evaluation 		metric. And I would urge you to use BLEU if and only if:
+    		You’re doing machine translation AND
+    		You’re evaluating across an entire corpus AND
+    		You know the limitations of the metric and you’re prepared to accept them.
 
 
 ---- AI generated from Google query [generate blue score for a long text in python]------------
@@ -59,6 +57,85 @@ The BLEU score requires:
 --- Import necessary modules (sentence tokenize, word tokenize)
     from nltk.translate.bleu_score import corpus_bleu
     from nltk.tokenize import sent_tokenize, word_tokenize
+ --------------------------------------------------------------------------------------------------------------  
+ 
+ 
+ ###########
+ Testing Token Fxns
+ #####################
+:param references: a corpus of lists of reference sentences, w.r.t. hypotheses
+:type references: list(list(list(str)))
+
+:param hypotheses: a list of hypothesis sentences
+:type hypotheses: list(list(str))
+
+
+>>>
+from nltk.translate.bleu_score import corpus_bleu
+from nltk.tokenize import sent_tokenize, word_tokenize
+
+
+candidate_text =  "The Ministry of Labor and Social Welfare must decide on the \
+    registration request within twenty days of receiving it. If it fails to do so \
+    the applicants may request that it issue the corresponding resolution within three \
+    days of submitting the request. After thid period has elapsed without notification \
+    of the resolution, the registration will be deemed to have been made for the legal \
+    purposes to which it gives rise"
+    
+    # creates a list(string) of tokenized words 
+    # EXCLUDES periods "."
+split_fxn =  "The Ministry of Labor and Social Welfare must decide on the \
+    registration request within twenty days of receiving it. If it fails to do so \
+    the applicants may request that it issue the corresponding resolution within three \
+    days of submitting the request. After thid period has elapsed without notification \
+    of the resolution, the registration will be deemed to have been made for the legal \
+    purposes to which it gives rise".split()
+ 
+    
+    # creates a list(string) of tokenized words 
+    # INCLUDES tokenized periods "."
+token_fxn2 = word_tokenize(candidate_text, "english")
+
+
+   # creates a list(list(string)) of tokenized words 
+   # EXCLUDES tokenized periods "."
+token_fxn3 = [word_tokenize(candidate_text, "english")]
+
+
+    # creates a list(string1, string2, string3) of tokenized sentences
+    # EXCLUDES tokenized periods "."
+token_fxn4 = sent_tokenize(candidate_text)
+
+
+print(split_fxn)
+['The', 'Ministry', 'of', 'Labor', 'and', 'Social', 'Welfare', 'must', 'decide', 'on', 'the', 'registration', 'request', 'within', 'twenty', 'days', 'of', 'receiving', 'it.', 'If', 'it', 'fails', 'to', 'do', 'so', 'the', 'applicants', 'may', 'request', 'that', 'it', 'issue', 'the', 'corresponding', 'resolution', 'within', 'three', 'days', 'of', 'submitting', 'the', 'request.', 'After', 'thid', 'period', 'has', 'elapsed', 'without', 'notification', 'of', 'the', 'resolution,', 'the', 'registration', 'will', 'be', 'deemed', 'to', 'have', 'been', 'made', 'for', 'the', 'legal', 'purposes', 'to', 'which', 'it', 'gives', 'rise']
+
+print(token_fxn2)
+['The', 'Ministry', 'of', 'Labor', 'and', 'Social', 'Welfare', 'must', 'decide', 'on', 'the', 'registration', 'request', 'within', 'twenty', 'days', 'of', 'receiving', 'it', '.', 'If', 'it', 'fails', 'to', 'do', 'so', 'the', 'applicants', 'may', 'request', 'that', 'it', 'issue', 'the', 'corresponding', 'resolution', 'within', 'three', 'days', 'of', 'submitting', 'the', 'request', '.', 'After', 'thid', 'period', 'has', 'elapsed', 'without', 'notification', 'of', 'the', 'resolution', ',', 'the', 'registration', 'will', 'be', 'deemed', 'to', 'have', 'been', 'made', 'for', 'the', 'legal', 'purposes', 'to', 'which', 'it', 'gives', 'rise']
+
+print(token_fxn3)
+[['The', 'Ministry', 'of', 'Labor', 'and', 'Social', 'Welfare', 'must', 'decide', 'on', 'the', 'registration', 'request', 'within', 'twenty', 'days', 'of', 'receiving', 'it', '.', 'If', 'it', 'fails', 'to', 'do', 'so', 'the', 'applicants', 'may', 'request', 'that', 'it', 'issue', 'the', 'corresponding', 'resolution', 'within', 'three', 'days', 'of', 'submitting', 'the', 'request', '.', 'After', 'thid', 'period', 'has', 'elapsed', 'without', 'notification', 'of', 'the', 'resolution', ',', 'the', 'registration', 'will', 'be', 'deemed', 'to', 'have', 'been', 'made', 'for', 'the', 'legal', 'purposes', 'to', 'which', 'it', 'gives', 'rise']]
+
+print(token_fxn4)
+['The Ministry of Labor and Social Welfare must decide on the     registration request within twenty days of receiving it.', 'If it fails to do so     the applicants may request that it issue the corresponding resolution within three     days of submitting the request.', 'After thid period has elapsed without notification     of the resolution, the registration will be deemed to have been made for the legal     purposes to which it gives rise']
+ >>>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 --- Prepare your reference and candidate texts.
     reference_text_1 = "This is a long and complex reference text for evaluating the machine translation output. It contains multiple sentences and aims to provide a comprehensive example."
