@@ -168,7 +168,7 @@ $ source ./spyder-6/envs/ai-apis/bin/activate				<== Linux/MacOS
 >\...\(ai-apis)> pip install spyder-kernels==3.1.* google-genai openai nltk jiter	<== Windows
 
 
-(ai-apis):~$ pip install spyder-kernels google-genai openai nltk jiter		<== Linux/MacOS
+(ai-apis):~$ pip install spyder-kernels==3.1.* google-genai openai nltk jiter		<== Linux/MacOS
 
 
 
