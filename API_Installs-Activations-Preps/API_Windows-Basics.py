@@ -60,7 +60,7 @@ C:\Users\bmarr>
      files.txt == a new text file created as needed
      cd .. == go back one step in the filesytem
      Chapters
-
+     rd /s /q "path"== delete directory
  
  '''
  

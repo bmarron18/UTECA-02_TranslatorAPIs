@@ -114,7 +114,7 @@ OUTPUT_FILE = "OpenAI_Doc-Spanish_T.txt"
     
 doc_to_translate = INPUT_FILE
 doc_to_print = OUTPUT_FILE
-doc_dir = "/home/bmarron/Desktop"
+doc_dir = "/home/bmarron18/Desktop"   #<== Old HP
 
 
     # create paths to files

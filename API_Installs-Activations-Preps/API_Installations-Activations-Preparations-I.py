@@ -133,7 +133,7 @@ Install into (ai-apis)
 								<== in Windows use python 3.13 in (ai-apis)
 								<== NB. in (ai-apis) will see all python distros available on compu 
 > cd \...\AppData\Local\spyder-6\...\env\
-> python3.13 -m venv ai-apis
+> python -m venv ai-apis
 
 
 
@@ -155,7 +155,7 @@ $ python3.11 -m venv ./spyder-6/envs/ai-apis
 	Step 1. Activate the (ai-apis) virtual environment
 	  NB. When activated, you will see (ai-apis) at the command line
 
->C:\Users\<you>\...\spyder-6\...\envs\ai-apis> activate		<== Windows
+>C:\Users\<you>\...\spyder-6\...\envs\ai-apis\Scripts> activate		<== Windows
 (ai-apis)>
 
 
@@ -188,6 +188,10 @@ $
 
 '''
 Set Spyder to run in (ai-apis)
+
+NB change the .exe file from ipython.exe to python.exe
+in >C:\Users\<you>\...\ai-apis\Scripts
+
 '''
 Follow the instructions given here:
 https://docs.spyder-ide.org/5/faq.html#using-existing-environment

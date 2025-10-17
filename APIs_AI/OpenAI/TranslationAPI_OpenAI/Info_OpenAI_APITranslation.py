@@ -107,3 +107,9 @@ pirate driftin' to sleep among the stars.
 Path() construcor in Python
 
 represent file and directory paths in a platform-independent manner.
+
+# %%
+
+Error code: 400 - {'error': {'message': "'assistant' is not one of 
+    ['fine-tune', 'assistants', 'batch', 'user_data', 'vision', 'evals'] - 
+    'purpose'", 'type': 'invalid_request_error', 'param': 'purpose', 'code': None}}
