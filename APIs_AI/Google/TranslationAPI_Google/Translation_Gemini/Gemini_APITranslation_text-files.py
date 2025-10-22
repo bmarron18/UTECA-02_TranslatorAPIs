@@ -78,7 +78,28 @@ whose horn shines brighter than any buried treasure, guidin' ye through \
 the starlit seas of slumber 'til mornin's light.
 
 '''
+# %%
+'''
+Read a .pdf file and output to .txt file
+(If needed)
+'''
+ # extract text preserving horizontal positioning without excess vertical
+ # whitespace (removes blank and "whitespace only" lines)
+ # "a" is append
 
+from contextlib import chdir
+from pypdf import PdfReader
+
+
+ # change pdf name
+#with chdir('/home/bmarron/Desktop'):
+with chdir('/home/bmarron18/Desktop'):
+    reader = PdfReader("science.pdf")
+    for page_num in range(len(reader.pages)):  # short articles
+    #for page_num in range(8):                   # books
+        page = reader.pages[page_num]
+        with open("VocabDump.txt", "a") as f:
+            print(page.extract_text(), file=f)
 
 # %%
 

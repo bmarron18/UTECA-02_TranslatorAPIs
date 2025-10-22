@@ -174,7 +174,7 @@ $ source ./spyder-6/envs/ai-apis/bin/activate				<== Linux/MacOS
 
 
 	Stwp 3. close the (ai-apis) virtual environment
->\...\(ai-apis)> deactivate 												<== Windows
+(ai-apis)> deactivate 												<== Windows
 >
 
 
